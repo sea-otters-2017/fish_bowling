@@ -1,6 +1,8 @@
-## fish-bowling [![Build Status](https://travis-ci.org/...)](https://travis-ci.org/...)
+# fish-bowling [![Build Status](https://travis-ci.org/pholls/fish_bowling.svg?branch=master)](https://travis-ci.org/pholls/fish_bowling)
 
-### Dev Bootcamp Final Project
+## Dev Bootcamp Final Project
+
+### Contributors
 
 * Kim T. Tran
     * [@kimtran27](https://github.com/kimtran27)
@@ -18,7 +20,7 @@ Fish-bowling is a digital adaption of the fun and easy guessing game: Fish Bowl.
 ### Installation Instructions
 
 To install this code:
-* Visit the game page @ https://fish-bowling.herokuapp.com???
+* Visit the game page on [heroku](https://fish-bowling.herokuapp.com)!
 
 * Otherwise:
     * clone this repo
