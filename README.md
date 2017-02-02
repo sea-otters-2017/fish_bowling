@@ -1,24 +1,28 @@
-# README
+## fish-bowling [![Build Status](https://travis-ci.org/...)](https://travis-ci.org/...)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Dev Bootcamp Final Project
 
-Things you may want to cover:
+* Kim T. Tran
+    * [@kimtran27](https://github.com/kimtran27)
+* Pat Holland
+    * [@pholls](https://github.com/pholls)
+* Justin Grassé
+    * [@justGrasse](https://github.com/justGrasse)
+* Katherine Guenther
+    * [@KatherineGuenther](https://github.com/KatherineGuenther)
 
-* Ruby version
+### Description
 
-* System dependencies
+Fish-bowling is a digital adaption of the fun and easy guessing game: Fish Bowl.  Throughout the game there are 3 rounds with 4 or more players, each following with their mobile device or desktop.  This app will feature realtime updates to a constantly changing, time-crunchingly exciting thrill-game.  Enjoy!
 
-* Configuration
+### Installation Instructions
 
-* Database creation
+To install this code:
+* Visit the game page @ https://fish-bowling.herokuapp.com???
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Otherwise:
+    * clone this repo
+    * enter `bundle install` into terminal
+    * enter `bin/rails server` into terminal
+    * in a web browser, open localhost:3000
+    * follow on-screen instructions
