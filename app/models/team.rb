@@ -1,5 +1,5 @@
-class Team < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+class Team < ApplicationRecord
+  validates :name, presence: true
   belongs_to :game
   has_and_belongs_to_many :players,
                           join_table: "players_teams",

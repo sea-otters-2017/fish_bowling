@@ -1,1 +1,7 @@
 <%= @game.name %>
+
+<ul>
+  <% @game.all_players.each do |player| %>
+    <li><%= player.display_name %></li>
+  <% end %>
+</ul>
