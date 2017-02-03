@@ -21,6 +21,7 @@ gem 'devise'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
+  gem 'faker', '~> 1.7.2'
 end
 
 group :development do
@@ -31,6 +32,7 @@ group :development do
 end
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'simplecov', :require => false
 end
 
