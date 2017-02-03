@@ -6,6 +6,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
   <body>
@@ -15,12 +21,23 @@
       <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
     <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <%= link_to "Sign up", new_user_registration_path, :class => 'nav-wrapper'  %> |
+      <%= link_to "Login", new_user_session_path, :class => 'nav-wrapper'  %>
     <% end %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
 
     <%= yield %>
 
