@@ -7,7 +7,7 @@ class GamesController < ApplicationController
     if @game.save
       redirect_to @game
     else
-      redirect_to root_path, notice: 'Game name has been taken'
+      redirect_to root_path, notice: 'Game has been created'
     end
   end
 
