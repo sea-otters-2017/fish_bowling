@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_game, only: [:show, :join]
 
   def create
     @game = Game.new(game_params)
@@ -16,9 +17,20 @@ class GamesController < ApplicationController
     @game = Game.find_by(name: params[:name])
   end
 
+  def join
+    return redirect_to root_path, notice: 'That game has not been created' unless @game
+    @game.participants << current_user unless @game.participants.exists?(current_user)
+    redirect_to @game
+  end
+
   private
+
   def game_params
     params.require(:game).permit(:name)
+  end
+
+  def set_game
+    @game = Game.find_by(name: params[:name])
   end
 
 end

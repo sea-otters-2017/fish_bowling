@@ -1,1 +1,5 @@
-<!-- INCLUDE JOIN GAME FORM -->
+
+<%= form_tag(join_games_path, :method => "post", id: "join-game-form") do %>
+    <%= text_field_tag :name, params[:name] %>
+    <%= submit_tag "Join Existing Game" %>
+<% end %>
