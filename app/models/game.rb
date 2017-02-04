@@ -12,6 +12,8 @@ class Game < ApplicationRecord
     name
   end
 
+  
+
   def minimum_players?
     self.participants.count >= 4
   end
