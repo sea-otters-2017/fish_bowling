@@ -7,8 +7,6 @@ class Game < ApplicationRecord
                           class_name: User,
                           association_foreign_key: 'participant_id'
 
-  # after_save :initialize_all_players, on: :create
-
   def to_param
     name
   end

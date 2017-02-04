@@ -1,11 +1,6 @@
-<h3>Teams:</h3>
+<h4>Teams:</h4>
 <div>
   <% @game.teams.each do |team| %>
-    <%= team.name %>
-    <ul>
-      <% team.players do |player| %>
-        <li><%= player.display_name %></li>
-      <% end %>
-    </ul>
+    <%= render 'teams/team', team: team %>
   <% end %>
 </div>

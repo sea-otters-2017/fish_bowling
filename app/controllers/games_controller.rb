@@ -24,8 +24,9 @@ class GamesController < ApplicationController
   end
 
   def start
+    CreateRandomTeams.new(@game).call if @game.teams.empty?
     flash[:notice] = "it has started"
-    render :'teams/index'
+    render :'teams/index', game: @game
   end
 
   private
