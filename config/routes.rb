@@ -11,5 +11,6 @@ Rails.application.routes.draw do
       get 'start_round'
     end
   end
+  resources :cards, only: [ :create ]
 
 end

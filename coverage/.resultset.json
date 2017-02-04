@@ -60,6 +60,27 @@
         null,
         null
       ],
+      "/Users/apprentice/fish_bowling/app/controllers/cards_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/apprentice/fish_bowling/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
       "/Users/apprentice/fish_bowling/app/controllers/games_controller.rb": [
         1,
         1,
@@ -106,18 +127,6 @@
         1,
         0,
         null,
-        null,
-        null
-      ],
-      "/Users/apprentice/fish_bowling/app/controllers/application_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        0,
         null,
         null
       ],
@@ -306,6 +315,6 @@
         0
       ]
     },
-    "timestamp": 1486186152
+    "timestamp": 1486186654
   }
 }
