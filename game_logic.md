@@ -47,7 +47,10 @@ ROUND:
   #is_over?
   #last_turn
 
+<!-- ROUND_TYPE:
+  # constants: NAME and DESCRIPTION
+    # create these -->
 
 TURN:
   #is_over?
-  
+
