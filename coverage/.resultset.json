@@ -8,6 +8,7 @@
         null,
         1,
         1,
+        1,
         null,
         null,
         1,
@@ -15,6 +16,10 @@
         null,
         null,
         1,
+        null,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/apprentice/fish_bowling/app/models/application_record.rb": [
@@ -63,8 +68,28 @@
       "/Users/apprentice/fish_bowling/app/controllers/cards_controller.rb": [
         1,
         1,
+        1,
         null,
         1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
         null,
         null,
         null
@@ -315,6 +340,6 @@
         0
       ]
     },
-    "timestamp": 1486186654
+    "timestamp": 1486188662
   }
 }

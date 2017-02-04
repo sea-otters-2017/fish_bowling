@@ -7,7 +7,10 @@ class CardsController < ApplicationController
     @card.author = current_user
     @card.game = @game
     if @card.save
-      flash[:notice] = "you must add (...) cards"
+      if current_user.cards_from(@game).count < 4
+        flash[:notice] = "you must add #{ 4 - current_user.cards_from(@game).count } cards"
+      end
+      redirect_to @game
       return
     else
       redirect_to root_path, notice: 'Game has been created'
