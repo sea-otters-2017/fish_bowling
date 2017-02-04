@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_and_belongs_to_many :games,
                           join_table: "games_participants",
                           foreign_key: :participant_id
+
+  validates_presence_of :display_name
 end

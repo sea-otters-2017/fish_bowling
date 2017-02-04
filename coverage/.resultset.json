@@ -13,6 +13,8 @@
         1,
         null,
         null,
+        null,
+        1,
         null
       ],
       "/Users/apprentice/fish_bowling/app/models/application_record.rb": [
@@ -44,6 +46,18 @@
         1,
         1,
         1,
+        null,
+        1,
+        null
+      ],
+      "/Users/apprentice/fish_bowling/app/models/team.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/apprentice/fish_bowling/app/channels/application_cable/channel.rb": [
@@ -268,16 +282,6 @@
         0,
         0
       ],
-      "/Users/apprentice/fish_bowling/app/models/team.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "/Users/apprentice/fish_bowling/app/services/create_random_teams.rb": [
         0,
         0,
@@ -302,6 +306,6 @@
         0
       ]
     },
-    "timestamp": 1486184549
+    "timestamp": 1486184990
   }
 }
