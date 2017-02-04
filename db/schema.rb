@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170204043359) do
+ActiveRecord::Schema.define(version: 20170204025635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,29 @@ ActiveRecord::Schema.define(version: 20170204043359) do
     t.index ["player_id", "team_id"], name: "index_players_teams_on_player_id_and_team_id", unique: true, using: :btree
   end
 
+  create_table "round_types", force: :cascade do |t|
+    t.string "name",        null: false
+    t.string "description", null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer "game_id",       null: false
+    t.integer "round_type_id", null: false
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string  "name",                null: false
     t.integer "score",   default: 0, null: false
     t.integer "game_id",             null: false
+  end
+
+  create_table "turns", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "round_id"
+    t.integer  "seconds_remaining"
+    t.integer  "cards_won"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|
