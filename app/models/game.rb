@@ -37,6 +37,8 @@ class Game < ApplicationRecord
     3.times do |i|
       self.rounds << Round.new(round_type: RoundType.all[i])
     end
+
+
   end
 
 end
