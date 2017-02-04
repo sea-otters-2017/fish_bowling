@@ -3,15 +3,39 @@
     "coverage": {
       "/Users/apprentice/fish_bowling/app/models/user.rb": [
         1,
+        1,
         null,
         null,
         1,
+        1,
+        null,
+        null,
+        1,
+        null,
         null,
         null
       ],
       "/Users/apprentice/fish_bowling/app/models/application_record.rb": [
         1,
         1,
+        null
+      ],
+      "/Users/apprentice/fish_bowling/app/models/game.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/apprentice/fish_bowling/app/helpers/application_helper.rb": [
@@ -31,6 +55,71 @@
         0
       ],
       "/Users/apprentice/fish_bowling/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/apprentice/fish_bowling/app/controllers/games_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/apprentice/fish_bowling/app/controllers/pages_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/apprentice/fish_bowling/app/controllers/teams_controller.rb": [
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0
@@ -163,8 +252,18 @@
         0,
         0,
         0
+      ],
+      "/Users/apprentice/fish_bowling/app/models/team.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ]
     },
-    "timestamp": 1486082725
+    "timestamp": 1486165576
   }
 }
