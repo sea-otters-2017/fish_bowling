@@ -14,9 +14,8 @@ class Game < ApplicationRecord
     name
   end
 
-  # def current_round
-  #   return nil if game.rounds.empty?
-  # end
+  def current_round
+  end
 
   def minimum_players?
     self.participants.count >= 4
