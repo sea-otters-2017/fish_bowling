@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_game, only: [:show, :join, :start]
+  before_action :set_game, only: [:show, :join, :start, :start_round]
 
   def create
     @game = Game.new(game_params)
@@ -24,9 +24,14 @@ class GamesController < ApplicationController
   end
 
   def start
+    return flash[:notice] = 'you are NOT the creator' unless @game.creator == current_user
     CreateRandomTeams.new(@game).call if @game.teams.empty?
     flash[:notice] = "it has started"
     render :'teams/index', game: @game
+  end
+
+  def start_round
+    render :'games/gameplay', game: @game
   end
 
   private

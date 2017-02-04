@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'start'
+      get 'start_round'
     end
   end
 
