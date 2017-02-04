@@ -1,12 +1,8 @@
-<h3>Teams:</h3>
+<h4>Teams:</h4>
 <div>
-  <% Team.each do |team| %>
-  <!-- <% @game.teams.each do |team| %> -->
-    <%= team.name %>
-    <ul>
-      <% team.players do |player| %>
-        <li><%= player.display_name %></li>
-      <% end %>
-    </ul>
+  <% @game.teams.each do |team| %>
+    <%= render 'teams/team', team: team %>
   <% end %>
 </div>
+
+<%= render 'games/start_round', game: @game %>

@@ -1,0 +1,6 @@
+<h5><%= team.name %></h5>
+<ul>
+  <% team.players.each do |player| %>
+    <li><%= player.display_name %></li>
+  <% end %>
+</ul>

@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     collection do
       post 'join'
     end
+    member do
+      get 'start'
+      get 'start_round'
+    end
   end
+  resources :cards, only: [ :create ]
 
 end
