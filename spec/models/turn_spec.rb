@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Turn, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { expect(subject).to belong_to :round }
+  it { expect(subject).to belong_to :player }
 end
