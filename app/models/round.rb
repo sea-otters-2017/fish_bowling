@@ -10,4 +10,8 @@ class Round < ApplicationRecord
     true
   end
 
+  def is_over?
+    self.is_over
+  end
+
 end

@@ -15,8 +15,15 @@ class Game < ApplicationRecord
     name
   end
 
+  def is_over?
+    self.rounds.all? { |round| round.is_over? }
+  end
+
   def current_round
-    # if bowl is empty 
+    return nil if self.is_over?
+    self.rounds.each do |round|
+      return round unless round.is_over?
+    end
   end
 
   def minimum_players?
