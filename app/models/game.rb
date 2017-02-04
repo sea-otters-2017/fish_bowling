@@ -11,4 +11,18 @@ class Game < ApplicationRecord
     name
   end
 
+  def minimum_players?
+    self.participants.count >= 4
+  end
+
+  def unfinished_players
+    self.participants.select do |participant|
+      participant.cards_from(self).count < 4
+    end
+  end
+
+  def cards_added?
+    self.unfinished_players.count == 0
+  end
+
 end
