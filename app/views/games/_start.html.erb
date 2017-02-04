@@ -1,0 +1,3 @@
+<% if current_user == game.creator %>
+  <%= link_to 'start game', start_game_path(game), method: :get %>
+<% end %>

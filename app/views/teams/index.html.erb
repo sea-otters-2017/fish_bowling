@@ -1,7 +1,6 @@
 <h3>Teams:</h3>
 <div>
-  <% Team.each do |team| %>
-  <!-- <% @game.teams.each do |team| %> -->
+  <% @game.teams.each do |team| %>
     <%= team.name %>
     <ul>
       <% team.players do |player| %>

@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_game, only: [:show, :join]
+  before_action :set_game, only: [:show, :join, :start]
 
   def create
     @game = Game.new(game_params)
@@ -21,6 +21,11 @@ class GamesController < ApplicationController
     return redirect_to root_path, notice: 'That game has not been created' unless @game
     @game.participants << current_user unless @game.participants.exists?(current_user)
     redirect_to @game
+  end
+
+  def start
+    flash[:notice] = "it has started"
+    render :'teams/index'
   end
 
   private
