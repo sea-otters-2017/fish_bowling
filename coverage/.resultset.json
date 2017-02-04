@@ -121,6 +121,15 @@
         null,
         null
       ],
+      "/Users/apprentice/fish_bowling/app/controllers/teams_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
       "/Users/apprentice/fish_bowling/app/channels/application_cable/channel.rb": [
         0,
         0,
@@ -136,15 +145,6 @@
       "/Users/apprentice/fish_bowling/app/controllers/pages_controller.rb": [
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/apprentice/fish_bowling/app/controllers/teams_controller.rb": [
         0,
         0,
         0,
@@ -306,6 +306,6 @@
         0
       ]
     },
-    "timestamp": 1486186028
+    "timestamp": 1486186152
   }
 }
