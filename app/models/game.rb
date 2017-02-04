@@ -35,7 +35,7 @@ class Game < ApplicationRecord
 
   def initialize_rounds
     3.times do |i|
-      game.rounds << Round.new(round_type: RoundType.all[i])
+      self.rounds << Round.new(round_type: RoundType.all[i])
     end
   end
 
