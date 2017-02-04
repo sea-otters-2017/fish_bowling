@@ -8,11 +8,15 @@ class Game < ApplicationRecord
                           class_name: User,
                           association_foreign_key: 'participant_id'
 
+  after_initialize :initialize_rounds
+
   def to_param
     name
   end
 
-  
+  # def current_round
+  #   return nil if game.rounds.empty?
+  # end
 
   def minimum_players?
     self.participants.count >= 4
@@ -26,6 +30,14 @@ class Game < ApplicationRecord
 
   def cards_added?
     self.unfinished_players.count == 0
+  end
+
+  private
+
+  def initialize_rounds
+    3.times do |i|
+      game.rounds << Round.new(round_type: RoundType.all[i])
+    end
   end
 
 end
