@@ -9,6 +9,10 @@ User.delete_all
 Game.delete_all
 Team.delete_all
 
+Round.create!(name: 'Taboo', description: 'Describe the concept without saying any of the words on the card')
+Round.create!(name: 'Password', description: 'Convey the concept by only saying ONE WORD!')
+Round.create!(name: 'Charades', description: 'Act out the concept without saying any words or making any noises')
+
 20.times do |n|
   user = User.create!(  display_name: Faker::GameOfThrones.character,
                         email: Faker::Internet.email,
