@@ -32,14 +32,6 @@
 
   # END FOR
 
-GAME:
-  #get_cluegiver
-    - starts with player 0 of team 1
-    - iterates through players, alternating team 1 to team 2
-    <!-- - the next cluegiver is from the team opposing the last
-    - gets CG of opposing team to last TURN
-      - gets player with fewest turns for the game -->
-
 
 ROUND:
   #is_over?
