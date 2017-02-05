@@ -42,3 +42,8 @@ game = Game.new(name: 'Otters')
 game.creator = pat
 game.participants << [kim, katherine, justin, pat]
 game.save
+
+Turn.create!(player: pat, round: game.rounds.first)
+Turn.create!(player: kim, round: game.rounds.first)
+Turn.create!(player: katherine, round: game.rounds.first)
+Turn.create!(player: justin, round: game.rounds.first)
