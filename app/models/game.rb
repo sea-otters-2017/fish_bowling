@@ -9,7 +9,7 @@ class Game < ApplicationRecord
                           class_name: User,
                           association_foreign_key: 'participant_id'
 
-  after_initialize :initialize_rounds
+  after_create :initialize_rounds
 
   def to_param
     name
@@ -24,6 +24,7 @@ class Game < ApplicationRecord
     self.rounds.each do |round|
       return round unless round.is_over?
     end
+  end
 
   def get_cluegiver
     last_turn_team
