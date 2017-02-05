@@ -13,6 +13,9 @@ class User < ApplicationRecord
 
   validates_presence_of :display_name
   validates_presence_of :email
+  validates_presence_of :password_digest
+  validates_uniqueness_of :display_name
+  validates_uniqueness_of :email
 
   def cards_from(game)
     self.cards.where(game: game).to_a
