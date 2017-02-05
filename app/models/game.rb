@@ -64,14 +64,13 @@ class Game < ApplicationRecord
     end
   end
 
-  def last_turn_team
-    self.current_round.last_turn.player.teams.where(game: self)
+  def next_turn_team
+    return game.teams.sample if last_turn_team.nil?
+    return self.teams.where.not(name: last_turn_team.name).first
   end
 
-  def next_turn_team
-    # if last turn team is nil, randomly pick a team to start
-    # else, pick the OTHER team
-    # self.teams.where(!last_turn_team)
+  def last_turn_team
+    self.current_round.last_turn.player.teams.where(game: self).first
   end
 
 end
