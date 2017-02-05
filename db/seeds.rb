@@ -41,6 +41,7 @@ pat = User.create!( display_name: 'pat',
 game = Game.new(name: 'Otters')
 game.creator = pat
 game.participants << [kim, katherine, justin, pat]
+CreateRandomTeams.new(game).call
 game.save
 
 Turn.create!(player: pat, round: game.rounds.first)
