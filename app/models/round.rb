@@ -14,4 +14,8 @@ class Round < ApplicationRecord
     self.is_over
   end
 
+  def finish
+    self.update_attribute(:is_over, true)
+  end
+
 end
