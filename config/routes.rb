@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
   root to: "pages#index"
+
+  resources :users, only: [ :new, :create ]
+
+  get    '/login', to: 'sessions#new'
+  post   '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#delete'
+
   resources :games, param: :name, only: [ :create, :show ] do
     resources :teams, only: [ :index ]
     collection do
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
       get 'start_round'
     end
   end
+
   resources :cards, only: [ :create ]
 
 end

@@ -1,14 +1,14 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!
+  include SessionsHelper
   before_action :set_game, only: [:create]
 
   def create
     @card = Card.new(card_params)
-    @card.author = current_user
+    @card.author = session_user
     @card.game = @game
     if @card.save
-      if current_user.cards_from(@game).count < 4
-        flash[:notice] = "you must add #{ 4 - current_user.cards_from(@game).count } cards"
+      if session_user.cards_from(@game).count < 4
+        flash[:notice] = "you must add #{ 4 - session_user.cards_from(@game).count } cards"
       end
       redirect_to @game
       return

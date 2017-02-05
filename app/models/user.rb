@@ -1,7 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
+  has_secure_password
   has_many :cards, foreign_key: :author_id
   has_many :created_games, foreign_key: :creator_id, class_name: Game
   has_many :turns, foreign_key: :player_id
@@ -14,8 +12,11 @@ class User < ApplicationRecord
                           foreign_key: :participant_id
 
   validates_presence_of :display_name
+  validates_presence_of :email
 
   def cards_from(game)
     self.cards.where(game: game).to_a
   end
+
+
 end
