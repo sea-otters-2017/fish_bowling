@@ -28,7 +28,10 @@ class GamesController < ApplicationController
     return redirect_to root_path, notice: 'That game has not been created' unless @game
     if !@game.participants.include?(current_user)
       @game.participants << current_user
-      ActionCable.server.broadcast('games_channel', {action: 'newPlayer', player: current_user.display_name, action: 'newPlayer'})
+      ActionCable.server.broadcast( 'games_channel',
+                                    {   action: 'newPlayer',
+                                        player: current_user.display_name,
+                                        player_id: current_user.id } )
     end
     redirect_to @game
   end
@@ -36,7 +39,6 @@ class GamesController < ApplicationController
   def start
     return flash[:notice] = 'you are NOT the creator' unless @game.creator == current_user
     CreateRandomTeams.new(@game).call if @game.teams.empty?
-    flash[:notice] = "it has started"
     render :'teams/index', game: @game
   end
 

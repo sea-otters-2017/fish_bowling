@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
 
   def delete
     session_logout
+    log_out
     redirect_to root_path, :flash => { :error => "You have been logged out" }
   end
 

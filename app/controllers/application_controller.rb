@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     cookies.signed[:user_id] = user_id
   end
 
+  def log_out
+    cookies.signed[:user_id] = nil
+  end
+
   protected
 
   def authenticate_user!
