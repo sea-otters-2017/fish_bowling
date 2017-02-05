@@ -20,12 +20,13 @@ class GamesController < ApplicationController
       template: 'games/show',
       assigns: { game: @game, current_user: session_user, start_game_path: "games/#{@game.name}/start"}
     )
-    ActionCable.server.broadcast('game_channel', message: response)
+    ActionCable.server.broadcast('games_channel', message: response)
   end
 
   def join
     return redirect_to root_path, notice: 'That game has not been created' unless @game
     @game.participants << session_user unless @game.participants.exists?(session_user)
+    ActionCable.server.broadcast('games_channel', message: "#{session_user.display_name} has joined a game!!! #{session_user.display_name} has joined a game!!! #{session_user.display_name} has joined a game!!! ")
     redirect_to @game
   end
 
