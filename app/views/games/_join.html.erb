@@ -1,5 +1,5 @@
 
 <%= form_tag(join_games_path, :method => "post", id: "join-game-form") do %>
-    <%= text_field_tag :name, params[:name] %>
+    <%= text_field_tag :name, params[:name], placeholder: 'Join an existing game...' %>
     <%= submit_tag "Join Existing Game" %>
 <% end %>
