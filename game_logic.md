@@ -33,8 +33,7 @@
   # END FOR
 
 GAME:
-  #current_round
-  #initialize [with 3 rounds]
+
   #get_cluegiver
     - starts with player 0 of team 1
     - iterates through players, alternating team 1 to team 2
@@ -53,4 +52,3 @@ ROUND:
 
 TURN:
   #is_over?
-

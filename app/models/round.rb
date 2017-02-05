@@ -18,4 +18,8 @@ class Round < ApplicationRecord
     self.update_attribute(:is_over, true)
   end
 
+  def last_turn
+    self.turns.order("created_at").last
+  end
+
 end
