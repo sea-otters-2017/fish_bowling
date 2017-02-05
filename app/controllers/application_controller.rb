@@ -6,5 +6,5 @@ class ApplicationController < ActionController::Base
       count == 1 ? "a #{noun}#{text}" : "#{count} #{noun.pluralize}#{text}"
     end
   end
-
+  
 end

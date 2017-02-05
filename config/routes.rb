@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   end
 
   resources :cards, only: [ :create ]
+  mount ActionCable.server => '/cable'
 
 end
