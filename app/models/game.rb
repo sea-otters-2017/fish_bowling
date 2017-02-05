@@ -28,11 +28,8 @@ class Game < ApplicationRecord
   end
 
   def get_cluegiver
-    last_turn_team
-    # Iterate through all players on both teams
-    # return player that will be the next cluegiver
-      # from the team opposing that which last
-      # chosen randomly from the players with the fewest rounds that game
+    # Count all the turns each player on next_turn_team has played
+    # Randomly choose one of the players with the least
   end
 
   def minimum_players?
