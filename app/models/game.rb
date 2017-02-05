@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
   validates :name, presence: true, uniqueness: true
+
   belongs_to :creator, class_name: User
   has_many :rounds
   has_many :teams
@@ -14,7 +15,15 @@ class Game < ApplicationRecord
     name
   end
 
+  def is_over?
+    self.rounds.all? { |round| round.is_over? }
+  end
+
   def current_round
+    return nil if self.is_over?
+    self.rounds.each do |round|
+      return round unless round.is_over?
+    end
   end
 
   def minimum_players?
@@ -31,6 +40,12 @@ class Game < ApplicationRecord
     self.unfinished_players.count == 0
   end
 
+  def bowl_empty?
+    self.cards.all? do |card|
+      !card.in_bowl?
+    end
+  end
+
   private
 
   def initialize_rounds
@@ -38,7 +53,6 @@ class Game < ApplicationRecord
     3.times do |i|
       self.rounds << Round.new(round_type: RoundType.all[i])
     end
-
 
   end
 
