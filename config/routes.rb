@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root to: "pages#index"
 
+  resources :users, only: [ :new, :create ]
+
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#delete'
 
   resources :games, param: :name, only: [ :create, :show ] do
     resources :teams, only: [ :index ]
