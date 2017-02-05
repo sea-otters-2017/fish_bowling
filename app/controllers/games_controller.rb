@@ -18,7 +18,7 @@ class GamesController < ApplicationController
     response = ApplicationController.render(
       layout: false,
       template: 'games/show',
-      assigns: { game: @game, current_user: current_user, start_game_path: "games/#{@game.name}/start"}
+      assigns: { game: @game, current_user: session_user, start_game_path: "games/#{@game.name}/start"}
     )
     ActionCable.server.broadcast('game_channel', message: response)
   end
