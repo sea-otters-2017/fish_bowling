@@ -29,7 +29,7 @@ class Game < ApplicationRecord
   end
 
   def get_cluegiver
-    next_turn_team.players.min_by do |player|
+    next_turn_team.players.shuffle.min_by do |player|
       self.count_turns(player)
     end
   end
