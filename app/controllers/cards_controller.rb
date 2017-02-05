@@ -8,12 +8,12 @@ class CardsController < ApplicationController
     @card.game = @game
     if @card.save
       if session_user.cards_from(@game).count < 4
-        flash[:notice] = "you must add #{ 4 - session_user.cards_from(@game).count } cards"
+        flash[:notice] = "you must add #{ pluralize(4 - session_user.cards_from(@game).count, 'card') }"
       end
       redirect_to @game
       return
     else
-      redirect_to root_path, notice: 'Game has been created'
+      redirect_to @game, notice: 'card did not save'
     end
   end
 
