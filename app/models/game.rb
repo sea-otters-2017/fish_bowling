@@ -11,6 +11,7 @@ class Game < ApplicationRecord
 
   after_create :initialize_rounds
 
+
   def to_param
     name
   end
@@ -64,10 +65,12 @@ class Game < ApplicationRecord
   end
 
   def last_turn_team
-    self.current_round.last_turn.player.team
+    self.current_round.last_turn.player.teams.where(game: self)
   end
 
   def next_turn_team
+    # if last turn team is nil, randomly pick a team to start
+    # else, pick the OTHER team
     # self.teams.where(!last_turn_team)
   end
 
