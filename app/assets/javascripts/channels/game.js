@@ -14,7 +14,7 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
     // Called when there's incoming data on the websocket for this channel
     alert(message['message'])
     console.log(message['message'])
-    $('body').append(message['message'])
+    // $('body').append(message['message'])
   },
 
   speak: function(message) {
