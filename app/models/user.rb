@@ -18,7 +18,4 @@ class User < ApplicationRecord
     self.cards.where(game: game).to_a
   end
 
-  def count_turns(round)
-    self.turns.where(round: round).count
-  end
 end

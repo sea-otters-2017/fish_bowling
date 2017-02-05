@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   belongs_to :creator, class_name: User
   has_many :rounds
   has_many :teams
+  has_many :turns, through: :rounds
   has_and_belongs_to_many :participants,
                           join_table: "games_participants",
                           class_name: User,
@@ -28,8 +29,10 @@ class Game < ApplicationRecord
   end
 
   def get_cluegiver
-    # Count all the turns each player on next_turn_team has played
-    # Randomly choose one of the players with the least
+    next_turn_team.players.select do |player|
+      self.count_turns(player) < self.count_turns(last_player)
+      p player
+    end.sample || next_turn_team.players.sample
   end
 
   def minimum_players?
@@ -52,6 +55,10 @@ class Game < ApplicationRecord
     end
   end
 
+  def count_turns(player)
+    self.turns.where(player: player).count
+  end
+
   private
 
   def initialize_rounds
@@ -62,12 +69,16 @@ class Game < ApplicationRecord
   end
 
   def next_turn_team
-    return game.teams.sample if last_turn_team.nil?
+    return self.teams.sample if last_turn_team.nil?
     return self.teams.where.not(name: last_turn_team.name).first
   end
 
   def last_turn_team
-    self.current_round.last_turn.player.teams.where(game: self).first
+    last_player.teams.where(game: self).first
+  end
+
+  def last_player
+    self.current_round.last_turn.player
   end
 
 end
