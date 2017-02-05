@@ -20,6 +20,7 @@
     <header>
       <nav>
         <ul>
+          <li><a class='nav-link' href="/">home</a></li>
           <% if session_user %>
             <li><%= session_user.display_name %></li>
             <li><a class='nav-link' href="/logout">logout</a></li>
