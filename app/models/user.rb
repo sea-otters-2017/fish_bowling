@@ -18,5 +18,4 @@ class User < ApplicationRecord
     self.cards.where(game: game).to_a
   end
 
-
 end

@@ -4,12 +4,13 @@ class Game < ApplicationRecord
   belongs_to :creator, class_name: User
   has_many :rounds
   has_many :teams
+  has_many :turns, through: :rounds
   has_and_belongs_to_many :participants,
                           join_table: "games_participants",
                           class_name: User,
                           association_foreign_key: 'participant_id'
 
-  after_initialize :initialize_rounds
+  after_create :initialize_rounds
 
   def to_param
     name
@@ -23,6 +24,12 @@ class Game < ApplicationRecord
     return nil if self.is_over?
     self.rounds.each do |round|
       return round unless round.is_over?
+    end
+  end
+
+  def get_cluegiver
+    next_turn_team.players.shuffle.min_by do |player|
+      count_turns(player)
     end
   end
 
@@ -53,7 +60,26 @@ class Game < ApplicationRecord
     3.times do |i|
       self.rounds << Round.new(round_type: RoundType.all[i])
     end
-
   end
 
+  def next_turn_team
+    self.teams.where.not(name: last_turn_team.name).first
+  end
+
+  def last_turn_team
+    return self.teams.sample if last_player.nil?
+    last_player.teams.where(game: self).first
+  end
+
+  def last_turn
+    self.turns.order("created_at").last || Turn.new
+  end
+
+  def last_player
+    last_turn.player
+  end
+
+  def count_turns(player)
+    self.turns.where(player: player).count
+  end
 end

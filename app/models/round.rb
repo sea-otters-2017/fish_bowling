@@ -13,7 +13,7 @@ class Round < ApplicationRecord
   end
 
   def last_turn
-    self.turns.order("created_at").last
+    self.turns.order("created_at").last || Turn.new
   end
 
 end
