@@ -1,10 +1,10 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!
+  include SessionsHelper
   before_action :set_game, only: [:show, :join, :start, :start_round]
 
   def create
     @game = Game.new(game_params)
-    @game.creator = current_user
+    @game.creator = session_user
     if @game.save
       @game.participants << @game.creator
       redirect_to @game
@@ -19,12 +19,12 @@ class GamesController < ApplicationController
 
   def join
     return redirect_to root_path, notice: 'That game has not been created' unless @game
-    @game.participants << current_user unless @game.participants.exists?(current_user)
+    @game.participants << session_user unless @game.participants.exists?(session_user)
     redirect_to @game
   end
 
   def start
-    return flash[:notice] = 'you are NOT the creator' unless @game.creator == current_user
+    return flash[:notice] = 'you are NOT the creator' unless @game.creator == session_user
     CreateRandomTeams.new(@game).call if @game.teams.empty?
     flash[:notice] = "it has started"
     render :'teams/index', game: @game

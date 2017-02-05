@@ -12,6 +12,7 @@ class User < ApplicationRecord
                           foreign_key: :participant_id
 
   validates_presence_of :display_name
+  validates_presence_of :email
 
   def cards_from(game)
     self.cards.where(game: game).to_a

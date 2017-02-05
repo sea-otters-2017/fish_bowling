@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.first
+    user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       set_user(user)
       redirect_to root_path, :flash => { :notice => "You are logged in" }
