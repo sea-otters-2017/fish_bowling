@@ -1,10 +1,12 @@
-<%= @game.name %>
+<div id='<%=@game.name%>-controller'>
+  <%= @game.name %>
 
-<ul>
-  <% @game.participants.each do |player| %>
-    <li><%= player.display_name %></li>
-  <% end %>
-</ul>
+  <ul class='player-names-list'>
+    <% @game.participants.each do |player| %>
+      <li class='player-name'><%= player.display_name %></li>
+    <% end %>
+  </ul>
 
- <%= render 'cards/form', card: Card.new, game: @game %>
- <%= render 'games/start', game: @game %>
+   <%= render 'cards/form', card: Card.new, game: @game %>
+   <%= render 'games/start', game: @game %>
+</div>
