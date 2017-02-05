@@ -16,7 +16,4 @@ class Round < ApplicationRecord
     self.turns.order("created_at").last
   end
 
-  def most_recent_turn
-    self.turns.order(:created_at).last
-  end
 end
