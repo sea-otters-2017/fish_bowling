@@ -3,7 +3,6 @@ $( document ).ready(function() {
     connected: function() {
       // Called when the subscription is ready for use on the server
       console.log('Player connected')
-      // this.perform('speak', { message: 'Hello world' })
     },
 
     disconnected: function() {
