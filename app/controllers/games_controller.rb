@@ -34,6 +34,15 @@ class GamesController < ApplicationController
     render :'games/gameplay', game: @game
   end
 
+  def pass
+  end
+
+  def win_card
+  end
+
+  def pause
+  end
+
   private
 
   def game_params
