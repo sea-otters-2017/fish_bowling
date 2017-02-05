@@ -12,7 +12,6 @@ class Game < ApplicationRecord
 
   after_create :initialize_rounds
 
-
   def to_param
     name
   end
@@ -30,7 +29,7 @@ class Game < ApplicationRecord
 
   def get_cluegiver
     next_turn_team.players.shuffle.min_by do |player|
-      self.count_turns(player)
+      count_turns(player)
     end
   end
 
@@ -54,10 +53,6 @@ class Game < ApplicationRecord
     end
   end
 
-  def count_turns(player)
-    self.turns.where(player: player).count
-  end
-
   private
 
   def initialize_rounds
@@ -68,16 +63,23 @@ class Game < ApplicationRecord
   end
 
   def next_turn_team
-    return self.teams.sample if last_turn_team.nil?
-    return self.teams.where.not(name: last_turn_team.name).first
+    self.teams.where.not(name: last_turn_team.name).first
   end
 
   def last_turn_team
+    return self.teams.sample if last_player.nil?
     last_player.teams.where(game: self).first
   end
 
-  def last_player
-    self.current_round.last_turn.player || self.players.sample
+  def last_turn
+    self.turns.order("created_at").last || Turn.new
   end
 
+  def last_player
+    last_turn.player
+  end
+
+  def count_turns(player)
+    self.turns.where(player: player).count
+  end
 end
