@@ -39,7 +39,15 @@ class GamesController < ApplicationController
   def start
     return flash[:notice] = 'you are NOT the creator' unless @game.creator == current_user
     CreateRandomTeams.new(@game).call if @game.teams.empty?
-    render :'teams/index', game: @game
+    response = ApplicationController.render(
+      layout: false,
+      template: 'teams/index',
+      assigns: { game: @game, current_user: current_user, start_round_path: "games/#{@game.name}/start_round"}
+    )
+    ActionCable.server.broadcast( 'games_channel',
+                                  {   action: 'showTeams',
+                                      response: response } )
+    render 'teams/index'
   end
 
   def start_round

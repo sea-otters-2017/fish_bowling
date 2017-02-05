@@ -15,8 +15,8 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
       case 'newPlayer':
         appendNewPlayer(message['player'])
         break;
-      case 'newCard':
-        //
+      case 'showTeams':
+        showTeams(message['response'])
         break;
     }
     // $('body').append(message['message'])
@@ -46,5 +46,9 @@ function createNewGame(){
 
 function appendNewPlayer(playerName) {
   $('.player-names-list').append('<li class="player-name">' + playerName + '</li>')
+}
+
+function showTeams(response) {
+  $('main').html(response)
 }
 // });
