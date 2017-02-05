@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include SessionsHelper
 
   def new
     @user = User.new
@@ -7,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.persisted?
+      set_user(@user)
       redirect_to root_path
     else
       render "new"
