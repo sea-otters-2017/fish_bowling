@@ -29,10 +29,9 @@ class Game < ApplicationRecord
   end
 
   def get_cluegiver
-    next_turn_team.players.select do |player|
-      self.count_turns(player) < self.count_turns(last_player)
-      p player
-    end.sample || next_turn_team.players.sample
+    next_turn_team.players.min_by do |player|
+      self.count_turns(player)
+    end
   end
 
   def minimum_players?
@@ -78,7 +77,7 @@ class Game < ApplicationRecord
   end
 
   def last_player
-    self.current_round.last_turn.player
+    self.current_round.last_turn.player || self.players.sample
   end
 
 end
