@@ -24,6 +24,13 @@ class Game < ApplicationRecord
     self.rounds.each do |round|
       return round unless round.is_over?
     end
+
+  def get_cluegiver
+    last_turn_team
+    # Iterate through all players on both teams
+    # return player that will be the next cluegiver
+      # from the team opposing that which last
+      # chosen randomly from the players with the fewest rounds that game
   end
 
   def minimum_players?
@@ -53,6 +60,14 @@ class Game < ApplicationRecord
     3.times do |i|
       self.rounds << Round.new(round_type: RoundType.all[i])
     end
+  end
+
+  def last_turn_team
+    self.current_round.most_recent_turn.player.team
+  end
+
+  def next_turn_team
+    # self.teams.where(!last_turn_team)
   end
 
 end
