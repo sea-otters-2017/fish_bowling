@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.persisted?
-      redirect_to action: "show", id: @user.id
+      redirect_to root_path
     else
       render "new"
     end
@@ -16,6 +16,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:password, :display_name, :email)
+    params.require(:user).permit(:email, :password, :display_name)
   end
 end
