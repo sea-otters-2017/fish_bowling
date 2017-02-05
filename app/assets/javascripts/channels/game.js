@@ -11,9 +11,14 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
   },
 
   received: function(message) {
-    // Called when there's incoming data on the websocket for this channel
-    alert(message['message'])
-    console.log(message['message'])
+    switch(message['action']) {
+      case 'newPlayer':
+        appendNewPlayer(message['player'])
+        break;
+      case 'newCard':
+        //
+        break;
+    }
     // $('body').append(message['message'])
   },
 
@@ -37,5 +42,9 @@ function createNewGame(){
       data: name // {game: {name: name} }
     })
   })
+}
+
+function appendNewPlayer(playerName) {
+  $('.player-names-list').append('<li class="player-name">' + playerName + '</li>')
 }
 // });

@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def current_user
     @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
   end
@@ -25,7 +24,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_user!
-    redirect_to '/login' unless logged_in?
+    redirect_to login_path unless logged_in?
   end
 
 end
