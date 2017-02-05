@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
+  include SessionsHelper
 
   def new
   end
@@ -8,15 +8,15 @@ class SessionsController < ApplicationController
     user = User.first
     if user && user.authenticate(params[:session][:password])
       set_user(user)
-      redirect_to robots_path
+      redirect_to root_path, :flash => { :notice => "You are logged in" }
     else
-      redirect_to root_path, :flash => { :error => "Not a website! Go away." }
+      redirect_to root_path, :flash => { :error => "You have NOT logged in!" }
     end
   end
 
-  def destroy
+  def delete
     logout
-    redirect_to root_path, :flash => { :error => "Nothing to see here!..." }
+    redirect_to root_path, :flash => { :error => "You have been logged out" }
   end
 
 end
