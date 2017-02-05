@@ -63,7 +63,7 @@ class Game < ApplicationRecord
   end
 
   def last_turn_team
-    self.current_round.most_recent_turn.player.team
+    self.current_round.last_turn.player.team
   end
 
   def next_turn_team
