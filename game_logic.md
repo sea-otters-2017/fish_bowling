@@ -33,7 +33,6 @@
   # END FOR
 
 GAME:
-
   #get_cluegiver
     - starts with player 0 of team 1
     - iterates through players, alternating team 1 to team 2
@@ -45,10 +44,6 @@ GAME:
 ROUND:
   #is_over?
   #last_turn
-
-<!-- ROUND_TYPE:
-  # constants: NAME and DESCRIPTION
-    # create these -->
 
 TURN:
   #is_over?
