@@ -76,7 +76,8 @@ class Game < ApplicationRecord
       creator: {id: creator.id, display_name: creator.display_name},
       team_1: {name: teams.first.name, players: teams.first.players_list},
       team_2: {name: teams.last.name, players: teams.last.players_list},
-      turn: last_turn#,
+      turn: last_turn,
+      ready: ready?#,
       # card: {concept: last_turn.card.concept, id: last_turn.card.id}
     }
   end

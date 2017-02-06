@@ -12,6 +12,7 @@ class CardsController < ApplicationController
     else
       redirect_to @game, notice: 'card did not save'
     end
+    #broadcast_game
   end
 
   private
