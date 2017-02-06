@@ -58,6 +58,17 @@ class Game < ApplicationRecord
     end
   end
 
+  def last_turn_team
+    return self.teams.sample if last_player.nil?
+    last_player.teams.where(game: self).first
+  end
+
+  def reset_cards
+    self.cards.each do |card|
+      card.put_in_bowl
+    end
+  end
+
   private
 
   def initialize_rounds
@@ -69,11 +80,6 @@ class Game < ApplicationRecord
 
   def next_turn_team
     self.teams.where.not(name: last_turn_team.name).first
-  end
-
-  def last_turn_team
-    return self.teams.sample if last_player.nil?
-    last_player.teams.where(game: self).first
   end
 
   def last_turn
