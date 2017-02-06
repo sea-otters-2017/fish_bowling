@@ -9,11 +9,11 @@
 
   <%= render 'cards/form', card: Card.new, game: @game %>
   
-  <div id='start-game-link' <% if !@game.ready? %> class='hidden' <% end %> >
+  <div id='start-game-link' class= <%= !@game.ready? ? 'hidden' : '' %> >
     <%= render 'games/start', game: @game %>
   </div>
 
-  <div class=<%= @game.participants.count >= 4 ? 'hidden' : '' %>>
+  <div class= <%= @game.participants.count >= 4 ? 'hidden' : '' %> >
     <p id='waiting-for-players'>Waiting for <%= pluralize((4 - @game.participants.count), 'more player') %>...</p>
   </div>
 </div>
