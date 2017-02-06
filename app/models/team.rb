@@ -5,4 +5,9 @@ class Team < ApplicationRecord
                           join_table: "players_teams",
                           class_name: User,
                           association_foreign_key: 'player_id'
+
+  def increase_score
+    self.score += 1
+    self.save
+  end
 end

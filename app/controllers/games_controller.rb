@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   include SessionsHelper
   before_action :authenticate_user!
-  before_action :set_game, only: [:show, :join, :start, :start_round]
+  before_action :set_game
 
   def create
     @game = Game.new(game_params)
@@ -45,35 +45,70 @@ class GamesController < ApplicationController
   end
 
   def start_round
+    @game.reset_cards
     @round = @game.current_round
     @cluegiver = @game.get_cluegiver
     @card = @game.random_card
     @turn = @round.turns.create(player: @cluegiver)
-    if request.xhr?
-      response = ApplicationController.render(
-        layout: false,
-        template: 'games/gameplay',
-        assigns: { game: @game, card: @card, turn: @turn, start_round_path: "games/#{@game.name}/start_round"}
-      )
-      ActionCable.server.broadcast( 'games_channel',
-                                    {   action: 'updateGameDisplay',
-                                        cluegiver_id: @cluegiver.id,
-                                        response: response } )
-    else
-      render :'games/gameplay', game: @game
-    end
+    refreshDisplay
+    render :'games/gameplay', game: @game
   end
 
   def pass
+    @card = @game.random_card
+    @turn = @game.current_round.last_turn
+    @cluegiver = @turn.player
+    refreshDisplay
+    render :'games/gameplay', game: @game
   end
 
   def win_card
+    @game.last_turn_team.increase_score
+    @turn = @game.current_round.last_turn
+    @card = @game.cards.where(in_bowl: true).where(concept: params['card_concept']).first
+    @card.remove_from_bowl
+    puts 'BEGINNING OF P'
+    p @card
+    p @turn
+    p @game
+    puts
+    puts
+    puts
+    puts
+    p @game.current_round
+    p @game.bowl_empty?
+    p @game.is_over?
+    if @game.bowl_empty?
+      @game.current_round.finish
+      return start_round unless @game.is_over?
+      return
+    end
+    if @game.is_over?
+      return render :'games/results', game: @game
+    else
+      @card = @game.random_card
+      @cluegiver = @turn.player
+      refreshDisplay
+      return render :'games/gameplay', game: @game
+    end
   end
 
   def pause
   end
 
   private
+
+  def refreshDisplay
+    response = ApplicationController.render(
+      layout: false,
+      template: 'games/gameplay',
+      assigns: { game: @game, card: @card, turn: @turn, start_round_path: "games/#{@game.name}/start_round"}
+    )
+    ActionCable.server.broadcast( 'games_channel',
+                                  {   action: 'updateGameDisplay',
+                                      cluegiver_id: @cluegiver.id,
+                                      response: response } )
+  end
 
   def game_params
     params.require(:game).permit(:name)

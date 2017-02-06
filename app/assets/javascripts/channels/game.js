@@ -70,7 +70,8 @@ function winCard(){
   $('main').on('click', '#win-button', function(event) {
     event.preventDefault();
     var link = $('#win-button').attr('href');
-    $.get(link);
+    var concept = $('#card-concept').text();
+    $.get(link, {card_concept: concept});
   })
 }
 
