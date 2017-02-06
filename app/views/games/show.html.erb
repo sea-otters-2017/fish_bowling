@@ -1,5 +1,5 @@
 <div id='<%=@game.name%>-controller'>
-  <%= @game.name %>
+  <h1><%= @game.name %></h1>
 
   <ul class='player-names-list'>
     <% @game.participants.each do |player| %>
@@ -7,6 +7,20 @@
     <% end %>
   </ul>
 
-   <%= render 'cards/form', card: Card.new, game: @game %>
-   <%= render 'games/start', game: @game %>
+  <% if current_user.cards_from(@game).count < 4 %>
+    <%= render 'cards/form', card: Card.new, game: @game %>
+    <p>you need to add <%= pluralize(4 - current_user.cards_from(@game).count, 'more card') %> </p>
+  <% end %>
+  
+  <div id='start-game-link' class= <%= !@game.ready? ? 'hidden' : '' %> >
+    <%= render 'games/start', game: @game %>
+  </div>
+
+  <div class= <%= @game.participants.count >= 4 ? 'hidden' : '' %> >
+    <p id='waiting-for-players'>Waiting for <%= pluralize((4 - @game.participants.count), 'more player') %>...</p>
+  </div>
+
+  <div class= <%= @game.unfinished_players.count > 0 ? '' : 'hidden'%> >
+    <p id='waiting-for-cards'>Waiting for <%= pluralize(@game.unfinished_players.length, 'player') %> to add cards...</p>
+  </div>
 </div>

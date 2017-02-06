@@ -7,14 +7,12 @@ class CardsController < ApplicationController
     @card.author = session_user
     @card.game = @game
     if @card.save
-      if session_user.cards_from(@game).count < 4
-        flash[:notice] = "you must add #{ pluralize(4 - session_user.cards_from(@game).count, 'card') }"
-      end
       redirect_to @game
       return
     else
       redirect_to @game, notice: 'card did not save'
     end
+    #broadcast_game
   end
 
   private

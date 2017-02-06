@@ -1,6 +1,6 @@
 <div id='create-card-form'>
   <%= form_for card do |f| %>
-    <%= f.text_field :concept %>
+    <%= f.text_field :concept, placeholder: 'add a card...' %>
     <%= hidden_field_tag :game_id, game.id %>
     <%= f.submit 'Add Card' %>
   <% end %>

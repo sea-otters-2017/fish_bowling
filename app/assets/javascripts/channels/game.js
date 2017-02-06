@@ -16,6 +16,10 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
     switch(data['action']) {
       case 'newPlayer':
         appendNewPlayer(data['player'])
+        if (countPlayers() >= 4) {
+          showStartGameLink()
+        }
+        updatePlayersCount()
         break;
       case 'showTeams':
         showTeams(data['response'])
@@ -51,6 +55,17 @@ function createNewGame(){
   })
 }
 
+/*
+function addCard() {
+  // bind a submit listener to add card form
+  // serialize data
+  // clear form
+  // save to db
+  // update dom
+  // broadcast
+}
+*/
+
 function startNewRound(){
   $('main').on('click', '.start-round-link', function(event) {
     event.preventDefault();
@@ -78,6 +93,24 @@ function winCard(){
 
 function appendNewPlayer(playerName) {
   $('.player-names-list').append('<li class="player-name">' + playerName + '</li>')
+}
+
+function showStartGameLink() {
+  $('#start-game-link').removeClass('hidden')
+}
+
+function countPlayers() {
+  return $('.player-names-list li').length
+}
+
+function updatePlayersCount() {
+  var missing = 4 - countPlayers();
+  if (missing > 0) {
+    var missingPlayers = 'Waiting for ' + missing + ' more player(s)...';
+    $('#waiting-for-players').text(missingPlayers)
+  } else {
+    $('#waiting-for-players').text('')
+  }
 }
 
 function showTeams(response) {

@@ -16,11 +16,11 @@
                 # REMOVE CARD FROM THE BOWL
                   # BREAK IF NO MORE CARDS IN BOWL
                 # ADD 1 TO TEAM SCORE
-              <!-- # ELSE IF CARD IS PASSED
+              # ELSE IF CARD IS PASSED
                 # BREAK IF ONE CARD REMAINING
                 # RETURN CARD TO FISHBOWL
                 # SEND A NEW CARD
-                # REDUCE TIME BY XX SECS ??? -->
+                # REDUCE TIME BY XX SECS ???
           # END WHILE
 
     # END WHILE (CARDS LEFT IN BOWL == 0)
@@ -39,3 +39,4 @@ ROUND:
 
 TURN:
   #is_over?
+
