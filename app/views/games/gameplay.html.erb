@@ -1,7 +1,15 @@
-<div>
+<div id="game-<%= @game.id %>" game-id="<%= @game.id %>">
+
   <div>
     <p>::TIMER::</p>
   </div>
-  <h1><%= @game.name %></h1>
-  <%= render 'card' %>
+
+  <div id="cluegiver-turn-<%= @turn.id %>" class="cluegiver-view" style="display: none">
+    <h1><%= @game.name %></h1>
+    <%= render 'games/card', card: @card %>
+  </div>
+
+  <div id="turn-<%= @turn.id %>" class="observer-view" style="display: none">
+    <h1><%= @turn.player.display_name %>'s Turn</h1>
+  </div>
 </div>
