@@ -10,18 +10,21 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
     console.log('Player disconnected')
   },
 
-  received: function(message) {
-    switch(message['action']) {
-      case 'newPlayer':
-        appendNewPlayer(message['player'])
-        break;
-      case 'showTeams':
-        showTeams(message['response'])
-        break;
-      case 'updateGameDisplay':
-        updateGameDisplay(message)
-        break;
-    }
+  received: function(data) {
+    // console.log('data', data)
+    console.log('data', JSON.stringify(data, null, 2))
+    console.log('id', data.id)
+    // switch(message['action']) {
+    //   case 'newPlayer':
+    //     appendNewPlayer(message['player'])
+    //     break;
+    //   case 'showTeams':
+    //     showTeams(message['response'])
+    //     break;
+    //   case 'updateGameDisplay':
+    //     updateGameDisplay(message)
+    //     break;
+    // }
     // $('body').append(message['message'])
   },
 

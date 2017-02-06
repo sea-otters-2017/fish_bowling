@@ -70,21 +70,15 @@ class Game < ApplicationRecord
   end
 
   def full_state
-    self.to_json(:include =>
-      {
-        current_round: {
-          :methods => [:last_turn]
-        },
-        creator: {
-          only: [:id, :display_name]
-        },
-        teams: {
-          # WIP: Only get name and id from players
-          :methods => [:players],
-          only: [:name, :score, :players]
-        }
-      }
-    )
+    { game: self,
+      is_over: is_over?,
+      current_round: {type: current_round.round_type.name},
+      creator: {id: creator.id, display_name: creator.display_name},
+      team_1: {name: teams.first.name, players: teams.first.players_list},
+      team_2: {name: teams.last.name, players: teams.last.players_list},
+      turn: last_turn#,
+      # card: {concept: last_turn.card.concept, id: last_turn.card.id}
+    }
 
   end
 

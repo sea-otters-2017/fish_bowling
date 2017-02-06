@@ -12,11 +12,9 @@ class Team < ApplicationRecord
   end
 
   def players_list
-    self.to_json(:include =>
-      { players: {
-          only: [:id, :display_name] }
-      }
-    )
+    players.map do |player|
+      { id: player.id, display_name: player.display_name }
+    end
   end
 
 end
