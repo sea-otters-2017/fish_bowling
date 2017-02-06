@@ -1,5 +1,17 @@
+function clear_message() {
+  var alert_target = document.getElementById('alert-target')
+  $(alert_target).html('')
+}
 
-function countdown(time) {
+
+function alert_message(message) {
+  var alert_target = document.getElementById('alert-target')
+  $(alert_target).html(message)
+  setTimeout(clear_message, 5000)
+}
+
+
+function countdown(time, message) {
   var minutes = time['minutes'] || 0
   var seconds = time['seconds'] || 0
 
@@ -22,8 +34,10 @@ function countdown(time) {
     } else if(minutes > 0) {
       countdown({ minutes: minutes })
     } else {
-      alert("Time's Up!")
       $(timer).html('')
+      if (message) {
+        alert_message(message)
+      }
     }
   }
   tick();
