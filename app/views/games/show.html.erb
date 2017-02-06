@@ -1,5 +1,5 @@
 <div id='<%=@game.name%>-controller'>
-  <%= @game.name %>
+  <h1><%= @game.name %></h1>
 
   <ul class='player-names-list'>
     <% @game.participants.each do |player| %>
@@ -7,6 +7,10 @@
     <% end %>
   </ul>
 
-   <%= render 'cards/form', card: Card.new, game: @game %>
-   <%= render 'games/start', game: @game %>
+  <%= render 'cards/form', card: Card.new, game: @game %>
+  <% if @game.ready? %>
+    <%= render 'games/start', game: @game %>
+  <% elsif !@game.minimum_players? %>
+    <p>Waiting for <%= pluralize((4 - @game.participants.count), 'more player') %>...</p>
+  <% end %>
 </div>
