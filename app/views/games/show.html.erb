@@ -8,9 +8,10 @@
   </ul>
 
   <%= render 'cards/form', card: Card.new, game: @game %>
-  <% if @game.ready? %>
+  
+  <div <% if !@game.ready? %> class='hidden' <% end %> >
     <%= render 'games/start', game: @game %>
-  <% elsif !@game.minimum_players? %>
-    <p>Waiting for <%= pluralize((4 - @game.participants.count), 'more player') %>...</p>
-  <% end %>
+  </div>
+  
+    <p class='waiting-for-players'>Waiting for <%= pluralize((4 - @game.participants.count), 'more player') %>...</p>
 </div>
