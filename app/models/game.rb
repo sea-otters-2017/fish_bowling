@@ -86,17 +86,6 @@ class Game < ApplicationRecord
       }
     )
 
-    #
-    # Game.last.full_state
-
-    # )
-    # { game: self,
-    #   is_over: is_over?,
-    #   current_round: current_round,
-    #   creator: creator.to_json(:only => [:id, :display_name]),
-    #   teams: teams,
-    #   turn: current_round.last_turn
-    # }
   end
 
   private
