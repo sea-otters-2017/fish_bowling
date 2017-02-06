@@ -21,6 +21,6 @@
   </div>
 
   <div class= <%= @game.unfinished_players.count > 0 ? '' : 'hidden'%> >
-    <p id='waiting-for-cards'>Waiting for <%= pluralize(@game.unfinished_players.count, 'player') %> to add cards...</p>
+    <p id='waiting-for-cards'>Waiting for <%= pluralize(@game.unfinished_players.length, 'player') %> to add cards...</p>
   </div>
 </div>
