@@ -20,7 +20,7 @@
     <p id='waiting-for-players'>Waiting for <%= pluralize((4 - @game.participants.count), 'more player') %>...</p>
   </div>
 
-  <div class= <%= @game.unfinished_players ? '' : 'hidden'%> >
-    <p id='waiting-for-cards'>Waiting for all players to add cards...</p>
+  <div class= <%= @game.unfinished_players.count > 0 ? '' : 'hidden'%> >
+    <p id='waiting-for-cards'>Waiting for <%= pluralize(@game.unfinished_players.count, 'player') %> to add cards...</p>
   </div>
 </div>
