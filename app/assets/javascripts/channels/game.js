@@ -91,4 +91,5 @@ function updateGameDisplay(message) {
   } else {
     $('.observer-view').show();
   }
+  countdown({minutes: 1, seconds: 0});
 }

@@ -1,0 +1,50 @@
+<!-- $( document ).ready(function() {
+
+  function create_subscription(rootName, gameName, channelName) {
+    App[rootName + gameName] = App.cable.subscriptions.create(channelName, {
+      connected: function() {
+        // Called when the subscription is ready for use on the server
+        console.log('Player connected')
+      },
+
+      disconnected: function() {
+        // Called when the subscription has been terminated by the server
+        console.log('Player disconnected')
+      },
+
+      received: function(message) {
+        // Called when there's incoming data on the websocket for this channel
+        $('body').append(message['message'])
+        // $("[data-chatroom='" + this.chatroomId + "']").removeClass('hidden')
+        // return $("[data-chatroom='" + this.chatroomId + "']").append(data.message);
+      },
+
+      speak: function(message) {
+        this.perform('speak', { message: message })
+      },
+
+      setGameName: function(gameName) {
+        this.gameName = gameName
+      }
+    })
+  }
+
+  <% #Game.all.each do |game| %>
+    create_subscription('game', '<%= #game.name %>', 'GamesChannel')
+  <% #end %>
+
+  $('#new_game').on('submit', function(event) {
+    event.preventDefault()
+    alert('Listening on new game')
+    console.log($('#new_game').val())
+    var name = $('#new_game').val()
+    console.log(name)
+    $.ajax({
+      url: '/games',
+      method: 'POST',
+      data: {game: {name: name} }
+    })
+  })
+});
+
+ -->
