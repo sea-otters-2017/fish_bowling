@@ -21,8 +21,8 @@
       <nav>
         <ul>
           <li><a class='nav-link' href="/">home</a></li>
-          <% if session_user %>
-            <li><%= session_user.display_name %></li>
+          <% if current_user %>
+            <li data-userid="<%= current_user.id %>"><%= current_user.display_name %></li>
             <li><a class='nav-link' href="/logout">logout</a></li>
           <% else %>
             <li><a class='nav-link' href="/login">login</a></li>

@@ -18,6 +18,9 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
       case 'showTeams':
         showTeams(message['response'])
         break;
+      case 'updateGameDisplay':
+        updateGameDisplay(message)
+        break;
     }
     // $('body').append(message['message'])
   },
@@ -51,4 +54,14 @@ function appendNewPlayer(playerName) {
 function showTeams(response) {
   $('main').html(response)
 }
-// });
+
+function updateGameDisplay(message) {
+  $('main').html(message['response'])
+  var userId = $('[data-userId]').data().userid;
+  var cluegiverId = message.cluegiver_id;
+  if (userId === cluegiverId){
+    $('.cluegiver-view').show();
+  } else {
+    $('.observer-view').show();
+  }
+}
