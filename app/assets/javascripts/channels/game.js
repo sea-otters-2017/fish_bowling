@@ -16,6 +16,9 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
     switch(data['action']) {
       case 'newPlayer':
         appendNewPlayer(data['player'])
+        if (countPlayers() >= 4) {
+          showStartGameLink()
+        }
         break;
       case 'showTeams':
         showTeams(data['response'])
@@ -78,6 +81,14 @@ function winCard(){
 
 function appendNewPlayer(playerName) {
   $('.player-names-list').append('<li class="player-name">' + playerName + '</li>')
+}
+
+function showStartGameLink() {
+  $('#start-game-link').removeClass('hidden')
+}
+
+function countPlayers() {
+  return $('.player-names-list li').length
 }
 
 function showTeams(response) {
