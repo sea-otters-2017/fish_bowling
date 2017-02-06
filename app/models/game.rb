@@ -79,6 +79,7 @@ class Game < ApplicationRecord
       turn: last_turn#,
       # card: {concept: last_turn.card.concept, id: last_turn.card.id}
     }
+  end
 
   def ready?
     return false if self.is_over? || !self.cards_added? || !self.minimum_players?
