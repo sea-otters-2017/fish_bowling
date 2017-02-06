@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+#timer {
+  height: 50px;
+  width: 100px;
+  color: #f46242;
+  text-align: center;
+  font-size: 200%;
+}
