@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'timer', 'application', 'data-turbolinks-track': 'reload' %>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
@@ -28,7 +28,6 @@
             <li><a class='nav-link' href="/login">login</a></li>
             <li><a class='nav-link' href="/users/new">register</a></li>
           <% end %>
-          <li id='timer'>Timer</li>
         </ul>
       </nav>
     </header>
