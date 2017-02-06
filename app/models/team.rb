@@ -11,8 +11,12 @@ class Team < ApplicationRecord
     self.save
   end
 
-  def full_state
-    { self.name => players }
+  def players_list
+    self.to_json(:include =>
+      { players: {
+          only: [:id, :display_name] }
+      }
+    )
   end
 
 end

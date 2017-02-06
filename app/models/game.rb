@@ -77,11 +77,18 @@ class Game < ApplicationRecord
         },
         creator: {
           only: [:id, :display_name]
+        },
+        teams: {
+          # WIP: Only get name and id from players
+          :methods => [:players],
+          only: [:name, :score, :players]
         }
       }
-      )
+    )
 
     #
+    # Game.last.full_state
+
     # )
     # { game: self,
     #   is_over: is_over?,
