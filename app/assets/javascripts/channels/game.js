@@ -40,7 +40,6 @@ $(document).on('turbolinks:load', function() {
 function createNewGame(){
   $('#new_game').on('submit', function(event) {
     event.preventDefault()
-    alert('Creating a new game')
     var name = $('#new_game').serialize()
     $.ajax({
       url: '/games',
