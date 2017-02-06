@@ -55,6 +55,18 @@ function createNewGame(){
   })
 }
 
+/*
+function addCard() {
+  // bind to add card form
+  // serialize data
+  // clear form
+  // save to db
+  // update dom
+  // broadcast
+}
+
+*/
+
 function startNewRound(){
   $('main').on('click', '.start-round-link', function(event) {
     event.preventDefault();
