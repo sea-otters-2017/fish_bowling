@@ -69,6 +69,29 @@ class Game < ApplicationRecord
     end
   end
 
+  def full_state
+    self.to_json(:include =>
+      {
+        current_round: {
+          :methods => [:last_turn]
+        },
+        creator: {
+          only: [:id, :display_name]
+        }
+      }
+      )
+
+    #
+    # )
+    # { game: self,
+    #   is_over: is_over?,
+    #   current_round: current_round,
+    #   creator: creator.to_json(:only => [:id, :display_name]),
+    #   teams: teams,
+    #   turn: current_round.last_turn
+    # }
+  end
+
   private
 
   def initialize_rounds
@@ -93,4 +116,5 @@ class Game < ApplicationRecord
   def count_turns(player)
     self.turns.where(player: player).count
   end
+
 end

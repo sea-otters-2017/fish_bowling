@@ -92,4 +92,5 @@ function updateGameDisplay(message) {
     $('.observer-view').show();
   }
   countdown({minutes: 1, seconds: 0});
+  console.log(message['game_state'])
 }

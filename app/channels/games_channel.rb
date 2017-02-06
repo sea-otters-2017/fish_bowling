@@ -12,6 +12,10 @@ class GamesChannel < ApplicationCable::Channel
     # ActionCable.server.broadcast('game_channel', message: render_message(data['message']))
   end
 
+  def broadcast(game)
+    ActionCable.server.broadcast('games_channel', game.full_state)
+  end
+
   # def broadcast(message)
   #   ActionCable.server.broadcast('game_channel', message)
   # end

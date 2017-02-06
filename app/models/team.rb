@@ -10,4 +10,9 @@ class Team < ApplicationRecord
     self.score += 1
     self.save
   end
+
+  def full_state
+    { self.name => players }
+  end
+
 end

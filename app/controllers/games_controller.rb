@@ -62,6 +62,23 @@ class GamesController < ApplicationController
     render :'games/gameplay', game: @game
   end
 
+
+  # def game_op
+  #   @game.change_something
+  #
+  #   @game_state = @game.full_state
+  #
+  #   if reque
+  #
+  #
+  #
+  #   @turn = @game.current_round.last_turn
+  #   @cluegiver = @turn.player
+  #   refreshDisplay
+  #   render :'games/gameplay', game: @game
+  # end
+
+
   def win_card
     @game.last_turn_team.increase_score
     @turn = @game.current_round.last_turn
@@ -96,7 +113,12 @@ class GamesController < ApplicationController
     ActionCable.server.broadcast( 'games_channel',
                                   {   action: 'updateGameDisplay',
                                       cluegiver_id: @cluegiver.id,
-                                      response: response } )
+                                      response: response,
+                                      game_state: @game.full_state } )
+  end
+
+  def broadcast_game
+    ActionCable.server.broadcast( 'games_channel', @game.full_state )
   end
 
   def game_params
