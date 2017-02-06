@@ -64,7 +64,6 @@ function addCard() {
   // update dom
   // broadcast
 }
-
 */
 
 function startNewRound(){
