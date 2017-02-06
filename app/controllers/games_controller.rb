@@ -49,15 +49,6 @@ class GamesController < ApplicationController
     @cluegiver = @game.get_cluegiver
     @card = @game.random_card
     @turn = @round.turns.create(player: @cluegiver)
-    puts
-    puts
-    puts
-    puts
-    p @turn
-    p @card
-    puts
-    puts
-    puts
     render :'games/gameplay', game: @game
   end
 
