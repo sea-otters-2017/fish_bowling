@@ -49,17 +49,19 @@ class GamesController < ApplicationController
     @cluegiver = @game.get_cluegiver
     @card = @game.random_card
     @turn = @round.turns.create(player: @cluegiver)
-    response = ApplicationController.render(
-      layout: false,
-      template: 'games/gameplay',
-      assigns: { game: @game, card: @card, turn: @turn, start_round_path: "games/#{@game.name}/start_round"}
-    )
-    ActionCable.server.broadcast( 'games_channel',
-                                  {   action: 'updateGameDisplay',
-                                      cluegiver_id: @cluegiver.id,
-                                      response: response } )
-
-    render :'games/gameplay', game: @game
+    if request.xhr?
+      response = ApplicationController.render(
+        layout: false,
+        template: 'games/gameplay',
+        assigns: { game: @game, card: @card, turn: @turn, start_round_path: "games/#{@game.name}/start_round"}
+      )
+      ActionCable.server.broadcast( 'games_channel',
+                                    {   action: 'updateGameDisplay',
+                                        cluegiver_id: @cluegiver.id,
+                                        response: response } )
+    else
+      render :'games/gameplay', game: @game
+    end
   end
 
   def pass
