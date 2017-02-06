@@ -10,19 +10,21 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
     console.log('Player disconnected')
   },
 
-  received: function(message) {
-    switch(message['action']) {
+  received: function(data) {
+    // console.log('data', JSON.stringify(data, null, 2))
+    // console.log('id', data.id)
+    switch(data['action']) {
       case 'newPlayer':
-        appendNewPlayer(message['player'])
+        appendNewPlayer(data['player'])
         break;
       case 'showTeams':
-        showTeams(message['response'])
+        showTeams(data['response'])
         break;
       case 'updateGameDisplay':
-        updateGameDisplay(message)
+        updateGameDisplay(data)
         break;
     }
-    // $('body').append(message['message'])
+    $('body').append(data['message'])
   },
 
   speak: function(message) {
@@ -92,4 +94,5 @@ function updateGameDisplay(message) {
     $('.observer-view').show();
   }
   countdown({minutes: 1, seconds: 0});
+  console.log(message['game_state'])
 }

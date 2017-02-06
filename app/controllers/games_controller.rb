@@ -52,6 +52,7 @@ class GamesController < ApplicationController
     @turn = @round.turns.create(player: @cluegiver)
     refreshDisplay
     render :'games/gameplay', game: @game
+    # broadcast_game
   end
 
   def pass
@@ -60,6 +61,7 @@ class GamesController < ApplicationController
     @cluegiver = @turn.player
     refreshDisplay
     render :'games/gameplay', game: @game
+    # broadcast_game
   end
 
   def win_card
@@ -80,6 +82,7 @@ class GamesController < ApplicationController
       refreshDisplay
       return render :'games/gameplay', game: @game
     end
+    # broadcast_game
   end
 
   def pause
@@ -87,6 +90,7 @@ class GamesController < ApplicationController
 
   private
 
+  # REFRESH DISPLAY SHOULD BE DEPRECATED WITH THIS CHANGE
   def refreshDisplay
     response = ApplicationController.render(
       layout: false,
@@ -96,7 +100,13 @@ class GamesController < ApplicationController
     ActionCable.server.broadcast( 'games_channel',
                                   {   action: 'updateGameDisplay',
                                       cluegiver_id: @cluegiver.id,
-                                      response: response } )
+                                      response: response,
+                                      game_state: @game.full_state } )
+  end
+
+  # BROADCAST GAME WILL SEND THE JSON MAINTAINING THE FULL STATE OF THE GAME
+  def broadcast_game
+    ActionCable.server.broadcast( 'games_channel', @game.full_state )
   end
 
   def game_params

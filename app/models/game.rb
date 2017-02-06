@@ -69,6 +69,19 @@ class Game < ApplicationRecord
     end
   end
 
+  def full_state
+    { game: self,
+      is_over: is_over?,
+      current_round: {type: current_round.round_type.name},
+      creator: {id: creator.id, display_name: creator.display_name},
+      team_1: {name: teams.first.name, players: teams.first.players_list},
+      team_2: {name: teams.last.name, players: teams.last.players_list},
+      turn: last_turn#,
+      # card: {concept: last_turn.card.concept, id: last_turn.card.id}
+    }
+
+  end
+
   private
 
   def initialize_rounds
@@ -93,4 +106,5 @@ class Game < ApplicationRecord
   def count_turns(player)
     self.turns.where(player: player).count
   end
+
 end

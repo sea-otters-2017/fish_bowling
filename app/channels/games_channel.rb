@@ -4,17 +4,15 @@ class GamesChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
   end
 
   def speak(data)
     ActionCable.server.broadcast('games_channel', message: data['message'])
-    # ActionCable.server.broadcast('game_channel', message: render_message(data['message']))
   end
 
-  # def broadcast(message)
-  #   ActionCable.server.broadcast('game_channel', message)
-  # end
+  def broadcast(data)
+    ActionCable.server.broadcast('games_channel', data)
+  end
 
   private
 

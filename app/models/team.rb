@@ -10,4 +10,11 @@ class Team < ApplicationRecord
     self.score += 1
     self.save
   end
+
+  def players_list
+    players.map do |player|
+      { id: player.id, display_name: player.display_name }
+    end
+  end
+
 end
