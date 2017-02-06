@@ -11,21 +11,20 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
   },
 
   received: function(data) {
-    // console.log('data', data)
-    console.log('data', JSON.stringify(data, null, 2))
-    console.log('id', data.id)
-    // switch(message['action']) {
-    //   case 'newPlayer':
-    //     appendNewPlayer(message['player'])
-    //     break;
-    //   case 'showTeams':
-    //     showTeams(message['response'])
-    //     break;
-    //   case 'updateGameDisplay':
-    //     updateGameDisplay(message)
-    //     break;
-    // }
-    // $('body').append(message['message'])
+    // console.log('data', JSON.stringify(data, null, 2))
+    // console.log('id', data.id)
+    switch(data['action']) {
+      case 'newPlayer':
+        appendNewPlayer(data['player'])
+        break;
+      case 'showTeams':
+        showTeams(data['response'])
+        break;
+      case 'updateGameDisplay':
+        updateGameDisplay(data)
+        break;
+    }
+    $('body').append(data['message'])
   },
 
   speak: function(message) {

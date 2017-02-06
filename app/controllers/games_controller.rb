@@ -59,9 +59,9 @@ class GamesController < ApplicationController
     @card = @game.random_card
     @turn = @game.current_round.last_turn
     @cluegiver = @turn.player
-    # refreshDisplay
-    # render :'games/gameplay', game: @game
-    broadcast_game
+    refreshDisplay
+    render :'games/gameplay', game: @game
+    # broadcast_game
   end
 
   def win_card
