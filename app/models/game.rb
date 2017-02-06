@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
+  has_many :cards
   belongs_to :creator, class_name: User
   has_many :rounds
   has_many :teams
@@ -45,6 +46,10 @@ class Game < ApplicationRecord
 
   def cards_added?
     self.unfinished_players.count == 0
+  end
+
+  def random_card
+    self.cards.where(in_bowl: true).sample
   end
 
   def bowl_empty?

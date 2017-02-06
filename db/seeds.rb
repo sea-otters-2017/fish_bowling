@@ -2,6 +2,7 @@ User.delete_all
 Team.delete_all
 Game.delete_all
 Round.delete_all
+Card.delete_all
 RoundType.delete_all
 Turn.delete_all
 
@@ -42,7 +43,15 @@ game = Game.new(name: 'Otters')
 game.creator = pat
 game.participants << [kim, katherine, justin, pat]
 CreateRandomTeams.new(game).call
-game.save
+game.save!
+
+game.participants.each do |participant|
+  4.times do
+    card = participant.cards.new(concept: Faker::Pokemon.name)
+    game.cards << card
+    card.save!
+  end
+end
 
 Turn.create!(player: pat, round: game.rounds.first)
 Turn.create!(player: kim, round: game.rounds.first)
