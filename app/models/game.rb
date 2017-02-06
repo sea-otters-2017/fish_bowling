@@ -82,6 +82,7 @@ class Game < ApplicationRecord
 
   def ready?
     return false if self.is_over? || !self.cards_added? || !self.minimum_players?
+    return true
   end
 
   private
