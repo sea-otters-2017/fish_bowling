@@ -57,7 +57,7 @@ function createNewGame(){
 
 /*
 function addCard() {
-  // bind to add card form
+  // bind a submit listener to add card form
   // serialize data
   // clear form
   // save to db
