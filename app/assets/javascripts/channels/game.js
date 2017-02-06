@@ -95,7 +95,7 @@ function countPlayers() {
 function updatePlayersCount() {
   var missing = 4 - countPlayers();
   if (missing > 0) {
-    var missingPlayers = 'Waiting for ' + missing + 'more player(s)...';
+    var missingPlayers = 'Waiting for ' + missing + ' more player(s)...';
     $('#waiting-for-players').text(missingPlayers)
   } else {
     $('#waiting-for-players').text('')
