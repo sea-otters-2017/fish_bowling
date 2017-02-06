@@ -16,14 +16,14 @@
         countdown(minutes - 1)
       } else {
         alert("Time's up!")
+        timer_div(html) = ''
       }
     }
     tick();
   }
 
-  countdown(1)
-
-  $('#start-game').on('click', function(event) {
+  $('#start-round').on('click', function(event) {
+    event.preventDefault()
     countdown(1)
   })
 });

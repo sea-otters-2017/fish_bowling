@@ -36,12 +36,13 @@ $( document ).ready(function() {
   $('#new_game').on('submit', function(event) {
     event.preventDefault()
     alert('Listening on new game')
+    console.log($('#new_game').val())
     var name = $('#new_game').val()
     console.log(name)
     $.ajax({
       url: '/games',
       method: 'POST',
-      data: {name: name}
+      data: {game: {name: name} }
     })
   })
 });
