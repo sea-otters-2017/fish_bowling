@@ -67,17 +67,6 @@ class GamesController < ApplicationController
     @turn = @game.current_round.last_turn
     @card = @game.cards.where(in_bowl: true).where(concept: params['card_concept']).first
     @card.remove_from_bowl
-    puts 'BEGINNING OF P'
-    p @card
-    p @turn
-    p @game
-    puts
-    puts
-    puts
-    puts
-    p @game.current_round
-    p @game.bowl_empty?
-    p @game.is_over?
     if @game.bowl_empty?
       @game.current_round.finish
       return start_round unless @game.is_over?
