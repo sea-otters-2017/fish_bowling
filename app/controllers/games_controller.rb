@@ -16,12 +16,6 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find_by(name: params[:name])
-    # response = ApplicationController.render(
-    #   layout: false,
-    #   template: 'games/show',
-    #   assigns: { game: @game, current_user: session_user, start_game_path: "games/#{@game.name}/start"}
-    # )
-    # ActionCable.server.broadcast('games_channel', message: response)
   end
 
   def join
@@ -51,6 +45,19 @@ class GamesController < ApplicationController
   end
 
   def start_round
+    @round = @game.current_round
+    @cluegiver = @game.get_cluegiver
+    @card = @game.random_card
+    @turn = @round.turns.create(player: @cluegiver)
+    puts
+    puts
+    puts
+    puts
+    p @turn
+    p @card
+    puts
+    puts
+    puts
     render :'games/gameplay', game: @game
   end
 
