@@ -3,13 +3,17 @@
   <div>
     <div id='timer'></div>
   </div>
+  <p>Current Round:<%= @game.current_round.round_type.name %></p>
+  <% @game.cards.each do |card|%>
+  <p><%= card.concept %>:   <%= card.in_bowl %></p>
+  <% end %>
 
-  <div id="cluegiver-turn-<%= @turn.id %>" class="cluegiver-view" style="display: none">
+  <div id="cluegiver-turn-<%= @turn.id %>" class="cluegiver-view">
     <h1><%= @game.name %></h1>
     <%= render 'games/card', card: @card %>
   </div>
 
-  <div id="turn-<%= @turn.id %>" class="observer-view" style="display: none">
+  <div id="turn-<%= @turn.id %>" class="observer-view">
     <h1><%= @turn.player.display_name %>'s Turn</h1>
   </div>
 </div>

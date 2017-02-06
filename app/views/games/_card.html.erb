@@ -2,7 +2,7 @@
 
 <div class="card-display">
   <h1 id="card-concept"><%= card.concept %></h1>
-  <a class="waves-effect waves-light btn-large red" href="/games/<%= @game.name %>/pass">Pass</a>
-  <a class="waves-effect waves-light btn-large" href="/games/<%= @game.name %>/win_card">Got it!</a>
+  <a class="waves-effect waves-light btn-large red" href="/games/<%= @game.name %>/pass" id="pass-button">Pass</a>
+  <a class="waves-effect waves-light btn-large" href="/games/<%= @game.name %>/win_card" id="win-button">Got it!</a>
   <a class="waves-effect waves-light btn-large orange" href="/games/<%= @game.name %>/pause">Pause</a>
 </div>

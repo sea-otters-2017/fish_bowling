@@ -32,18 +32,45 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
 
 $(document).on('turbolinks:load', function() {
   createNewGame();
+  startNewRound();
+  passCard();
+  winCard();
 });
 
 function createNewGame(){
   $('#new_game').on('submit', function(event) {
     event.preventDefault()
-    alert('Creating a new game')
     var name = $('#new_game').serialize()
     $.ajax({
       url: '/games',
       method: 'POST',
       data: name // {game: {name: name} }
     })
+  })
+}
+
+function startNewRound(){
+  $('main').on('click', '.start-round-link', function(event) {
+    event.preventDefault();
+    var link = $('.start-round-link').attr('href');
+    $.get(link);
+  })
+}
+
+function passCard(){
+  $('main').on('click', '#pass-button', function(event) {
+    event.preventDefault();
+    var link = $('#pass-button').attr('href');
+    $.get(link);
+  })
+}
+
+function winCard(){
+  $('main').on('click', '#win-button', function(event) {
+    event.preventDefault();
+    var link = $('#win-button').attr('href');
+    var concept = $('#card-concept').text();
+    $.get(link, {card_concept: concept});
   })
 }
 
