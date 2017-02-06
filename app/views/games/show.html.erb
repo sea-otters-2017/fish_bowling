@@ -7,7 +7,10 @@
     <% end %>
   </ul>
 
-  <%= render 'cards/form', card: Card.new, game: @game %>
+  <% if current_user.cards_from(@game).count < 4 %>
+    <%= render 'cards/form', card: Card.new, game: @game %>
+    <p>you need to add <%= pluralize(4 - current_user.cards_from(@game).count, 'more card') %> </p>
+  <% end %>
   
   <div id='start-game-link' class= <%= !@game.ready? ? 'hidden' : '' %> >
     <%= render 'games/start', game: @game %>
@@ -15,5 +18,9 @@
 
   <div class= <%= @game.participants.count >= 4 ? 'hidden' : '' %> >
     <p id='waiting-for-players'>Waiting for <%= pluralize((4 - @game.participants.count), 'more player') %>...</p>
+  </div>
+
+  <div class= <%= @game.unfinished_players ? '' : 'hidden'%> >
+    <p id='waiting-for-cards'>Waiting for all players to add cards...</p>
   </div>
 </div>
