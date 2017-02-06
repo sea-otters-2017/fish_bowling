@@ -19,6 +19,7 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
         if (countPlayers() >= 4) {
           showStartGameLink()
         }
+        updatePlayersCount()
         break;
       case 'showTeams':
         showTeams(data['response'])
@@ -89,6 +90,16 @@ function showStartGameLink() {
 
 function countPlayers() {
   return $('.player-names-list li').length
+}
+
+function updatePlayersCount() {
+  var missing = 4 - countPlayers();
+  if (missing > 0) {
+    var missingPlayers = 'Waiting for ' + missing + 'more player(s)...';
+    $('#waiting-for-players').text(missingPlayers)
+  } else {
+    $('#waiting-for-players').text('')
+  }
 }
 
 function showTeams(response) {
