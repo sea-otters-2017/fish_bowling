@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+<!-- $( document ).ready(function() {
 
   function create_subscription(rootName, gameName, channelName) {
     App[rootName + gameName] = App.cable.subscriptions.create(channelName, {
@@ -29,9 +29,9 @@ $( document ).ready(function() {
     })
   }
 
-  <% Game.all.each do |game| %>
-    create_subscription('game', '<%= game.name %>', 'GamesChannel')
-  <% end %>
+  <% #Game.all.each do |game| %>
+    create_subscription('game', '<%= #game.name %>', 'GamesChannel')
+  <% #end %>
 
   $('#new_game').on('submit', function(event) {
     event.preventDefault()
@@ -47,3 +47,4 @@ $( document ).ready(function() {
   })
 });
 
+ -->
