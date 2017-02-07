@@ -21,6 +21,15 @@ RSpec.describe Game, type: :model do
     expect(subject.ready?).to be false
   end
 
+  it 'is ready when it has enough players and cards' do
+    4.times { subject.participants << FactoryGirl.create(:user) }
+    subject.participants.each do |player|
+      4.times {subject.cards << FactoryGirl.create(:card, author: player)}
+    end
+    CreateRandomTeams.new(subject).call
+    expect(subject.ready?).to be true
+  end
+
   it '4 is the minimum number of players' do
     4.times { subject.participants << FactoryGirl.create(:user) }
     expect(subject.minimum_players?).to be true
@@ -50,6 +59,5 @@ RSpec.describe Game, type: :model do
     4.times { subject.participants << FactoryGirl.create(:user) }
     expect(subject.unfinished_players).to be_an Array
   end
-
 
 end
