@@ -37,6 +37,19 @@ $(document).on('turbolinks:load', function() {
   winCard();
 });
 
+$(document).on('click', '#pause-button', function(event) {
+  event.preventDefault()
+  alert("Listening on pause")
+  var text = $(event.target).text()
+  if (text === 'Pause') {
+    $(event.target).text('PLAY')
+    pauseTimer()
+  } else {
+    $(event.target).text('PLAY')
+    resumeTimer()
+  }
+})
+
 function createNewGame(){
   $('#new_game').on('submit', function(event) {
     event.preventDefault()
@@ -91,6 +104,9 @@ function updateGameDisplay(message) {
   } else {
     $('.observer-view').show();
   }
-  countdown({minutes: 0, seconds: 5}, "GO!!")
-  setTimeout(function(){countdown({minutes: 1, seconds: 0}, "Time's up!")}, 6000);
+
+  // countdown({minutes: 0, seconds: 5}, "GO!!")
+  // setTimeout(function(){countdown({minutes: 1, seconds: 0}, "Time's up!")}, 8000);
+  var timer = new Timer()
+  timer.countdown()
 }
