@@ -86,4 +86,5 @@ ActiveRecord::Schema.define(version: 20170207010727) do
     t.index ["display_name"], name: "index_users_on_display_name", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
+
 end
