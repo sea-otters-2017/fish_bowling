@@ -13,21 +13,8 @@ RSpec.describe Game, type: :model do
   it 'reports the current round' do
     round = subject.rounds.first
     expect(subject.current_round).to eq round
-    # round.finish
-    # expect(subject.current_round).not_to eq round
-  end
-
-  it 'is not ready with no players or cards' do
-    expect(subject.ready?).to be false
-  end
-
-  it 'is ready when it has enough players and cards' do
-    4.times { subject.participants << FactoryGirl.create(:user) }
-    subject.participants.each do |player|
-      4.times {subject.cards << FactoryGirl.create(:card, author: player)}
-    end
-    CreateRandomTeams.new(subject).call
-    expect(subject.ready?).to be true
+    round.finish
+    expect(subject.current_round).not_to eq round
   end
 
   it '4 is the minimum number of players' do

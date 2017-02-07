@@ -23,7 +23,7 @@ class Game < ApplicationRecord
 
   def current_round
     return nil if self.is_over?
-    self.rounds.each do |round|
+    self.rounds.find_each do |round|
       return round unless round.is_over?
     end
   end
