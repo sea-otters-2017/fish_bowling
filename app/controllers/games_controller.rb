@@ -56,13 +56,8 @@ class GamesController < ApplicationController
     if @game.bowl_empty?
       @game.current_round.finish
       return start_round unless @game.is_over?
-      return
     end
-    if @game.is_over?
-      return render :'games/results', game: @game
-    else
-      pass
-    end
+    show
   end
 
   def pause
