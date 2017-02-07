@@ -15,9 +15,9 @@ Rails.application.routes.draw do
     member do
       get 'start'
       get 'start_round'
-      get 'pass'
-      get 'win_card'
-      get 'pause'
+      post 'pass'
+      post 'win_card'
+      post 'pause'
     end
   end
 
