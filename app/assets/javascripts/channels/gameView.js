@@ -38,9 +38,22 @@ function renderGamePage(gameState) {
   </div>
   `;
 
-  var waitingGameHTML =  `<div class="game-not-ready">
-        WAITING
-      </div>`;
+  var waitingGameHTML =  `
+    <div class='waiting-game'>
+      <ul class='player-names-list'>
+        <li class='player-name'>PLAYER_1</li>
+        <li class='player-name'>PLAYER_2</li>
+      </ul>
+      <div id='create-card-form'>
+        <form class="new_card" id="new_card" action="/cards" accept-charset="UTF-8" method="post">
+          <input type="text" name="card[concept]" id="card_concept" />
+          <input type="hidden" name="game_id" id="game_id" value="132" />
+          <input type="submit" name="commit" value="Add Card" data-disable-with="Add Card" />
+        </form>
+      </div>
+      <a id="start-game" data-method="get" href="/games/asd/start">start game</a>
+    </div>
+  `;
 
   var cluegiverButtonsHTML =  `<div class="actions">
         <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
