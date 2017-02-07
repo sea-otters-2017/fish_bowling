@@ -17,7 +17,7 @@ class GamesController < ApplicationController
   def show
     @game = Game.find_by(name: params[:name])
     # IF THE GAME HAS BEGUN...
-    if @game.turns
+    if !@game.teams.empty?
       render :live
     end
   end
