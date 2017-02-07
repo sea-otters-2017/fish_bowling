@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   helper_method :current_user, :logged_in?, :log_in
 
-
   def pluralize(count, noun, text = nil)
     if count != 0
       count == 1 ? "a #{noun}#{text}" : "#{count} #{noun.pluralize}#{text}"
@@ -31,5 +30,10 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to login_path unless logged_in?
   end
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> created flash notice and alert for login error handling
 end
 

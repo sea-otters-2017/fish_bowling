@@ -1,6 +1,9 @@
 <h2>Log in</h2>
+
 <div id='login-form-div'>
-  <%= form_for(:session, url: login_path) do |f| %>
+
+<%= form_for(:session, url: login_path) do |f| %>
+
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true %>
