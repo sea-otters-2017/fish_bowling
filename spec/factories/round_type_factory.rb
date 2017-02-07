@@ -7,5 +7,5 @@ end
 
 =begin
 require 'factory_girl_rails'
-FactoryGirl.create(:game)
+FactoryGirl.create(:round_type)
 =end
