@@ -1,5 +1,6 @@
 
 function renderGamePage(gameState) {
+
   console.log('renderGamePage(', gameState, ')');
 
   var cardHTML = `<h1>${gameState.card}</h1>`;
@@ -9,36 +10,60 @@ function renderGamePage(gameState) {
       <input class="waves-effect waves-light btn-large teal" type="submit" value="START ROUND">
     </form>
   `
-  var team1 = gameState.teams[0]
-  var team2 = gameState.teams[1]
+  function getTeamsHTML(){
+    if(!gameState.is_started){
+      return ""
+    }
+    var team1 = gameState.teams[0]
+    var team2 = gameState.teams[1]
 
-  var team1Players = ''
-  var team2Players = ''
+    var team1Players = ''
+    var team2Players = ''
 
-  team1.players.forEach(function(player) {
-    team1Players += ('<li>' + player.display_name + '</li>')
-  })
+    team1.players.forEach(function(player) {
+      team1Players += ('<li>' + player.display_name + '</li>')
+    })
 
-  team2.players.forEach(function(player) {
-    team2Players += ('<li>' + player.display_name + '</li>')
-  })
+    team2.players.forEach(function(player) {
+      team2Players += ('<li>' + player.display_name + '</li>')
+    })
 
-  var teamsHTML = `<h4>Teams:</h4>
-  <div>
-    <h5>${team1.name}</h5>
-    <h5>${team1.score} points</h5>
-    <ul>
-      ${team1Players}
-    </ul>
-    <h5>${team2.name}</h5>
-    <h5>${team2.score} points</h5>
-    <ul>
-      ${team2Players}
-    </ul>
-  </div>
+    return `<h4>Teams:</h4>
+    <div>
+      <h5>${team1.name}</h5>
+      <h5>${team1.score} points</h5>
+      <ul>
+        ${team1Players}
+      </ul>
+      <h5>${team2.name}</h5>
+      <h5>${team2.score} points</h5>
+      <ul>
+        ${team2Players}
+      </ul>
+    </div>
+    `;
+  }
+
+  var waitingGameHTML =  `
+    <div class='waiting-game'>
+      <ul class='player-names-list'>
+        <li class='player-name'>PLAYER_1</li>
+        <li class='player-name'>PLAYER_2</li>
+      </ul>
+      <div id='create-card-form'>
+        <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
+          <input type="text" name="card[concept]" id="card_concept" />
+          <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
+          <input type="submit" name="commit" value="Add Card" data-disable-with="Add Card" />
+        </form>
+      </div>
+      <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
+        <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
+      </form>
+    </div>
   `;
 
-  var buttonHTML =  `<div class="actions">
+  var cluegiverButtonsHTML =  `<div class="actions">
         <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
           <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
         </form>
@@ -54,7 +79,6 @@ function renderGamePage(gameState) {
 
   var gameHTML = `
   <div id="game-${gameState.game.id}">
-
     <div>
       <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60' ></div>
     </div>
@@ -65,17 +89,23 @@ function renderGamePage(gameState) {
     </div>
 
     ${cardHTML}
-
-    ${buttonHTML}
+    ${cluegiverButtonsHTML}
 
     <div class="observer-view">
       <h1>${gameState.cluegiver}s Turn</h1>
     </div>
   </div>
 
-  ${teamsHTML}
+  ${getTeamsHTML()}
   ${startRoundFormHTML}
 
   `
+
+  if(!gameState.is_started){
+    console.log(waitingGameHTML);
+    $('#live').html(waitingGameHTML);
+    return;
+  }
+
   $('#live').html(gameHTML)
 }

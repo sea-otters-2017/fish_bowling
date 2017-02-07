@@ -15,12 +15,15 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find_by(name: params[:name])
-    if !@game.turns.empty?
-      render :live
-    elsif !@game.teams.empty?
-      render 'teams/index'
-    end
+    @game_state = broadcast_game
+    respond_to do |format|
+      format.html {
+        render :live
+      }
+      format.json {
+        render json: @game_state
+      }
+     end
   end
 
   def join
@@ -39,35 +42,17 @@ class GamesController < ApplicationController
   def start
     return flash[:notice] = "you are NOT the creator of '#{@game.name}'" unless @game.creator == current_user
     CreateRandomTeams.new(@game).call if @game.teams.empty?
-    response = ApplicationController.render(
-      layout: false,
-      template: 'teams/index',
-      assigns: { game: @game, current_user: current_user, start_round_path: "games/#{@game.name}/start_round"}
-    )
-    ActionCable.server.broadcast( 'games_channel',
-                                  {   action: 'showTeams',
-                                      response: response } )
-    render 'teams/index'
+    redirect_to @game
   end
 
   def start_round
     StartRound.new(@game).call
-    broadcast_live
-    broadcast_game
-    render :live, game: @game
+    show
    end
 
   def pass
     PassCard.new(@game).call
-    @game_state = broadcast_game
-    respond_to do |format|
-      format.html {
-        render :show
-      }
-      format.json {
-        render json: @game_state
-      }
-     end
+    show
   end
 
   def win_card

@@ -10,7 +10,7 @@ class CardsController < ApplicationController
       if session_user.cards_from(@game).count < 4
         flash[:notice] = "you must add #{ pluralize(4 - session_user.cards_from(@game).count, 'card') }"
       end
-      redirect_to @game, notice: "Card: '#{params[:card][:concept]}' has been saved."
+        redirect_to @game, notice: "Card: '#{params[:card][:concept]}' has been saved."
       return
     else
       redirect_to @game, notice: 'Card field cannot be blank.'
@@ -24,6 +24,20 @@ class CardsController < ApplicationController
   end
 
   def set_game
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    puts 'params'
+    p params
     @game = Game.find(params[:game_id])
   end
 
