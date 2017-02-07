@@ -11,35 +11,37 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
   },
 
   received: function(data) {
-    // console.log('data', JSON.stringify(data, null, 2))
-    // console.log('id', data.id)
     switch(data['action']) {
+      case 'updateGame':
+        renderGamePage(data.gameState);
+        break;
+      case 'updateLive':
+        renderMain(data['response']);
+        break;
       case 'newPlayer':
         appendNewPlayer(data['player'])
         break;
       case 'showTeams':
-        showTeams(data['response'])
+        renderMain(data['response'])
         break;
       case 'updateGameDisplay':
         updateGameDisplay(data)
         break;
     }
-    $('body').append(data['message'])
-  },
-
-  speak: function(message) {
-    this.perform('speak', { message: message })
   }
 });
 
 $(document).on('turbolinks:load', function() {
-  createNewGame();
-  startNewRound();
-  passCard();
-  winCard();
+  addEventListeners();
 });
 
-function createNewGame(){
+function addEventListeners(){
+  addNewGameListener();
+  addStartListener();
+  addActionListener();
+}
+
+function addNewGameListener(){
   $('#new_game').on('submit', function(event) {
     event.preventDefault()
     var name = $('#new_game').serialize()
@@ -51,7 +53,7 @@ function createNewGame(){
   })
 }
 
-function startNewRound(){
+function addStartListener(){
   $('main').on('click', '.start-round-link', function(event) {
     event.preventDefault();
     var link = $('.start-round-link').attr('href');
@@ -59,20 +61,15 @@ function startNewRound(){
   })
 }
 
-function passCard(){
-  $('main').on('click', '#pass-button', function(event) {
+function addActionListener(){
+  $('main').on('submit', '.action-form', function(event) {
     event.preventDefault();
-    var link = $('#pass-button').attr('href');
-    $.get(link);
-  })
-}
-
-function winCard(){
-  $('main').on('click', '#win-button', function(event) {
-    event.preventDefault();
-    var link = $('#win-button').attr('href');
-    var concept = $('#card-concept').text();
-    $.get(link, {card_concept: concept});
+    var $form = $(this);
+    $.ajax( {
+      url : $form.attr('action'),
+      method : "POST",
+      data : $form.serialize()
+    });
   })
 }
 
@@ -80,7 +77,7 @@ function appendNewPlayer(playerName) {
   $('.player-names-list').append('<li class="player-name">' + playerName + '</li>')
 }
 
-function showTeams(response) {
+function renderMain(response) {
   $('main').html(response)
 }
 
@@ -95,4 +92,49 @@ function updateGameDisplay(message) {
   }
   countdown({minutes: 1, seconds: 0});
   console.log(message['game_state'])
+}
+
+function renderGamePage(gameState) {
+  console.log('renderGamePage(', gameState, ')');
+
+  var cardHTML = `
+    <h1>${gameState.card}</h1>
+  `;
+
+  var buttonHTML =  `<div class="actions">
+        <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
+          <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
+        </form>
+
+        <form class="action-form" action="/games/${gameState.game.name}/win_card" method="post">
+          <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
+        </form>
+
+        <form class="action-form" action="/games/${gameState.game.name}/pause" method="post">
+          <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
+        </form>
+      </div>`;
+
+  var gameHTML = `
+  <div id="game-${gameState.game.id}">
+
+    <div>
+      <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60' ></div>
+    </div>
+    <p>Current Round: ${gameState.current_round.type}</p>
+
+    <div id="cluegiver-turn-${"CLUEGIVE-TBD"}" class="cluegiver-view">
+      <h1>${gameState.game.name}</h1>
+    </div>
+
+    ${cardHTML}
+
+    ${buttonHTML}
+
+    <div class="observer-view">
+      <h1>${gameState.cluegiver}s Turn</h1>
+    </div>
+  </div>
+  `
+  $('#live').html(gameHTML)
 }

@@ -74,15 +74,28 @@ class Game < ApplicationRecord
       is_over: is_over?,
       current_round: {type: current_round.round_type.name},
       creator: {id: creator.id, display_name: creator.display_name},
-      team_1: {name: teams.first.name, players: teams.first.players_list},
-      team_2: {name: teams.last.name, players: teams.last.players_list},
-      turn: last_turn#,
-      # card: {concept: last_turn.card.concept, id: last_turn.card.id}
+      teams: teams_list,
+      cluegiver: (last_turn.player.display_name if last_turn.persisted?),
+      card: (current_card.concept if last_turn.persisted?)
     }
+  end
 
+  def last_turn
+    self.turns.order("created_at").last || Turn.new
+  end
+  
+  def current_card
+    last_turn.last_card
   end
 
   private
+
+  def teams_list
+    teams.each.map do |team|
+      { name: team.name,
+        players: team.players_list }
+    end
+  end
 
   def initialize_rounds
     RoundType.create_round_types
@@ -93,10 +106,6 @@ class Game < ApplicationRecord
 
   def next_turn_team
     self.teams.where.not(name: last_turn_team.name).first
-  end
-
-  def last_turn
-    self.turns.order("created_at").last || Turn.new
   end
 
   def last_player
