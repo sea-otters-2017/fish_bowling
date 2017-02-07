@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  include SessionsHelper
   before_action :authenticate_user!
   before_action :set_game
 

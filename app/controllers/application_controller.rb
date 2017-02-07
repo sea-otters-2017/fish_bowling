@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
-  include SessionsHelper
   before_action :authenticate_user!
   helper_method :current_user, :logged_in?, :log_in
 
@@ -11,9 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    p session[:user_id]
-
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
   end
 
   def logged_in?
@@ -21,11 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def log_in(user_id)
-    session[:user_id] = user_id
+    cookies.signed[:user_id] = user_id
   end
 
   def log_out
-    session[:user_id] = nil
+    cookies.signed[:user_id] = nil
   end
 
   protected
