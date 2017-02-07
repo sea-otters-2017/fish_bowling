@@ -31,12 +31,8 @@ class GamesController < ApplicationController
     return redirect_to root_path, notice: "'#{params[:name]}' is in progress" unless @game.teams.empty?
     if !@game.participants.include?(current_user)
       @game.participants << current_user
-      ActionCable.server.broadcast( 'games_channel',
-                                    {   action: 'newPlayer',
-                                        player: current_user.display_name,
-                                        player_id: current_user.id } )
     end
-    redirect_to @game
+    show
   end
 
   def start

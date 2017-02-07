@@ -5,15 +5,17 @@ function renderGamePage(gameState) {
 
   var cardHTML = `<h1>${gameState.card}</h1>`;
 
-  var startRoundFormHTML = `
+  function startRoundFormHTML(){
+    if (!gameState.round_started){ return "" }
+    return `
     <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
       <input class="waves-effect waves-light btn-large teal" type="submit" value="START ROUND">
     </form>
-  `
+    `
+  }
+
   function getTeamsHTML(){
-    if(!gameState.is_started){
-      return ""
-    }
+    if(!gameState.game_started){ return "" }
     var team1 = gameState.teams[0]
     var team2 = gameState.teams[1]
 
@@ -90,6 +92,7 @@ function renderGamePage(gameState) {
     <div>
       <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60' ></div>
     </div>
+    <h2>${gameState.game.name}</h2>
     <p>Current Round: ${gameState.current_round.type}</p>
 
     <div id="cluegiver-turn-${"CLUEGIVE-TBD"}" class="cluegiver-view">
@@ -105,7 +108,7 @@ function renderGamePage(gameState) {
   </div>
 
   ${getTeamsHTML()}
-  ${startRoundFormHTML}
+  ${startRoundFormHTML()}
 
   `
 
