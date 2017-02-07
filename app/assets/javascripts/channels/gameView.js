@@ -4,6 +4,13 @@ function renderGamePage(gameState) {
   var team2 = gameState.teams[1]
 
   // console.log('renderGamePage(', gameState, ')');
+  var user_id = $("#live[data-userid]").data().userid;
+  var isCluegiver = (user_id === gameState.cluegiver.id);
+  var isCreator = (user_id === gameState.creator.id);
+  console.log('isCluegiver', isCluegiver)
+  console.log('isCreator', isCreator)
+  console.log('renderGamePage(', gameState, ')');
+
   function getCardHTML(){
     return `<h1>${gameState.card}</h1>`;
   }

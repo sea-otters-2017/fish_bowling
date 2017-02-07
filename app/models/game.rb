@@ -77,7 +77,8 @@ class Game < ApplicationRecord
       current_round: {type: current_round.round_type.name},
       creator: {id: creator.id, display_name: creator.display_name},
       teams: teams_list,
-      cluegiver: (last_turn.player.display_name if last_turn.persisted?),
+      cluegiver: {  id: (cluegiver.id if last_turn.persisted?),
+                    display_name: (cluegiver.display_name if last_turn.persisted?) },
       card: (current_card.concept if last_turn.persisted?),
       ready: ready?,
       participants: self.participants
@@ -124,6 +125,10 @@ class Game < ApplicationRecord
 
   def count_turns(player)
     self.turns.where(player: player).count
+  end
+
+  def cluegiver
+    last_turn.player
   end
 
 end
