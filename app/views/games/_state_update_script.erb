@@ -1,0 +1,6 @@
+<script type="text/javascript">
+   var gameState = <%== @game_state.nil? ? @game.full_state.to_json : @game_state.to_json %>;
+   var currentUser = <%== current_user.to_json only: [:display_name] %>;
+
+   renderGamePage(gameState, currentUser);
+</script>
