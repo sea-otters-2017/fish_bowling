@@ -14,4 +14,11 @@ RSpec.describe User, type: :model do
 
   it { expect(subject).to validate_uniqueness_of :display_name }
   it { expect(subject).to validate_uniqueness_of :email }
+
+  it 'returns an array of the user\'s cards from a specific game' do
+    game = FactoryGirl.create(:game)
+    card = FactoryGirl.create(:card, author: subject)
+    game.cards << card
+    expect(subject.cards_from(game)).to include card
+  end
 end
