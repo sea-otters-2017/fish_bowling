@@ -1,5 +1,4 @@
 class GamesController < ApplicationController
-  include SessionsHelper
   before_action :authenticate_user!
   before_action :set_game
 
@@ -71,10 +70,7 @@ class GamesController < ApplicationController
   end
 
   def win_card
-    # @game.last_turn_team.increase_score
-    # @turn = @game.current_round.last_turn
-    # @card = @game.cards.where(in_bowl: true).where(concept: params['card_concept']).first
-    # @card.remove_from_bowl
+    WinCard.new(@game).call
     if @game.bowl_empty?
       @game.current_round.finish
       return start_round unless @game.is_over?
@@ -83,13 +79,8 @@ class GamesController < ApplicationController
     if @game.is_over?
       return render :'games/results', game: @game
     else
-      @card = @game.random_card
-      @turn.cards << @card
-      @cluegiver = @turn.player
-      refreshDisplay
-      return render :'games/gameplay', game: @game
+      pass
     end
-    # broadcast_game
   end
 
   def pause
@@ -97,7 +88,6 @@ class GamesController < ApplicationController
 
   private
 
-  # BROADCAST GAME WILL SEND THE JSON MAINTAINING THE FULL STATE OF THE GAME
   def broadcast_game
     state = @game.full_state
     ActionCable.server.broadcast( 'games_channel', { action: :updateGame, gameState: state })

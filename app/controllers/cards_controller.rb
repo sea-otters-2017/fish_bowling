@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
-  include SessionsHelper
   before_action :set_game, only: [:create]
 
   def create
