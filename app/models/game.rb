@@ -75,7 +75,8 @@ class Game < ApplicationRecord
       current_round: {type: current_round.round_type.name},
       creator: {id: creator.id, display_name: creator.display_name},
       teams: teams_list,
-      cluegiver: (last_turn.player.display_name if last_turn.persisted?)
+      cluegiver: (last_turn.player.display_name if last_turn.persisted?),
+      card: (last_turn.cards if last_turn.persisted?)
     }
   end
 

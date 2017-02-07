@@ -55,21 +55,18 @@ class GamesController < ApplicationController
     broadcast_live
     broadcast_game
     render :live, game: @game
-  end
+   end
 
   def pass
-    # @card = @game.random_card
-    # @turn = @game.current_round.last_turn
-    # @cluegiver = @turn.player
     PassCard.new(@game).call
     @game_state = broadcast_game
     respond_to do |format|
-       format.html {
-         render :show
-       }
-       format.json {
-         render json: @game_state
-       }
+      format.html {
+        render :show
+      }
+      format.json {
+        render json: @game_state
+      }
      end
   end
 
@@ -99,20 +96,6 @@ class GamesController < ApplicationController
   end
 
   private
-
-  # REFRESH DISPLAY SHOULD BE DEPRECATED WITH THIS CHANGE
-  def refreshDisplay
-    response = ApplicationController.render(
-      layout: false,
-      template: 'games/gameplay',
-      assigns: { game: @game, card: @card, turn: @turn, start_round_path: "games/#{@game.name}/start_round"}
-    )
-    ActionCable.server.broadcast( 'games_channel',
-                                  {   action: 'updateGameDisplay',
-                                      cluegiver_id: @cluegiver.id,
-                                      response: response,
-                                      game_state: @game.full_state } )
-  end
 
   # BROADCAST GAME WILL SEND THE JSON MAINTAINING THE FULL STATE OF THE GAME
   def broadcast_game

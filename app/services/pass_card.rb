@@ -7,7 +7,6 @@ class PassCard
     @card = @game.random_card
     @turn = @game.current_round.last_turn
     @turn.cards << @card
-    @cluegiver = @turn.player
   end
 
 end
