@@ -71,10 +71,10 @@ class GamesController < ApplicationController
   end
 
   def win_card
-    @game.last_turn_team.increase_score
-    @turn = @game.current_round.last_turn
-    @card = @game.cards.where(in_bowl: true).where(concept: params['card_concept']).first
-    @card.remove_from_bowl
+    # @game.last_turn_team.increase_score
+    # @turn = @game.current_round.last_turn
+    # @card = @game.cards.where(in_bowl: true).where(concept: params['card_concept']).first
+    # @card.remove_from_bowl
     if @game.bowl_empty?
       @game.current_round.finish
       return start_round unless @game.is_over?

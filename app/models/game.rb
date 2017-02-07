@@ -76,8 +76,16 @@ class Game < ApplicationRecord
       creator: {id: creator.id, display_name: creator.display_name},
       teams: teams_list,
       cluegiver: (last_turn.player.display_name if last_turn.persisted?),
-      card: (last_turn.last_card.concept if last_turn.persisted?)
+      card: (current_card.concept if last_turn.persisted?)
     }
+  end
+
+  def last_turn
+    self.turns.order("created_at").last || Turn.new
+  end
+  
+  def current_card
+    last_turn.last_card
   end
 
   private
@@ -89,7 +97,6 @@ class Game < ApplicationRecord
     end
   end
 
-
   def initialize_rounds
     RoundType.create_round_types
     3.times do |i|
@@ -99,10 +106,6 @@ class Game < ApplicationRecord
 
   def next_turn_team
     self.teams.where.not(name: last_turn_team.name).first
-  end
-
-  def last_turn
-    self.turns.order("created_at").last || Turn.new
   end
 
   def last_player
