@@ -155,6 +155,7 @@ function renderGamePage(gameState) {
     ${getObserverHTML()}
     ${getTeamsHTML()}
     ${startRoundFormHTML()}
+    ${showResults()}
   `
 
   $('#live').html(gameHTML)
