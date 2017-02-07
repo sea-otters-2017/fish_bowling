@@ -78,7 +78,8 @@ class Game < ApplicationRecord
       teams: teams_list,
       cluegiver: (last_turn.player.display_name if last_turn.persisted?),
       card: (current_card.concept if last_turn.persisted?),
-      ready: ready?
+      ready: ready?,
+      participants: self.participants
     }
   end
 
