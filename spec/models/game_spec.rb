@@ -61,9 +61,4 @@ RSpec.describe Game, type: :model do
     CreateRandomTeams.new(subject).call
     expect(subject.full_state).to be_a Hash
   end
-
-  it 'tells you the last turn team' do
-    CreateRandomTeams.new(subject).call
-    expect(subject.last_turn_team).to be_a Team
-  end
 end
