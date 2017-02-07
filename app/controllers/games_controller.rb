@@ -10,13 +10,12 @@ class GamesController < ApplicationController
       @game.participants << @game.creator
       redirect_to @game
     else
-      redirect_to root_path, notice: 'Game has been created'
+      redirect_to root_path, notice: "'#{@game.name}' has already been created!"
     end
   end
 
   def show
     @game = Game.find_by(name: params[:name])
-    # IF THE GAME HAS BEGUN...
     if !@game.teams.empty?
       render :live
     end
