@@ -29,6 +29,16 @@ RSpec.describe Game, type: :model do
   end
 
   context 'cards in the bowl' do
+    it 'has no #cards_added?' do
+      subject.participants << FactoryGirl.create(:user)
+      expect(subject.cards_added?).to be false
+    end
+
+    it 'has #cards_added?' do
+      4.times {subject.cards << FactoryGirl.create(:card, author: FactoryGirl.create(:user)) }
+      expect(subject.cards_added?).to be true
+    end
+
     it 'returns a random card from the bowl' do
       subject.cards << FactoryGirl.create(:card)
       expect(subject.random_card).to be_a Card
