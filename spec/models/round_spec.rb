@@ -14,4 +14,10 @@ RSpec.describe Round, type: :model do
     round.turns << old_turn
     expect(round.last_turn).to eq new_turn
   end
+
+  it 'marks itself as finished' do
+    expect(round.is_over?).to be false
+    round.finish
+    expect(round.is_over?).to be true
+  end
 end
