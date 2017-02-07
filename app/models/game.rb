@@ -76,7 +76,9 @@ class Game < ApplicationRecord
       creator: {id: creator.id, display_name: creator.display_name},
       team_1: {name: teams.first.name, players: teams.first.players_list},
       team_2: {name: teams.last.name, players: teams.last.players_list},
-      turn: last_turn#,
+      turn: { startTime: last_turn.created_at.to_time.to_i },
+      cluegiver: last_turn.player.display_name
+      #,
       # card: {concept: last_turn.card.concept, id: last_turn.card.id}
     }
 

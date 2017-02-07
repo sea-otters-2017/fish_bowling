@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
+    p session[:user_id]
+
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def logged_in?
@@ -18,11 +20,11 @@ class ApplicationController < ActionController::Base
   end
 
   def log_in(user_id)
-    cookies.signed[:user_id] = user_id
+    session[:user_id] = user_id
   end
 
   def log_out
-    cookies.signed[:user_id] = nil
+    session[:user_id] = nil
   end
 
   protected

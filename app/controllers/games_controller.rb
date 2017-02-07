@@ -16,6 +16,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find_by(name: params[:name])
+    render :live
   end
 
   def join
@@ -52,18 +53,28 @@ class GamesController < ApplicationController
     @turn = @round.turns.create(player: @cluegiver)
     @turn.cards << @card
     refreshDisplay
-    render :'games/gameplay', game: @game
+    render :live, game: @game
     # broadcast_game
   end
 
   def pass
+    p "PASS"
+    p params
     @card = @game.random_card
     @turn = @game.current_round.last_turn
     @turn.cards << @card
     @cluegiver = @turn.player
-    refreshDisplay
-    render :'games/gameplay', game: @game
-    # broadcast_game
+    @game_state = broadcast_game
+    respond_to do |format|
+       format.html {
+         p "RENDERING HTML"
+         render :show
+       }
+       format.json {
+         p "RENDERING JSON"
+         render json: @game_state
+       }
+     end
   end
 
   def win_card
@@ -109,7 +120,9 @@ class GamesController < ApplicationController
 
   # BROADCAST GAME WILL SEND THE JSON MAINTAINING THE FULL STATE OF THE GAME
   def broadcast_game
-    ActionCable.server.broadcast( 'games_channel', @game.full_state )
+    state = @game.full_state
+    ActionCable.server.broadcast( 'games_channel', { action: :updateGame, gameState: state })
+    state
   end
 
   def game_params
