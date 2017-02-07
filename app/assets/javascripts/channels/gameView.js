@@ -26,12 +26,12 @@ function renderGamePage(gameState) {
   var teamsHTML = `<h4>Teams:</h4>
   <div>
     <h5>${team1.name}</h5>
-    <h6>${team1.score}</h6>
+    <h5>${team1.score}</h5>
     <ul>
       ${team1Players}
     </ul>
     <h5>${team2.name}</h5>
-    <h6>${team2.score}</h6>
+    <h5>${team2.score}</h5>
     <ul>
       ${team2Players}
     </ul>
