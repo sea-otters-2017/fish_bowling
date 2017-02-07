@@ -14,14 +14,14 @@ class SessionsController < ApplicationController
       # cookies.signed[:user_id] = user.id
       redirect_to root_path, :flash => { :notice => "You are logged in" }
     else
-      redirect_to root_path, :flash => { :error => "You have NOT logged in!" }
+      redirect_to root_path, :flash => { :notice => "You have NOT logged in! Invalid Email and/or Password Criteria." }
     end
   end
 
   def delete
     session_logout
     log_out
-    redirect_to root_path, :flash => { :error => "You have been logged out" }
+    redirect_to root_path, :flash => { :alert => "You have been logged out" }
   end
 
 end

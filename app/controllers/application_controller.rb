@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   before_action :authenticate_user!
   helper_method :current_user, :logged_in?, :log_in
-  around_action :handle_exceptions
 
   def pluralize(count, noun, text = nil)
     if count != 0
@@ -32,15 +31,6 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless logged_in?
   end
 
-  private
-
-  def handle_exceptions
-    begin
-      yield
-    rescue NoPermissionError
-      redirect_to 'permission_error'
-    end
-  end
 
 end
 
