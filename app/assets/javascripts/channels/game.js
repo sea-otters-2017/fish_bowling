@@ -122,7 +122,7 @@ function renderGamePage(gameState, currentUser) {
   <div id="game-${gameState.game.id}">
 
     <div>
-      <div id='timer' class="fbCountdown" data-start-time='${gameState.turn.startTime}' data-run-time='60' ></div>
+      <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60' ></div>
     </div>
     <p>Current Round: ${gameState.current_round.type}</p>
 
@@ -134,7 +134,7 @@ function renderGamePage(gameState, currentUser) {
 
     ${buttonHTML}
 
-    <div id="turn-${gameState.turn.id}" class="observer-view">
+    <div class="observer-view">
       <h1>${gameState.cluegiver}s Turn</h1>
     </div>
   </div>

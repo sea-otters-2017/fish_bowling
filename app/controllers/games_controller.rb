@@ -16,7 +16,10 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find_by(name: params[:name])
-    render :live
+    # IF THE GAME HAS BEGUN...
+    if @game.turns
+      render :live
+    end
   end
 
   def join
