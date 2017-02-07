@@ -1,19 +1,22 @@
 
 function renderGamePage(gameState) {
 
-  console.log('renderGamePage(', gameState, ')');
+  // console.log('renderGamePage(', gameState, ')');
+  function getCardHTML(){
+    return `<h1>${gameState.card}</h1>`;
+  }
 
-  var cardHTML = `<h1>${gameState.card}</h1>`;
-
-  var startRoundFormHTML = `
+  function startRoundFormHTML(){
+    if(!gameState.game_started || gameState.round_started){ return "" }
+    return `
     <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
       <input class="waves-effect waves-light btn-large teal" type="submit" value="START ROUND">
     </form>
-  `
+    `
+  }
+
   function getTeamsHTML(){
-    if(!gameState.is_started){
-      return ""
-    }
+    if(!gameState.game_started || gameState.round_started){ return "" }
     var team1 = gameState.teams[0]
     var team2 = gameState.teams[1]
 
@@ -45,6 +48,7 @@ function renderGamePage(gameState) {
   }
 
   function getWaitingHTML(){
+    if(gameState.game_started){ return "" }
     var allPlayers = ''
 
     gameState.participants.forEach(function(participant){
@@ -53,6 +57,7 @@ function renderGamePage(gameState) {
 
     return `
       <div class='waiting-game'>
+        <h4>Participants</h4>
         <ul class='player-names-list'>
           ${allPlayers}
         </ul>
@@ -70,8 +75,8 @@ function renderGamePage(gameState) {
     `;
   }
 
-
-  var cluegiverButtonsHTML =  `<div class="actions">
+  function getCluegiverButtonsHTML(){
+    return `<div class="actions">
         <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
           <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
         </form>
@@ -84,36 +89,51 @@ function renderGamePage(gameState) {
           <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
         </form>
       </div>`;
+    };
 
-  var gameHTML = `
-  <div id="game-${gameState.game.id}">
-    <div>
-      <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60' ></div>
+  function getTimerHTML() {
+    return `
+    <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60'>
+      <p>00:30</p>
+    </div>`;
+  };
+
+  function getTitleHTML(){
+    return `
+      <h3>${gameState.game.name}</h3>
+      <div id='round-container'>
+        <p>Current Round: ${gameState.current_round.type}</p>
+      </div>`;
+  };
+
+  function getCluegiverHTML() {
+    if(!gameState.round_started){ return "" }
+    return `
+    <div id="cluegiver-container">
+      ${getCardHTML()}
+      ${getCluegiverButtonsHTML()}
     </div>
-    <p>Current Round: ${gameState.current_round.type}</p>
+    `;
+  }
 
-    <div id="cluegiver-turn-${"CLUEGIVE-TBD"}" class="cluegiver-view">
-      <h1>${gameState.game.name}</h1>
-    </div>
-
-    ${cardHTML}
-    ${cluegiverButtonsHTML}
-
-    <div class="observer-view">
+  function getObserverHTML() {
+    if(!gameState.round_started){ return "" }
+    return `
+    <div id="observer-container">
       <h1>${gameState.cluegiver}s Turn</h1>
     </div>
-  </div>
-
-  ${getTeamsHTML()}
-  ${startRoundFormHTML}
-
-  `
-
-  if(!gameState.is_started){
-    console.log(getWaitingHTML());
-    $('#live').html(getWaitingHTML());
-    return;
+    `;
   }
+
+  var gameHTML = `
+    ${getTimerHTML()}
+    ${getTitleHTML()}
+    ${getWaitingHTML()}
+    ${getCluegiverHTML()}
+    ${getObserverHTML()}
+    ${getTeamsHTML()}
+    ${startRoundFormHTML()}
+  `
 
   $('#live').html(gameHTML)
 }

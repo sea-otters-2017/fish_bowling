@@ -24,20 +24,6 @@ class CardsController < ApplicationController
   end
 
   def set_game
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    puts 'params'
-    p params
     @game = Game.find(params[:game_id])
   end
 
