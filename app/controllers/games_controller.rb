@@ -15,12 +15,15 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find_by(name: params[:name])
-    if !@game.turns.empty?
-      render :live
-    elsif !@game.teams.empty?
-      render 'teams/index'
-    end
+    @game_state = broadcast_game
+    respond_to do |format|
+      format.html {
+        render :live
+      }
+      format.json {
+        render json: @game_state
+      }
+     end
   end
 
   def join

@@ -38,7 +38,11 @@ function renderGamePage(gameState) {
   </div>
   `;
 
-  var buttonHTML =  `<div class="actions">
+  var waitingGameHTML =  `<div class="game-not-ready">
+        WAITING
+      </div>`;
+
+  var cluegiverButtonsHTML =  `<div class="actions">
         <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
           <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
         </form>
@@ -54,7 +58,7 @@ function renderGamePage(gameState) {
 
   var gameHTML = `
   <div id="game-${gameState.game.id}">
-
+  ${waitingGameHTML}
     <div>
       <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60' ></div>
     </div>
@@ -65,8 +69,7 @@ function renderGamePage(gameState) {
     </div>
 
     ${cardHTML}
-
-    ${buttonHTML}
+    ${cluegiverButtonsHTML}
 
     <div class="observer-view">
       <h1>${gameState.cluegiver}s Turn</h1>
