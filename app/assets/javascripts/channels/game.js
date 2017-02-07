@@ -11,17 +11,18 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
   },
 
   received: function(data) {
-    console.log('data', JSON.stringify(data, null, 2))
-    console.log('id', data.id)
     switch(data['action']) {
       case 'updateGame':
-        renderGamePage(data.gameState, currentUser);
+        renderGamePage(data.gameState);
+        break;
+      case 'updateLive':
+        renderMain(data['response']);
         break;
       case 'newPlayer':
         appendNewPlayer(data['player'])
         break;
       case 'showTeams':
-        showTeams(data['response'])
+        renderMain(data['response'])
         break;
       case 'updateGameDisplay':
         updateGameDisplay(data)
@@ -76,7 +77,7 @@ function appendNewPlayer(playerName) {
   $('.player-names-list').append('<li class="player-name">' + playerName + '</li>')
 }
 
-function showTeams(response) {
+function renderMain(response) {
   $('main').html(response)
 }
 
@@ -93,7 +94,7 @@ function updateGameDisplay(message) {
   console.log(message['game_state'])
 }
 
-function renderGamePage(gameState, currentUser) {
+function renderGamePage(gameState) {
   console.log('renderGamePage(', gameState, ')');
 
   var cardHTML = `
@@ -113,10 +114,6 @@ function renderGamePage(gameState, currentUser) {
           <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
         </form>
       </div>`;
-
-      if(currentUser.display_name == 'THE CLUEGIVER!!!'){
-        buttonHTML = '';
-      }
 
   var gameHTML = `
   <div id="game-${gameState.game.id}">

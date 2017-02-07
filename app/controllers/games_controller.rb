@@ -16,8 +16,10 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find_by(name: params[:name])
-    if !@game.teams.empty?
+    if !@game.turns.empty?
       render :live
+    elsif !@game.teams.empty?
+      render 'teams/index'
     end
   end
 
@@ -49,20 +51,13 @@ class GamesController < ApplicationController
   end
 
   def start_round
-    @game.reset_cards
-    @round = @game.current_round
-    @cluegiver = @game.get_cluegiver
-    @card = @game.random_card
-    @turn = @round.turns.create(player: @cluegiver)
-    @turn.cards << @card
-    refreshDisplay
+    StartRound.new(@game).call
+    broadcast_live
+    broadcast_game
     render :live, game: @game
-    # broadcast_game
   end
 
   def pass
-    p "PASS"
-    p params
     @card = @game.random_card
     @turn = @game.current_round.last_turn
     @turn.cards << @card
@@ -70,11 +65,9 @@ class GamesController < ApplicationController
     @game_state = broadcast_game
     respond_to do |format|
        format.html {
-         p "RENDERING HTML"
          render :show
        }
        format.json {
-         p "RENDERING JSON"
          render json: @game_state
        }
      end
@@ -126,6 +119,17 @@ class GamesController < ApplicationController
     state = @game.full_state
     ActionCable.server.broadcast( 'games_channel', { action: :updateGame, gameState: state })
     state
+  end
+
+  def broadcast_live
+    response = ApplicationController.render(
+      layout: false,
+      template: 'games/live',
+      assigns: { game: @game, current_user: current_user }
+    )
+    ActionCable.server.broadcast( 'games_channel',
+                                  { action: 'updateLive',
+                                    response: response } )
   end
 
   def game_params

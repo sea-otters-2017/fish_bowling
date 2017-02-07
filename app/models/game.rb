@@ -74,13 +74,8 @@ class Game < ApplicationRecord
       is_over: is_over?,
       current_round: {type: current_round.round_type.name},
       creator: {id: creator.id, display_name: creator.display_name},
-      # team_1: {name: teams.first.name, players: teams.first.players_list},
-      # team_2: {name: teams.last.name, players: teams.last.players_list},
-      teams: teams_list#,
-      # turn: { startTime: last_turn.created_at.to_time.to_i },
-      # cluegiver_hash
-      #,
-      # card: {concept: last_turn.card.concept, id: last_turn.card.id}
+      teams: teams_list,
+      cluegiver: (last_turn.player.display_name if last_turn.persisted?)
     }
   end
 
@@ -92,13 +87,7 @@ class Game < ApplicationRecord
         players: team.players_list }
     end
   end
-  #
-  # def cluegiver_hash
-  #   if last_turn
-  #     return {cluegiver: last_turn.player.display_name}
-  #   end
-  #   {cluegiver: 'none'}
-  # end
+
 
   def initialize_rounds
     RoundType.create_round_types
