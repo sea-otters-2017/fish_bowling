@@ -1,5 +1,7 @@
 
 function renderGamePage(gameState) {
+  var team1 = gameState.teams[0]
+  var team2 = gameState.teams[1]
 
   // console.log('renderGamePage(', gameState, ')');
   function getCardHTML(){
@@ -17,8 +19,6 @@ function renderGamePage(gameState) {
 
   function getTeamsHTML(){
     if(!gameState.game_started || gameState.round_started){ return "" }
-    var team1 = gameState.teams[0]
-    var team2 = gameState.teams[1]
 
     var team1Players = ''
     var team2Players = ''
@@ -123,6 +123,16 @@ function renderGamePage(gameState) {
       <h1>${gameState.cluegiver}s Turn</h1>
     </div>
     `;
+  }
+
+  function showResults() {
+    if(gameState.is_over) {
+      return `
+      <div></div>
+      `
+    } else {
+      return ''
+    }
   }
 
   var gameHTML = `
