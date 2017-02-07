@@ -58,10 +58,10 @@ class GamesController < ApplicationController
   end
 
   def pass
-    @card = @game.random_card
-    @turn = @game.current_round.last_turn
-    @turn.cards << @card
-    @cluegiver = @turn.player
+    # @card = @game.random_card
+    # @turn = @game.current_round.last_turn
+    # @cluegiver = @turn.player
+    PassCard.new(@game).call
     @game_state = broadcast_game
     respond_to do |format|
        format.html {
