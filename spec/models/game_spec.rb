@@ -32,8 +32,24 @@ RSpec.describe Game, type: :model do
     expect(subject.get_cluegiver).to be_a User
   end
 
-  it 'returns a random card from the bowl' do
-    subject.cards << FactoryGirl.create(:card)
-    expect(subject.random_card).to be_a Card
+  context 'cards in the bowl' do
+    it 'returns a random card from the bowl' do
+      subject.cards << FactoryGirl.create(:card)
+      expect(subject.random_card).to be_a Card
+    end
+    
+    it 'knows if its bowl is empty and resets cards' do
+      subject.cards << FactoryGirl.create(:card, in_bowl: false)
+      expect(subject.bowl_empty?).to be true
+      subject.reset_cards
+      expect(subject.bowl_empty?).to be false
+    end
   end
+
+  it 'lists an array of players who haven\'t added cards yet' do
+    4.times { subject.participants << FactoryGirl.create(:user) }
+    expect(subject.unfinished_players).to be_an Array
+  end
+
+
 end
