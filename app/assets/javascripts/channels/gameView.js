@@ -9,13 +9,31 @@ function renderGamePage(gameState) {
       <input class="waves-effect waves-light btn-large teal" type="submit" value="START ROUND">
     </form>
   `
+  var team1 = gameState.teams[0]
+  var team2 = gameState.teams[1]
+
+  var team1Players = ''
+  var team2Players = ''
+
+  team1.players.forEach(function(player) {
+    team1Players += ('<li>' + player.display_name + '</li>')
+  })
+
+  team2.players.forEach(function(player) {
+    team2Players += ('<li>' + player.display_name + '</li>')
+  })
 
   var teamsHTML = `<h4>Teams:</h4>
   <div>
-    <h5>TEAM NAME</h5>
+    <h5>${team1.name}</h5>
+    <h5>${team1.score} points</h5>
     <ul>
-      <li>NAME_1</li>
-      <li>NAME_2</li>
+      ${team1Players}
+    </ul>
+    <h5>${team2.name}</h5>
+    <h5>${team2.score} points</h5>
+    <ul>
+      ${team2Players}
     </ul>
   </div>
   `;

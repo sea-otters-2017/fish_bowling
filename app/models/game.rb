@@ -76,16 +76,22 @@ class Game < ApplicationRecord
       creator: {id: creator.id, display_name: creator.display_name},
       teams: teams_list,
       cluegiver: (last_turn.player.display_name if last_turn.persisted?),
-      card: (current_card.concept if last_turn.persisted?)
+      card: (current_card.concept if last_turn.persisted?),
+      ready: ready?
     }
   end
 
   def last_turn
     self.turns.order("created_at").last || Turn.new
   end
-  
+
   def current_card
     last_turn.last_card
+  end
+
+  def ready?
+    return false if self.is_over? || !self.cards_added? || !self.minimum_players?
+    return true
   end
 
   private
@@ -93,7 +99,8 @@ class Game < ApplicationRecord
   def teams_list
     teams.each.map do |team|
       { name: team.name,
-        players: team.players_list }
+        players: team.players_list,
+        score: team.score }
     end
   end
 
