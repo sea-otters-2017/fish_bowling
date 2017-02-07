@@ -99,7 +99,8 @@ class Game < ApplicationRecord
   def teams_list
     teams.each.map do |team|
       { name: team.name,
-        players: team.players_list }
+        players: team.players_list,
+        score: team.score }
     end
   end
 
