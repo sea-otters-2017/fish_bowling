@@ -50,6 +50,7 @@ class GamesController < ApplicationController
     @cluegiver = @game.get_cluegiver
     @card = @game.random_card
     @turn = @round.turns.create(player: @cluegiver)
+    @turn.cards << @card
     refreshDisplay
     render :'games/gameplay', game: @game
     # broadcast_game
@@ -58,6 +59,7 @@ class GamesController < ApplicationController
   def pass
     @card = @game.random_card
     @turn = @game.current_round.last_turn
+    @turn.cards << @card
     @cluegiver = @turn.player
     refreshDisplay
     render :'games/gameplay', game: @game
@@ -78,6 +80,7 @@ class GamesController < ApplicationController
       return render :'games/results', game: @game
     else
       @card = @game.random_card
+      @turn.cards << @card
       @cluegiver = @turn.player
       refreshDisplay
       return render :'games/gameplay', game: @game
