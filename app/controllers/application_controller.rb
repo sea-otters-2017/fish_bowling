@@ -30,10 +30,5 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to login_path unless logged_in?
   end
-<<<<<<< HEAD
-=======
-
-
->>>>>>> created flash notice and alert for login error handling
 end
 
