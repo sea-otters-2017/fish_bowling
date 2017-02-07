@@ -10,6 +10,6 @@ class Turn < ApplicationRecord
   end
 
   def end_turn
-    self.cards.last.put_in_bowl
+    last_card.put_in_bowl
   end
 end
