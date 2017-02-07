@@ -18,8 +18,8 @@ RSpec.describe "Routing to games", :type => :routing do
     expect(:get => "/games/name/start").to route_to("games#start", :name => "name")
   end
 
-  it "routes GET /games/name/start to games#start_round" do
-    expect(:get => "/games/name/start_round").to route_to("games#start_round", :name => "name")
+  it "routes POST /games/name/start to games#start_round" do
+    expect(:post => "/games/name/start_round").to route_to("games#start_round", :name => "name")
   end
 
 end
