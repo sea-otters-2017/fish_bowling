@@ -10,10 +10,7 @@ class GamesController < ApplicationController
       @game.participants << @game.creator
       redirect_to @game
     else
-      redirect_to root_path,
-      notice: "#{params[:game][:name]} is a game that is already in use or
-      #{params[:game][:name]} is not a valid game: please type a different game name."
-      #<%= render partial: "_error_messages", collection: @game %>
+      render 'new'
     end
   end
 
