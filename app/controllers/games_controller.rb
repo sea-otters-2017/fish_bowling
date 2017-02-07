@@ -22,7 +22,8 @@ class GamesController < ApplicationController
   end
 
   def join
-    return redirect_to root_path, notice: 'That game has not been created' unless @game
+    return redirect_to root_path, notice: "'#{params[:name]}' does not exist" unless @game
+    return redirect_to root_path, notice: "'#{params[:name]}' is in progress" unless @game.teams.empty?
     if !@game.participants.include?(current_user)
       @game.participants << current_user
       ActionCable.server.broadcast( 'games_channel',
@@ -34,7 +35,7 @@ class GamesController < ApplicationController
   end
 
   def start
-    return flash[:notice] = 'you are NOT the creator' unless @game.creator == current_user
+    return flash[:notice] = "you are NOT the creator of '#{@game.name}'" unless @game.creator == current_user
     CreateRandomTeams.new(@game).call if @game.teams.empty?
     response = ApplicationController.render(
       layout: false,
