@@ -48,22 +48,11 @@ class GamesController < ApplicationController
   def start_round
     StartRound.new(@game).call
     show
-    # broadcast_live
-    # broadcast_game
-    # render :live, game: @game
    end
 
   def pass
     PassCard.new(@game).call
-    @game_state = broadcast_game
-    respond_to do |format|
-      format.html {
-        render :show
-      }
-      format.json {
-        render json: @game_state
-      }
-     end
+    show
   end
 
   def win_card
