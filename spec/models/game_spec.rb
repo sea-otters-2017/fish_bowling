@@ -59,4 +59,9 @@ RSpec.describe Game, type: :model do
     4.times { subject.participants << FactoryGirl.create(:user) }
     expect(subject.unfinished_players).to be_an Array
   end
+
+  it 'has a full_state object' do
+    CreateRandomTeams.new(subject).call
+    expect(subject.full_state).to be_a Hash
+  end
 end
