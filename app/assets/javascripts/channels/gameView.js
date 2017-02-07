@@ -44,24 +44,32 @@ function renderGamePage(gameState) {
     `;
   }
 
-  var waitingGameHTML =  `
-    <div class='waiting-game'>
-      <ul class='player-names-list'>
-        <li class='player-name'>PLAYER_1</li>
-        <li class='player-name'>PLAYER_2</li>
-      </ul>
-      <div id='create-card-form'>
-        <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
-          <input type="text" name="card[concept]" id="card_concept" />
-          <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
-          <input type="submit" name="commit" value="Add Card" data-disable-with="Add Card" />
+  function getWaitingHTML(){
+    var allPlayers = ''
+
+    gameState.participants.forEach(function(participant){
+      allPlayers += `<li class='player-name'>${participant.display_name}</li>`
+    })
+
+    return `
+      <div class='waiting-game'>
+        <ul class='player-names-list'>
+          ${allPlayers}
+        </ul>
+        <div id='create-card-form'>
+          <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
+            <input type="text" name="card[concept]" id="card_concept" />
+            <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
+            <input type="submit" name="commit" value="Add Card" data-disable-with="Add Card" />
+          </form>
+        </div>
+        <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
+          <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
         </form>
       </div>
-      <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
-        <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
-      </form>
-    </div>
-  `;
+    `;
+  }
+
 
   var cluegiverButtonsHTML =  `<div class="actions">
         <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
@@ -102,8 +110,8 @@ function renderGamePage(gameState) {
   `
 
   if(!gameState.is_started){
-    console.log(waitingGameHTML);
-    $('#live').html(waitingGameHTML);
+    console.log(getWaitingHTML());
+    $('#live').html(getWaitingHTML());
     return;
   }
 
