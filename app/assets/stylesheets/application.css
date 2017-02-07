@@ -21,3 +21,8 @@
   text-align: center;
   font-size: 200%;
 }
+
+.action-form {
+  display: inline-block;
+  margin: 10px;
+}

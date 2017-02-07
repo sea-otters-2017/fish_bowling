@@ -114,7 +114,7 @@ function renderGamePage(gameState, currentUser) {
         </form>
       </div>`;
 
-      if(currentUser.display_name == 'pat'){
+      if(currentUser.display_name == 'THE CLUEGIVER!!!'){
         buttonHTML = '';
       }
 
