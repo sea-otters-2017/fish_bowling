@@ -10,10 +10,10 @@ class CardsController < ApplicationController
       if session_user.cards_from(@game).count < 4
         flash[:notice] = "you must add #{ pluralize(4 - session_user.cards_from(@game).count, 'card') }"
       end
-      redirect_to @game
+      redirect_to @game, notice: "Card: '#{params[:card][:concept]}' has been saved."
       return
     else
-      redirect_to @game, notice: 'card did not save'
+      redirect_to @game, notice: 'Card field cannot be blank.'
     end
   end
 
