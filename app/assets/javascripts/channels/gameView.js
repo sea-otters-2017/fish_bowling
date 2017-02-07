@@ -1,5 +1,6 @@
 
 function renderGamePage(gameState) {
+
   console.log('renderGamePage(', gameState, ')');
 
   var cardHTML = `<h1>${gameState.card}</h1>`;
@@ -45,13 +46,15 @@ function renderGamePage(gameState) {
         <li class='player-name'>PLAYER_2</li>
       </ul>
       <div id='create-card-form'>
-        <form class="new_card" id="new_card" action="/cards" accept-charset="UTF-8" method="post">
+        <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
           <input type="text" name="card[concept]" id="card_concept" />
-          <input type="hidden" name="game_id" id="game_id" value="132" />
+          <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
           <input type="submit" name="commit" value="Add Card" data-disable-with="Add Card" />
         </form>
       </div>
-      <a id="start-game" data-method="get" href="/games/asd/start">start game</a>
+      <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
+        <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
+      </form>
     </div>
   `;
 
@@ -71,7 +74,6 @@ function renderGamePage(gameState) {
 
   var gameHTML = `
   <div id="game-${gameState.game.id}">
-  ${waitingGameHTML}
     <div>
       <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60' ></div>
     </div>
@@ -93,5 +95,12 @@ function renderGamePage(gameState) {
   ${startRoundFormHTML}
 
   `
+
+  if(!gameState.is_started){
+    console.log(waitingGameHTML);
+    $('#live').html(waitingGameHTML);
+    return;
+  }
+
   $('#live').html(gameHTML)
 }

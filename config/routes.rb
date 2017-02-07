@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       post 'join'
     end
     member do
-      get 'start'
+      post 'start'
       post 'start_round'
       post 'pass'
       post 'win_card'

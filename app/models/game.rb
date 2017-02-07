@@ -72,6 +72,7 @@ class Game < ApplicationRecord
   def full_state
     { game: self,
       is_over: is_over?,
+      is_started: (!teams.empty?),
       current_round: {type: current_round.round_type.name},
       creator: {id: creator.id, display_name: creator.display_name},
       teams: teams_list,
