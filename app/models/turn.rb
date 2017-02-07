@@ -4,4 +4,12 @@ class Turn < ApplicationRecord
   has_and_belongs_to_many :cards, join_table: "cards_turns"
 
   validates_presence_of :round_id, :player_id
+
+  def last_card
+    self.cards.last
+  end
+
+  def end_turn
+    self.cards.last.put_in_bowl
+  end
 end
