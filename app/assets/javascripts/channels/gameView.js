@@ -55,28 +55,33 @@ function renderGamePage(gameState) {
 
   function startGameFormHTML(){
     var innerHTML;
-    var output = `
-      <div class='game-ready-status'>
-        ${innerHTML}
-      </div>
-    `
 
     if(isCreator && gameState.ready) {
+      console.log('creator yes, game Ready')
       innerHTML = `
         <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
           <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
         </form>
       `
     } else if (!isCreator && gameState.ready) {
+      console.log('creator no, game Ready')
       innerHTML = `<span>Waiting for ${gameState.creator.display_name} to push start...</span>`
 
     } else if(gameState.participants.length < 4) {
+      console.log('creator agnostic, game not ready - too few partypants')
       var missingNo = 4 - gameState.participants.length;
       innerHTML = `<span>Waiting for ${missingNo} more player(s)...</span>`
 
     } else if (!gameState.has_cards) {
+      console.log('creator agnostic, game not ready - not enough cards')
       innerHTML = '<span>Waiting for all players to add 4 cards...</span>'
     }
+
+    var output = `
+      <div class='game-ready-status'>
+        ${innerHTML}
+      </div>
+    `
     return output;
   }
 
