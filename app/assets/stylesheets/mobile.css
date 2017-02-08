@@ -1,6 +1,6 @@
-@media (min-width: 700px), handheld and (orientation: landscape) { ... }
+/*@media (min-width: 700px), handheld and (orientation: landscape) { ... }
 @media handheld and (grid) and (max-width: 15em) { ... }
-@media print and (min-resolution: 300dpi) { ... }
+@media print and (min-resolution: 300dpi) { ... }*/
 
 @media screen and (max-width: 500px) and (min-width: 10px) {
   h1 {
