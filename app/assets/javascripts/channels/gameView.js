@@ -70,9 +70,10 @@ function renderGamePage(gameState) {
         </div>
       `
     } else if(gameState.participants < 4) {
-      formHTML += `
+      var missingNo = 4 - gameState.participants.length;
+      return `
         <div class='game-ready-status'>
-          <span>Waiting for at least 4 players...</span>
+          <span>Waiting for ${missingNo} more player(s)...</span>
         </div>
       `
     } else if (gameState.participants >= 4 && gameState.cards_added) {
