@@ -32,7 +32,7 @@ class GamesController < ApplicationController
     if !@game.participants.include?(current_user)
       @game.participants << current_user
     end
-    show
+    redirect_to game_path(@game)
   end
 
   def start

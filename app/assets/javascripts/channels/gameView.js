@@ -2,7 +2,8 @@
 function renderGamePage(gameState) {
   var team1 = gameState.teams[0];
   var team2 = gameState.teams[1];
-  var user_id = $("#live[data-userid]").data().userid;
+  var userdata = $("#live[data-userid]").data()
+  var user_id = !!userdata ? userdata.userid : null;
   var isCluegiver = (user_id === gameState.cluegiver.id);
   var isCreator = (user_id === gameState.creator.id);
 
@@ -46,11 +47,18 @@ function renderGamePage(gameState) {
             <input type="submit" name="commit" value="Add Card" data-disable-with="Add Card" />
           </form>
         </div>
-        <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
-          <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
-        </form>
+        ${startGameFormHTML()}
       </div>
     `;
+  }
+
+  function startGameFormHTML(){
+    if(!isCreator){ return "" }
+    return `
+    <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
+      <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
+    </form>
+    `
   }
 
   // Waiting-to-Round-Game View
@@ -86,6 +94,7 @@ function renderGamePage(gameState) {
   }
 
   function startRoundFormHTML(){
+    if(!isCreator){ return "" }
     if(!gameState.game_started || gameState.round_started){ return "" }
     return `
     <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">

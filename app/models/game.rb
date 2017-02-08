@@ -18,7 +18,7 @@ class Game < ApplicationRecord
   end
 
   def is_over?
-    self.rounds.all? { |round| round.is_over? }
+    self.reload.rounds.all? { |round| round.is_over? }
   end
 
   def current_round
@@ -74,7 +74,7 @@ class Game < ApplicationRecord
       is_over: is_over?,
       game_started: (!teams.empty?),
       round_started: (!turns.empty?),
-      current_round: {type: current_round.round_type.name},
+      current_round: {type: (current_round.round_type.name if current_round)},
       creator: {id: creator.id, display_name: creator.display_name},
       teams: teams_list,
       cluegiver: {  id: (cluegiver.id if last_turn.persisted?),
