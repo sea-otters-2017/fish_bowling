@@ -57,7 +57,6 @@ function renderGamePage(gameState) {
     var formHTML;
 
     if(isCreator && gameState.ready) {
-      // formHTML += ""
       return `
         <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
           <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
@@ -76,10 +75,13 @@ function renderGamePage(gameState) {
           <span>Waiting for ${missingNo} more player(s)...</span>
         </div>
       `
-    } else if (gameState.participants >= 4 && gameState.cards_added) {
-
+    } else if (!gameState.cards_added) {
+      return `
+        <div class='game-ready-status'>
+          <span>Waiting for all players to add 4 cards...</span>>
+        </div>
+      `
     }
-    // return formHTML
   }
 
   // Waiting-to-Round-Game View
