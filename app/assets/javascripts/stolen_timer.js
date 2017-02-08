@@ -20,8 +20,8 @@ function jsTimer(seconds) {
   }
 
   function timerIsDone() {
-    return seconds == "00";
+    return seconds < "00";
   }
 
-  var timer = setInterval(function(){ display() },1000);
+  var timer = setInterval(display, 1000);
 }
