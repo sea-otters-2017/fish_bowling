@@ -25,6 +25,12 @@
     font-size: 18pt;
     font-family: Monaco;
 
+  .btn-2 {
+    margin-left: 0;
+    margin-right: 0;
+    display: inline-grid;
+    font-size: 16pt;
+    font-family: Monaco;
   }
 
 }
@@ -53,12 +59,6 @@
   }
 
 }
-
-
-
-
-
-
 
 
 header, main, footer {
