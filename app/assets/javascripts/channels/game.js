@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
 
 function addEventListeners(){
   createActionListener();
-  createActionListener();
+  gameActionListener();
   addSubscriptionListener();
 }
 
@@ -60,7 +60,7 @@ function gameActionListener(){
     $.ajax( {
       url : $form.attr('action'),
       method : "POST",
-      data : {time : timeLeft}
+      data : {timeLeft: timeLeft}
     });
   })
 }
