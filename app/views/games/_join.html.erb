@@ -1,4 +1,8 @@
 <%= form_tag(join_games_path, :method => "post", id: "join-game-form", class: "action-form") do %>
     <%= text_field_tag :name, params[:name], placeholder: 'Join an existing game...' %>
-    <%= submit_tag "Join Existing Game" %>
+    <div class="actions">
+      <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">Join Existing Game
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
 <% end %>
