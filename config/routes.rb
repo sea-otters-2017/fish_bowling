@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       post 'pass'
       post 'win_card'
       post 'pause'
-      post 'end_turn'
+      post 'next_turn'
     end
   end
 
