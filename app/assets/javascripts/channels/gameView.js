@@ -56,7 +56,7 @@ function renderGamePage(gameState) {
   function startGameFormHTML(){
     if(!isCreator) {
       return ""
-    } else if(!gameState.ready) {
+    } else if(gameState.participants < 4) {
       return `
         <div class='game-not-ready'>
           <span>Waiting for at least 4 players...</span>
