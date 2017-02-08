@@ -64,8 +64,3 @@ function gameActionListener(){
     });
   })
 }
-
-function setTimer(gameName){
-  $('#timer p').text(60);
-  jsTimer(gameName);
-}
