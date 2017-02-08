@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
 
 function addEventListeners(){
   addActionListener();
-  addSubscriptionListener()
+  addSubscriptionListener();
 }
 
 function addSubscriptionListener() {
@@ -25,7 +25,8 @@ function addSubscriptionListener() {
           case 'updateGame':
             renderGamePage(data.gameState);
             break;
-          case 'buzz':
+          case 'setTimer':
+            createTimer();
             break;
         }
       },
@@ -51,6 +52,6 @@ function addActionListener(){
 }
 
 function setTimer(gameName){
-  $('#timer').addClass('updated');
+  $('#timer p').text(60);
   jsTimer(gameName);
 }

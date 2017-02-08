@@ -11,7 +11,7 @@ function renderGamePage(gameState) {
 
   function getTimerHTML(){
     if(!gameState.round_started){ return '' }
-    return `<div id='timer' class="fbCountdown"><p>2</p></div>`;
+    return `<div id='timer' class="fbCountdown"></div>`;
   };
 
   function getTitleHTML(){
@@ -208,4 +208,8 @@ function renderGamePage(gameState) {
   }
 
   $('#live').html(gameHTML);
+  if(gameState.round_started && !gameState.is_over){
+     console.log('creating timer for: ' + gameState.game.name)
+    createTimer(gameState.game.name);
+  }
 }
