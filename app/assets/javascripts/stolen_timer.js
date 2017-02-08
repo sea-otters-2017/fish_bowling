@@ -28,6 +28,7 @@ function jsTimer(seconds) {
 
   function goToNextTurn() {
     $.post(`/games/${gameName}/next_turn`)
+    $('#timer').text('')
   }
 
   var timer = setInterval(display, 1000);
