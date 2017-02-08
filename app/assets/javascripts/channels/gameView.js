@@ -64,9 +64,9 @@ function renderGamePage(gameState) {
       `
     }
     return `
-    <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
-      <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
-    </form>
+      <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
+        <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
+      </form>
     `
   }
 
