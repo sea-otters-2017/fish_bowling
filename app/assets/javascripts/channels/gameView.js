@@ -170,7 +170,7 @@ function renderGamePage(gameState) {
     if(!isCreator || !gameState.round_started){ return "" }
     return `
     <form class="action-form" action="/games/${gameState.game.name}/next_turn" method="post">
-    <input class="waves-effect waves-light btn-large green" id="next-turn-button" type="submit" value="NEXT TURN">
+    <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
     </form>
     `
   }
