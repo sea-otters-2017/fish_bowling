@@ -28,6 +28,7 @@ function renderGamePage(gameState) {
 
   function getWaitingHTML(){
     if(gameState.game_started){ return "" }
+
     var allPlayers = ''
 
     gameState.participants.forEach(function(participant){
@@ -53,11 +54,28 @@ function renderGamePage(gameState) {
   }
 
   function startGameFormHTML(){
-    if(!isCreator){ return "" }
+    var innerHTML;
+
+    if(isCreator && gameState.ready) {
+      innerHTML = `
+        <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
+          <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
+        </form>
+      `
+    } else if (!isCreator && gameState.ready) {
+      innerHTML = `<span>Waiting for ${gameState.creator.display_name} to push start...</span>`
+
+    } else if(gameState.participants.length < 4) {
+      var missingNo = 4 - gameState.participants.length;
+      innerHTML = `<span>Waiting for ${missingNo} more player(s)...</span>`
+
+    } else if (!gameState.has_cards) {
+      innerHTML = '<span>Waiting for all players to add 4 cards...</span>'
+    }
     return `
-    <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
-      <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
-    </form>
+      <div class='game-ready-status'>
+        ${innerHTML}
+      </div>
     `
   }
 
