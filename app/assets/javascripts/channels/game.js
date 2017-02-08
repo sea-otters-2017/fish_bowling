@@ -10,8 +10,8 @@ function addEventListeners(){
 function addSubscriptionListener() {
   $('main').on('submit', '.subscription-form', function(event) {
     event.preventDefault();
-    var name = $('#game_name').val()
-    App['game' + name] = App.cable.subscriptions.create({channel: 'GamesChannel', name: name}, {
+    var name = $(event.target).find('input[type=text]').val()
+    App['game_' + name] = App.cable.subscriptions.create({channel: 'GamesChannel', name: name}, {
       connected: function() {
         console.log('Player connected')
       },
@@ -34,7 +34,7 @@ function addSubscriptionListener() {
         this.gameName = gameName
       }
     })
-    App['game' + name].setGameName(name)
+    App['game_' + name].setGameName(name)
   })
 }
 
