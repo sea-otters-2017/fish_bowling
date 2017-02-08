@@ -13,43 +13,24 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- MATERIALIZE -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script> -->
   </head>
   <body>
     <header>
-      <nav>
+      <nav class='nav-bar'>
         <ul>
           <li><a class='nav-link' href="/">home</a></li>
           <% if current_user %>
             <li><%= current_user.display_name %></li>
-
-
-    <ul id="slide-out" class="side-nav fixed">
-      <li><div class="userView">
-      <div class="background">
-        <img src="images/office.jpg">
-      </div>
-      <% if current_user %>
-            <a href="<%= current_user.id %>"><img class="circle" src="/assets/images/yuna.jpg"></a>
-            <a href="<%= current_user.id %>"><span class="white-text name"><%= current_user.display_name %></span></a>
-            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
             <li><a class='nav-link' href="/logout">logout</a></li>
           <% else %>
-            <li><a href="/login">login</a></li>
-            <li><a href="/users/new">register</a></li>
+            <li><a class='nav-link' href="/login">login</a></li>
+            <li><a class='nav-link' href="/users/new">register</a></li>
           <% end %>
-      </div></li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-
-
+        </ul>
+      </nav>
     </header>
-
-
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <main>
