@@ -23,29 +23,7 @@ $(document).on('turbolinks:load', function() {
 });
 
 function addEventListeners(){
-  // addNewGameListener();
-  addStartRoundListener();
   addActionListener();
-}
-//
-// function addNewGameListener(){
-//   $('#new_game').on('submit', function(event) {
-//     event.preventDefault()
-//     var data = $('#new_game').serialize()
-//     $.ajax({
-//       url: '/games',
-//       method: 'POST',
-//       data: data
-//     })
-//   })
-// }
-
-function addStartRoundListener(){
-  $('main').on('click', '.start-round-link', function(event) {
-    event.preventDefault();
-    var link = $('.start-round-link').attr('href');
-    $.get(link);
-  })
 }
 
 function addActionListener(){
@@ -58,25 +36,4 @@ function addActionListener(){
       data : $form.serialize()
     });
   })
-}
-
-function appendNewPlayer(playerName) {
-  $('.player-names-list').append('<li class="player-name">' + playerName + '</li>')
-}
-
-function renderMain(response) {
-  $('main').html(response)
-}
-
-function updateGameDisplay(message) {
-  $('main').html(message['response'])
-  var userId = $('[data-userId]').data().userid;
-  var cluegiverId = message.cluegiver_id;
-  if (userId === cluegiverId){
-    $('.cluegiver-view').show();
-  } else {
-    $('.observer-view').show();
-  }
-  countdown({minutes: 1, seconds: 0});
-  console.log(message['game_state'])
 }
