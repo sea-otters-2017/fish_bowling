@@ -16,7 +16,7 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
         break;
       case 'setTimer':
         $('#timer').text('')
-        jsTimer(60)
+        // jsTimer(60)
         break;
     }
   }
