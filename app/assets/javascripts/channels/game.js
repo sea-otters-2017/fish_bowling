@@ -14,6 +14,10 @@ App.game = App.cable.subscriptions.create("GamesChannel", {
         break;
       case 'buzz':
         break;
+      case 'setTimer':
+        $('#timer').text('')
+        // jsTimer(60)
+        break;
     }
   }
 });
