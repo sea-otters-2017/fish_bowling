@@ -68,7 +68,7 @@ class GamesController < ApplicationController
 
   def broadcast_game
     state = @game.full_state
-    ActionCable.server.broadcast( 'games_channel', { action: :updateGame, gameState: state })
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :updateGame, gameState: state })
     state
   end
 
