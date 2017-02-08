@@ -1,7 +1,7 @@
 /*@media (min-width: 700px), handheld and (orientation: landscape) { ... }
 @media handheld and (grid) and (max-width: 15em) { ... }
 @media print and (min-resolution: 300dpi) { ... }*/
-
+/*
 @media screen and (max-width: 500px) and (min-width: 10px) {
   h1 {
     font-size: 35pt;
@@ -88,10 +88,12 @@ a:hover {
 h2 {
   text-align: center;
   font-family: Monaco;
-  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5)); /* Standard syntax (must be last) *
+  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1)); 
+    background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1)); 
+    background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1)); 
+    background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5)); 
+    }
 }
 
 
+*/
