@@ -32,7 +32,7 @@ class GamesController < ApplicationController
     if !@game.participants.include?(current_user)
       @game.participants << current_user
     end
-    show
+    redirect_to game_path(@game)
   end
 
   def start
@@ -70,17 +70,6 @@ class GamesController < ApplicationController
     state = @game.full_state
     ActionCable.server.broadcast( 'games_channel', { action: :updateGame, gameState: state })
     state
-  end
-
-  def broadcast_live
-    response = ApplicationController.render(
-      layout: false,
-      template: 'games/live',
-      assigns: { game: @game, current_user: current_user }
-    )
-    ActionCable.server.broadcast( 'games_channel',
-                                  { action: 'updateLive',
-                                    response: response } )
   end
 
   def game_params

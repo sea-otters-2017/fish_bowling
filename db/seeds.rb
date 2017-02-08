@@ -57,3 +57,15 @@ Turn.create!(player: pat, round: game.rounds.first)
 Turn.create!(player: kim, round: game.rounds.first)
 Turn.create!(player: katherine, round: game.rounds.first)
 Turn.create!(player: justin, round: game.rounds.first)
+
+20.times do |n|
+  game = Game.new(  name: "Game#{n}" )
+  game.creator = pat
+  game.save!
+  3.times do
+    user = User.all.sample
+    if !game.participants.exists?(user)
+      game.participants << user
+    end
+  end
+end
