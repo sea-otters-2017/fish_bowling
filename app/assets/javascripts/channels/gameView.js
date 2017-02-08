@@ -149,37 +149,36 @@ function renderGamePage(gameState) {
   // Results View
 
   function showResults() {
-    if(gameState.is_over) {
-      var winningTeam = team1.score > team2.score ? team1 : team2;
-      var losingTeam = gameState.teams.find(function(team) { return team != winningTeam });
+    var winningTeam = team1.score > team2.score ? team1 : team2;
+    var losingTeam = gameState.teams.find(function(team) { return team != winningTeam });
 
-      return `
-        <div class='results-container'>
-          <div class='winners'>
-            <h4>${winningTeam.name} win!</h4>
-            <h5>${winningTeam.score}</h5>
-          </div>
-          <div class='losers'>
-            <h5>${losingTeam.name}</h5>
-            <h5>${losingTeam.score}</h5>
-          </div>
+    return `
+      <div class='results-container'>
+        <div class='winners'>
+          <h4>${winningTeam.name} win!</h4>
+          <h5>${winningTeam.score}</h5>
         </div>
-      `
-    } else {
-      return ''
-    }
+        <div class='losers'>
+          <h5>${losingTeam.name}</h5>
+          <h5>${losingTeam.score}</h5>
+        </div>
+      </div>
+    `
   }
 
-  var gameHTML = `
-    ${getTimerHTML()}
-    ${getTitleHTML()}
-    ${getWaitingHTML()}
-    ${getTeamsHTML()}
-    ${startRoundFormHTML()}
-    ${getCluegiverHTML()}
-    ${getObserverHTML()}
-    ${showResults()}
-  `
-
+  var gameHTML;
+  if(gameState.is_over){
+    gameHTML = showResults()
+  } else {
+    gameHTML = `
+      ${getTimerHTML()}
+      ${getTitleHTML()}
+      ${getWaitingHTML()}
+      ${getTeamsHTML()}
+      ${startRoundFormHTML()}
+      ${getCluegiverHTML()}
+      ${getObserverHTML()}
+    `
+  }
   $('#live').html(gameHTML)
 }

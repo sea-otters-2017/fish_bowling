@@ -72,17 +72,6 @@ class GamesController < ApplicationController
     state
   end
 
-  def broadcast_live
-    response = ApplicationController.render(
-      layout: false,
-      template: 'games/live',
-      assigns: { game: @game, current_user: current_user }
-    )
-    ActionCable.server.broadcast( 'games_channel',
-                                  { action: 'updateLive',
-                                    response: response } )
-  end
-
   def game_params
     params.require(:game).permit(:name)
   end
