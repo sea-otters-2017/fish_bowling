@@ -41,7 +41,7 @@ function renderGamePage(gameState) {
         </ul>
         <div id='create-card-form'>
           <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
-            <input type="text" name="card[concept]" id="card_concept" />
+            <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
             <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
             <div class="actions container">
               <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
@@ -61,7 +61,7 @@ function renderGamePage(gameState) {
     if(isCreator && gameState.ready) {
       innerHTML = `
         <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
-          <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
+          <input button class="btn waves-effect waves-light btn-large teal z-depth-2" type="submit" value="Start Game!">
         </form>
       `
     } else if (!isCreator && gameState.ready) {

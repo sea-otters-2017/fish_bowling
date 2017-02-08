@@ -52,6 +52,7 @@
     margin-right: 0;
     display: inline-grid;
     font-size: 10pt;
+    text-align: center;
   }
 }
 
@@ -99,10 +100,10 @@ h2.banner {
   padding-right: 5px;
   font-size: 3vh;
 }
-/*
+
 * {
   outline: 1px solid black;
-}*/
+}
 
 #new_card {
   text-align: center;
@@ -121,5 +122,18 @@ h2.banner {
 }
 
 .actions-container {
+  text-align: center;
+}
+
+.btn {
+  text-align: center;
+}
+.action-form {
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.game-ready-status {
   text-align: center;
 }
