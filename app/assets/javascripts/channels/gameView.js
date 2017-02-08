@@ -65,7 +65,7 @@ function renderGamePage(gameState) {
     } else if (!isCreator && gameState.ready) {
       return `
         <div class='game-ready-status'>
-          <span>Waiting for ${gameState.creator.display_name} to push start...</span>>
+          <span>Waiting for ${gameState.creator.display_name} to push start...</span>
         </div>
       `
     } else if(gameState.participants < 4) {
@@ -75,10 +75,10 @@ function renderGamePage(gameState) {
           <span>Waiting for ${missingNo} more player(s)...</span>
         </div>
       `
-    } else if (!gameState.cards_added) {
+    } else if (!gameState.has_cards) {
       return `
         <div class='game-ready-status'>
-          <span>Waiting for all players to add 4 cards...</span>>
+          <span>Waiting for all players to add 4 cards...</span>
         </div>
       `
     }
