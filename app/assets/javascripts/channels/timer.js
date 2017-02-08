@@ -1,35 +1,33 @@
-function jsTimer(seconds) {
-  updateTime();
+function jsTimer(gameName) {
+  var endTimer = false;
 
-  function display(){
-    $('#timer').text() = $('#timer').text() - 1;
-    if (timerIsDone()) {
-      clearInterval(timer);
-      // goToNextTurn();
-      return
-    };
-    updateTime();
+  function displayTime(){
+    if(timeUpdated()){
+      $('#timer').removeClass('updated');
+      return;
+    } else {
+      $('#timer p').text($('#timer p').text() - 1);
+      if (timerIsDone()) {
+        clearInterval(timer);
+        goToNextTurn();
+        return;
+      };
+    }
   }
 
-  function updateTime() {
-    doubleDigitSeconds();
-    $('#timer').text(`00:${seconds}`)
-  }
-
-  function doubleDigitSeconds() {
-    seconds = seconds < '10' ? "0" + seconds : seconds
+  function timeUpdated(){
+    $('#timer').hasClass('updated');
   }
 
   function timerIsDone() {
-    return seconds < "00";
+    return $('#timer p').text() <= 0;
   }
 
-  // var gameName = gameState.game.name;
+  function goToNextTurn() {
+    $.post(`/games/${gameName}/next_turn`);
+  }
 
-  // function goToNextTurn() {
-  //   $.post(`/games/${gameName}/next_turn`)
-  //   $('#timer').text('')
-  // }
-
-  var timer = setInterval(display, 1000);
+  if(!endTimer){
+    var timer = setInterval(displayTime, 1000);
+  }
 }

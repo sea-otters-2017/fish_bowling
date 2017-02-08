@@ -10,10 +10,8 @@ function renderGamePage(gameState) {
   // Universal View
 
   function getTimerHTML(){
-    return `
-      <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60'>
-      <p>00:30</p>
-      </div>`;
+    if(!gameState.round_started){ return '' }
+    return `<div id='timer' class="fbCountdown"><p>2</p></div>`;
   };
 
   function getTitleHTML(){
@@ -208,5 +206,6 @@ function renderGamePage(gameState) {
       ${nextTurnButton()}
     `
   }
-  $('#live').html(gameHTML)
+
+  $('#live').html(gameHTML);
 }

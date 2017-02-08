@@ -50,3 +50,7 @@ function addActionListener(){
   })
 }
 
+function setTimer(gameName){
+  $('#timer').addClass('updated');
+  jsTimer(gameName);
+}
