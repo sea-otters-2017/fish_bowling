@@ -21,7 +21,6 @@ function jsTimer(seconds) {
   }
 
   function timerIsDone() {
-    console.log('seconds', seconds)
     return seconds < "00";
   }
 
