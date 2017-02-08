@@ -5,6 +5,7 @@ function jsTimer(seconds) {
     seconds--;
     if (timerIsDone()) {
       clearInterval(timer);
+      goToNextTurn();
       return
     };
     updateTime();
@@ -12,7 +13,7 @@ function jsTimer(seconds) {
 
   function updateTime() {
     doubleDigitSeconds();
-    console.log(`00 : ${seconds}`)
+    $('#timer').text(`00:${seconds}`)
   }
 
   function doubleDigitSeconds() {
@@ -21,6 +22,12 @@ function jsTimer(seconds) {
 
   function timerIsDone() {
     return seconds < "00";
+  }
+
+  var gameName = gameState.game.name;
+
+  function goToNextTurn() {
+    $('#next-turn-button').click()
   }
 
   var timer = setInterval(display, 1000);
