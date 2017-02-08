@@ -63,6 +63,7 @@ class GamesController < ApplicationController
 
   def next_turn
     StartNextTurn.new(@game).call
+    ActionCable.server.broadcast('games_channel', { action: :setTimer })
     show
   end
 

@@ -9,13 +9,6 @@ function renderGamePage(gameState) {
 
   // Universal View
 
-  // function getTimerHTML(){
-  //   return `
-  //     <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60'>
-  //     <p>00:30</p>
-  //     </div>`;
-  // };
-
   function getTitleHTML(){
     return `
     <h3>${gameState.game.name}</h3>
