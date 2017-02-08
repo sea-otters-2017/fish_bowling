@@ -76,7 +76,7 @@ class GamesController < ApplicationController
     state = @game.full_state
     ActionCable.server.broadcast( "game_#{params['name']}", { action: :updateGame, gameState: state })
     if !@game.turns.empty? && !@game.is_over?
-      ActionCable.server.broadcast( "game_#{params['name']}", { action: :setTimer, gameName: @game.name })
+      ActionCable.server.broadcast( "game_#{params['name']}", { action: :setTimer, gameState: state })
     end
     state
   end
