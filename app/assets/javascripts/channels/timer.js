@@ -2,7 +2,7 @@ var jsTimer = function(seconds) {
   this.interval;
   this.seconds = seconds;
   this.isPaused = false;
-  this.gameName = '';
+  this.gameState = {};
 };
 
 jsTimer.prototype.timerIsDone = function () {
@@ -13,7 +13,7 @@ jsTimer.prototype.display = function(){
   if (!this.isPaused) {
     this.seconds--;
     if (this.timerIsDone()) {
-      goToNextTurn(this.gameName);
+      goToNextTurn(this.gameState);
       clearInterval(this.interval);
       this.interval = null;
       return;
@@ -35,21 +35,22 @@ jsTimer.prototype.startTimer = function(){
   }
 }
 
-function createTimer(gameName){
-  console.log('gameName', gameName);
-  console.log('this', this);
-
+function createTimer(gameState){
   this.gameTimer || (this.gameTimer = new jsTimer(60));
   this.gameTimer.seconds = 5;
   this.gameTimer.isPaused = true;
-  this.gameTimer.gameName = gameName;// ? gameName : "";
+  this.gameTimer.gameName = gameState.game.name;// ? gameName : "";
   this.gameTimer.startTimer();
 };
 
-function goToNextTurn(gameName) {
-  console.log("POST TO /games/" + gameName + "/next_turn")
-  $.ajax({
-    url : "/games/" + gameName + "/next_turn",
-    method : "POST"
-  });
+function goToNextTurn(gameState) {
+  var userdata = $("#live[data-userid]").data()
+  var user_id = !!userdata ? userdata.userid : null;
+  var isCluegiver = (user_id === gameState.cluegiver.id);
+  if (isCluegiver) {
+    $.ajax({
+      url : "/games/" + gameState.game.name + "/next_turn",
+      method : "POST"
+    });
+  }
 }
