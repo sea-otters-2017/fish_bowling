@@ -24,6 +24,7 @@
     display: inline-grid;
     font-size: 18pt;
     font-family: Monaco;
+  }
 
   .btn-2 {
     margin-left: 0;
@@ -32,8 +33,6 @@
     font-size: 16pt;
     font-family: Monaco;
   }
-
-}
 
 @media screen and (max-width: 300px) and (min-width: 10px) {
 
