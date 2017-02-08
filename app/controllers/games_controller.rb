@@ -42,8 +42,8 @@ class GamesController < ApplicationController
   end
 
   def start_round
-    StartRound.new(@game).call
-    show
+    @game.reset_cards
+    next_turn
    end
 
   def pass
@@ -59,6 +59,11 @@ class GamesController < ApplicationController
       return show
     end
     pass
+  end
+
+  def next_turn
+    StartNextTurn.new(@game).call
+    show
   end
 
   def pause

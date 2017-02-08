@@ -166,6 +166,15 @@ function renderGamePage(gameState) {
     `
   }
 
+  function nextTurnButton() {
+    if(!isCreator || !gameState.round_started){ return "" }
+    return `
+    <form class="action-form" action="/games/${gameState.game.name}/next_turn" method="post">
+    <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
+    </form>
+    `
+  }
+
   var gameHTML;
   if(gameState.is_over){
     gameHTML = showResults()
@@ -178,6 +187,7 @@ function renderGamePage(gameState) {
       ${startRoundFormHTML()}
       ${getCluegiverHTML()}
       ${getObserverHTML()}
+      ${nextTurnButton()}
     `
   }
   $('#live').html(gameHTML)

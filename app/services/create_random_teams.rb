@@ -14,8 +14,3 @@ class CreateRandomTeams
   end
 
 end
-
-=begin
-  game = Game.last
-  CreateRandomTeams.new(game).call
-=end

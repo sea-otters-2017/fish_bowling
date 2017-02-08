@@ -11,8 +11,3 @@ class WinCard
   end
 
 end
-
-=begin
-  game = Game.last
-  StartRound.new(game).call
-=end
