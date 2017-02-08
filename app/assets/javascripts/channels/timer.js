@@ -2,6 +2,7 @@ var jsTimer = function(seconds) {
   this.interval;
   this.seconds = seconds;
   this.isPaused = false;
+  this.gameName = '';
 };
 
 jsTimer.prototype.timerIsDone = function () {
@@ -34,64 +35,21 @@ jsTimer.prototype.startTimer = function(){
   }
 }
 
-function createTimer(gameName = ''){
+function createTimer(gameName){
+  console.log('gameName', gameName);
+  console.log('this', this);
+
   this.gameTimer || (this.gameTimer = new jsTimer(60));
-  this.gameTimer.seconds = 3;
+  this.gameTimer.seconds = 5;
   this.gameTimer.isPaused = true;
-  this.gameTimer.gameName = gameName;
+  this.gameTimer.gameName = gameName;// ? gameName : "";
   this.gameTimer.startTimer();
 };
 
 function goToNextTurn(gameName) {
-  $.ajax( {
+  console.log("POST TO /games/" + gameName + "/next_turn")
+  $.ajax({
     url : "/games/" + gameName + "/next_turn",
     method : "POST"
-  }).done(console.log('I worked!'));
+  });
 }
-
-// (function() {
-//   this.gameTimer || (this.gameTimer = new jsTimer(60));
-//   this.gameTimer.seconds = 10;
-//   this.gameTimer.isPaused = true;
-//   this.gameTimer.startTimer();
-// }).call(this);
-
-
-
-
-
-// function JSTimer(gameName) {
-//   this
-//   function displayTime(){
-//     if(timeUpdated()){
-//       $('#timer').removeClass('updated');
-//       return;
-//     } else {
-//       $('#timer p').text($('#timer p').text() - 1);
-//       if (timerIsDone()) {
-//         clearInterval(timer);
-//         goToNextTurn();
-//         return;
-//       };
-//     }
-//   }
-//
-//   function timeUpdated(){
-//     $('#timer').hasClass('updated');
-//   }
-//
-//   function timerIsDone() {
-//     return $('#timer p').text() <= 0;
-//   }
-//
-//
-//   if(!endTimer){
-//     var timer = setInterval(displayTime, 1000);
-//   }
-// }
-//
-// jsTimer.prototype.resetTimer = function() {
-//   if (this.seconds < 0) {
-//     this.seconds = 59;
-//   }
-// };

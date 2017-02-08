@@ -26,7 +26,7 @@ function addSubscriptionListener() {
             renderGamePage(data.gameState);
             break;
           case 'setTimer':
-            createTimer();
+            createTimer(data.gameName);
             break;
         }
       },
