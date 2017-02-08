@@ -137,15 +137,15 @@ function renderGamePage(gameState) {
 
   function getCluegiverButtonsHTML(){
     return `<div class="actions">
-    <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
     <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
     </form>
 
-    <form class="action-form" action="/games/${gameState.game.name}/win_card" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
     <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
     </form>
 
-    <form class="action-form" action="/games/${gameState.game.name}/pause" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
     <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
     </div>`;
@@ -185,7 +185,7 @@ function renderGamePage(gameState) {
   function nextTurnButton() {
     if(!isCreator || !gameState.round_started){ return "" }
     return `
-    <form class="action-form" action="/games/${gameState.game.name}/next_turn" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
     <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
     </form>
     `

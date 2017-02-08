@@ -48,6 +48,11 @@ class GamesController < ApplicationController
    end
 
   def pass
+    p
+    p
+    p
+    p
+    p params
     PassCard.new(@game).call
     show
   end

@@ -3,7 +3,8 @@ $(document).on('turbolinks:load', function() {
 });
 
 function addEventListeners(){
-  addActionListener();
+  createActionListener();
+  createActionListener();
   addSubscriptionListener();
 }
 
@@ -39,7 +40,7 @@ function addSubscriptionListener() {
   })
 }
 
-function addActionListener(){
+function createActionListener(){
   $('main').on('submit', '.action-form', function(event) {
     event.preventDefault();
     var $form = $(this);
@@ -47,6 +48,19 @@ function addActionListener(){
       url : $form.attr('action'),
       method : "POST",
       data : $form.serialize()
+    });
+  })
+}
+
+function gameActionListener(){
+  $('main').on('submit', '.game-form', function(event) {
+    event.preventDefault();
+    var timeLeft = $('#timer')[0].innerText
+    var $form = $(this);
+    $.ajax( {
+      url : $form.attr('action'),
+      method : "POST",
+      data : {time : timeLeft}
     });
   })
 }
