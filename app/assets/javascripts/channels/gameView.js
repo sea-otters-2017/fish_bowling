@@ -28,6 +28,7 @@ function renderGamePage(gameState) {
 
   function getWaitingHTML(){
     if(gameState.game_started){ return "" }
+
     var allPlayers = ''
 
     gameState.participants.forEach(function(participant){
@@ -53,7 +54,14 @@ function renderGamePage(gameState) {
   }
 
   function startGameFormHTML(){
-    if(!isCreator){ return "" }
+    if(!isCreator) {
+      return ""
+    } else if(!gameState.ready) {
+      return `<div class='game-not-ready'>
+                <span>Waiting for at least 4 players...</span>
+              </div>
+      `
+    }
     return `
     <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
       <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
