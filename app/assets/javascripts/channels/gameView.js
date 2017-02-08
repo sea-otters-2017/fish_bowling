@@ -76,13 +76,11 @@ function renderGamePage(gameState) {
       console.log('creator agnostic, game not ready - not enough cards')
       innerHTML = '<span>Waiting for all players to add 4 cards...</span>'
     }
-
-    var output = `
+    return `
       <div class='game-ready-status'>
         ${innerHTML}
       </div>
     `
-    return output;
   }
 
   // Waiting-to-Round-Game View
