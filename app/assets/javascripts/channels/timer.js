@@ -23,7 +23,7 @@ jsTimer.prototype.display = function(){
 };
 
 jsTimer.prototype.updateTime = function() {
-  $("#timer").text(this.seconds);
+  $("#timer").text(this.seconds ? this.seconds : 'GO');
   console.log('seconds', this.seconds)
 };
 
