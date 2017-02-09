@@ -18,10 +18,8 @@ class GamesController < ApplicationController
   def show
     @game_state = broadcast_game
     if request.xhr?
-      p 'another p statement (this is the JS)'
       render json: @game_state and return
     else
-      p 'RENDER LIVE'
       render :live and return
     end
   end
