@@ -12,6 +12,11 @@ function addSubscriptionListener() {
   $('main').on('submit', '.subscription-form', function(event) {
     event.preventDefault();
     var name = $(event.target).find('input[type=text]').val()
+
+    if (App.cable.subscriptions['subscriptions'].length > 1) {
+      App.cable.subscriptions.remove(App.cable.subscriptions['subscriptions'][1])
+    }
+
     App['game_' + name] = App.cable.subscriptions.create({channel: 'GamesChannel', name: name}, {
       connected: function() {
         console.log('Player connected')
