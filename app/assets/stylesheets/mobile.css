@@ -186,6 +186,19 @@ h5#team-name {
   padding: 5px 3px 5px 8px;
 }
 
-* {
+/** {
   outline: 1px solid black;
+}*/
+
+#brand {
+  height: auto;
+  width: auto;
+  max-width: 350px;
+  max-height: 350px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.navbar-brand {
+  text-align: center;
 }
