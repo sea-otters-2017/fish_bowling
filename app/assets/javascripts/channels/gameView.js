@@ -154,13 +154,8 @@ function renderGamePage(gameState) {
     <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
       <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
-
-    <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
-      <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
-    </form>
     </div>
     `
-
     ;
   };
 
@@ -172,6 +167,9 @@ function renderGamePage(gameState) {
     <div id="observer-container">
       <h1>${gameState.cluegiver.display_name}'s turn</h1>
     </div>
+    <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
+      <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
+    </form>
     `;
   }
 
