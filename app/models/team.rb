@@ -11,9 +11,9 @@ class Team < ApplicationRecord
     self.save
   end
 
-  def players_list
+  def players_list(game = Game.new())
     players.map do |player|
-      { id: player.id, display_name: player.display_name }
+      { id: player.id, display_name: player.display_name, cards_count: player.cards_from(game).count }
     end
   end
 
