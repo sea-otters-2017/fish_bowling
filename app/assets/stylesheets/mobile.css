@@ -121,6 +121,7 @@ h2.banner {
 .btn {
   text-align: center;
 }
+
 .action-form {
   text-align: center;
   padding-left: 5px;
@@ -144,6 +145,7 @@ h4.banner {
   padding-left: 15px;
   padding-right: 15px;
 }
+
 .team-2 {
   float: right;
   padding-left: 15px;
@@ -154,11 +156,7 @@ h5#team-name {
   font-weight: bold;
   text-align: center;
   font-family: Monaco;
-}
-
-h5#team-points {
-  font-weight: bold;
-  font-size: 5vh;
+  font-size: 4vh;
 }
 
 .team-1, .team-2{
@@ -176,4 +174,10 @@ h5#team-points {
   padding-top: 20px;
   margin-top:20px;
   margin-bottom:10px;
+}
+
+#display-name {
+  padding-left: 160px;
+  font-weight: bold;
+  font-size: 4vh;
 }

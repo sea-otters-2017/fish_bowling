@@ -99,7 +99,6 @@ function renderGamePage(gameState) {
     return `<h4 class="banner">Teams:</h4>
     <div class="team-1">
     <h5 id="team-name">${team1.name}</h5>
-    <h5 id="team-points">${team1.score} points</h5>
     <ul>
     <div class="team-players">${team1Players}</div>
     </ul>
@@ -107,7 +106,6 @@ function renderGamePage(gameState) {
 
     <div class="team-2">
     <h5 id="team-name">${team2.name}</h5>
-    <h5 id="team-points">${team2.score} points</h5>
     <ul>
     <div class="team-players">${team2Players}</div>
     </ul>
