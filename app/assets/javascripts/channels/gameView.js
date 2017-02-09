@@ -144,18 +144,17 @@ function renderGamePage(gameState) {
     if(!gameState.round_started || !isCluegiver){ return "" }
     return `
     <div id="cluegiver-container">
-      ${getCardHTML()}
-      ${getCluegiverButtonsHTML()}
+      ${getUnpausedButtons()}
+      ${getPausedButton()}
     </div>
     `;
   }
 
-  function getCardHTML(){
-    return `<h1>${gameState.card}</h1>`;
-  }
+  function getUnpausedButtons(){
+    if(gameState.game.is_paused){ return "" }
+    return `<h1>${gameState.card}</h1>
 
-  function getCluegiverButtonsHTML(){
-    return `<div class="actions">
+    <div class="actions">
     <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
       <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
     </form>
@@ -167,10 +166,18 @@ function renderGamePage(gameState) {
     <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
       <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
-    </div>
-    `
-    ;
-  };
+    </div>`;
+  }
+
+  function getPausedButton(){
+    if(!gameState.game.is_paused){ return "" }
+    return `<div class="actions">
+    <form class="game-form" action="/games/${gameState.game.name}/unpause" method="post">
+    <input class="waves-effect waves-light btn-large orange" type="submit" value="unpause">
+    </form>
+    </div>`;
+  }
+
 
   // Observer View
 
@@ -207,6 +214,7 @@ function renderGamePage(gameState) {
   }
 
   function nextTurnButton() {
+    if(gameState.game.is_paused){ return "" }
     if(!isCreator || !gameState.round_started){ return "" }
     return `
     <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
@@ -233,7 +241,4 @@ function renderGamePage(gameState) {
   }
 
   $('#live').html(gameHTML);
-  if(gameState.round_started && !gameState.is_over){
-    createTimer(gameState.game.name);
-  }
 }

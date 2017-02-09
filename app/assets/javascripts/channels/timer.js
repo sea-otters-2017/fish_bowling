@@ -34,22 +34,17 @@ jsTimer.prototype.startTimer = function(){
   }
 }
 
+function pauseTimer(gameData){
+  this.gameTimer.isPaused = true;
+  $("#timer").text(gameData.last_turn.seconds_remaining)
+}
+
+
 function createTimer(gameData, seconds){
+  if(gameData.game.is_paused){ return this.gameTimer.isPaused = true; }
   this.gameTimer || (this.gameTimer = new jsTimer(60));
   this.gameTimer.seconds = seconds;
   this.gameTimer.isPaused = true;
-  this.gameTimer.gameState = gameData;// ? gameName : "";
+  this.gameTimer.gameState = gameData;
   this.gameTimer.startTimer();
 };
-
-function goToNextTurn(gameState) {
-  var userdata = $("#live[data-userid]").data()
-  var user_id = !!userdata ? userdata.userid : null;
-  var isCluegiver = (user_id === gameState.cluegiver.id);
-  if (isCluegiver) {
-    $.ajax({
-      url : "/games/" + gameState.game.name + "/next_turn",
-      method : "POST"
-    });
-  }
-}

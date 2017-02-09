@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 20170209041553) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.integer  "creator_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                      null: false
+    t.integer  "creator_id",                null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "is_paused",  default: true
     t.index ["name"], name: "index_games_on_name", unique: true, using: :btree
   end
 

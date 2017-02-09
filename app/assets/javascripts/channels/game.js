@@ -63,7 +63,7 @@ function createActionListener(){
 function gameActionListener(){
   $('main').on('submit', '.game-form', function(event) {
     event.preventDefault();
-    var timeLeft = $('#timer')[0].innerText
+    var timeLeft = gameTimer.seconds;
     var $form = $(this);
     $.ajax( {
       url : $form.attr('action'),
@@ -71,4 +71,16 @@ function gameActionListener(){
       data : {timeLeft: timeLeft}
     });
   })
+}
+
+function goToNextTurn(gameState) {
+  var userdata = $("#live[data-userid]").data()
+  var user_id = !!userdata ? userdata.userid : null;
+  var isCluegiver = (user_id === gameState.cluegiver.id);
+  if (isCluegiver) {
+    $.ajax({
+      url : "/games/" + gameState.game.name + "/next_turn",
+      method : "POST"
+    });
+  }
 }

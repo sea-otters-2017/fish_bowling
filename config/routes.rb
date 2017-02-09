@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       post 'pass'
       post 'win_card'
       post 'pause'
+      post 'unpause'
       post 'next_turn'
       post 'buzz'
     end
