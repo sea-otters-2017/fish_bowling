@@ -183,10 +183,10 @@ function renderGamePage(gameState) {
     return `
       <div id="observer-container">
         <h1>${gameState.cluegiver.display_name}'s turn</h1>
+          <form class="buzzer" action="/games/${gameState.game.name}/buzz" method="post">
+            <a class="btn-floating btn-large waves-effect waves-light red accent-4" type="submit"><i class="material-icons">BUZZ</i></a>
+          </form>
       </div>
-      <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
-        <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
-      </form>
     `;
   }
 
@@ -214,9 +214,6 @@ function renderGamePage(gameState) {
     if(gameState.game.is_paused){ return "" }
     if(!isCreator || !gameState.round_started){ return "" }
     return `
-      <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
-        <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
-      </form>
     <div class='next-container'>
     <form action="/games/${gameState.game.name}/next_turn" method="post">
       <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">

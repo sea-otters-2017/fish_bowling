@@ -199,7 +199,7 @@ h5#team-name {
   text-align: center;
 }
 
-#observer-container, #card-concept {
+#card-concept {
   text-align: center;
 }
 
@@ -225,13 +225,18 @@ h5#team-name {
 .next-turn {
   margin: 10px;
   padding: 20px;
+  text-align: center;
 }
 
-/** {
+* {
   outline: 1px solid black;
 }
-*/
 
+#observer-container {
+  text-align: center;
+}
 
-
+.buzzer {
+  text-align: center;
+}
 
