@@ -35,7 +35,7 @@ function addSubscriptionListener() {
             createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
           case 'buzz':
-            $('#live').append("<audio autoplay hidden='hidden' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>")
+            $('#live').append("<audio id='toot' autoplay hidden='hidden' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>")
             break;
         }
       },
