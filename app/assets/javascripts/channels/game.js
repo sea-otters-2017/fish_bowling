@@ -70,6 +70,7 @@ function gameActionListener(){
   $('main').on('submit', '.game-form', function(event) {
     event.preventDefault();
     var timeLeft = gameTimer.seconds;
+    console.log('gameTimer.seconds',gameTimer.seconds)
     var $form = $(this);
     preventDoubleClick(event.target)
     $.ajax( {
@@ -83,11 +84,13 @@ function gameActionListener(){
 function goToNextTurn(gameState) {
   var userdata = $("#live[data-userid]").data()
   var user_id = !!userdata ? userdata.userid : null;
-  var isCluegiver = (user_id === gameState.cluegiver.id);
-  if (isCluegiver) {
+  var isCreator = (user_id === gameState.creator.id);
+  var timeLeft = gameTimer.seconds;
+  if (isCreator) {
     $.ajax({
       url : "/games/" + gameState.game.name + "/next_turn",
-      method : "POST"
+      method : "POST",
+      data : {timeLeft: timeLeft}
     });
   }
 }
