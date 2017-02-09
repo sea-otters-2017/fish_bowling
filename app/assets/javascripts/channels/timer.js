@@ -13,7 +13,6 @@ jsTimer.prototype.display = function(){
   if (!this.isPaused) {
     this.seconds--;
     if (this.timerIsDone()) {
-      console.log('checking timer', this.seconds)
       goToNextTurn(this.gameState);
       clearInterval(this.interval);
       this.interval = null;
