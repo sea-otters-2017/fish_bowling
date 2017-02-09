@@ -113,7 +113,7 @@ class Game < ApplicationRecord
   def players
     self.participants.map do |player|
       [player, {cards_count: player.cards_from(self).count}]
-    end.to_a
+    end
   end
 
   def initialize_rounds
