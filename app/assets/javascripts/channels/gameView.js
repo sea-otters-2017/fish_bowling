@@ -150,7 +150,7 @@ function renderGamePage(gameState) {
   function getUnpausedButtons(){
     if(gameState.game.is_paused){ return "" }
     return `
-    <h1 id=card-concept>${gameState.card}</h1>
+    <h1 id="card-concept">${gameState.card}</h1>
       <div class="actions">
         <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
           <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
