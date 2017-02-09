@@ -32,7 +32,17 @@ function addSubscriptionListener() {
             renderGamePage(data.gameState);
             break;
           case 'setTimer':
-            createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
+            if(data.gameState.game.is_paused){
+              pauseTimer();
+            } else{
+              createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
+            }
+            break;
+          case 'pauseTimer':
+            pauseTimer(data.gameState);
+            break;
+          case 'unpauseTimer':
+            unpauseTimer(data.gameState);
             break;
         }
       },

@@ -34,11 +34,16 @@ jsTimer.prototype.startTimer = function(){
   }
 }
 
+function pauseTimer(gameState){
+  this.gameTimer.isPaused = true;
+}
+
+
 function createTimer(gameData, seconds){
   this.gameTimer || (this.gameTimer = new jsTimer(60));
   this.gameTimer.seconds = seconds;
   this.gameTimer.isPaused = true;
-  this.gameTimer.gameState = gameData;// ? gameName : "";
+  this.gameTimer.gameState = gameData;
   this.gameTimer.startTimer();
 };
 

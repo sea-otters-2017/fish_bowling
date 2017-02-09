@@ -215,7 +215,7 @@ function renderGamePage(gameState) {
   }
 
   $('#live').html(gameHTML);
-  if(gameState.round_started && !gameState.is_over){
-    createTimer(gameState.game.name);
-  }
+  // if(gameState.round_started && !gameState.is_over){
+  //   createTimer(gameState.game.name);
+  // }
 }
