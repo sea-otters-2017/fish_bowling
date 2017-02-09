@@ -5,6 +5,9 @@ function renderGamePage(gameState) {
   var user_id = !!userdata ? userdata.userid : null;
   var isCluegiver = (user_id === gameState.cluegiver.id);
   var isCreator = (user_id === gameState.creator.id);
+  var thisPlayer = gameState.participants.find(function(player) {
+    return player[0].id === user_id
+  })
 
   // Universal View
 
@@ -17,7 +20,7 @@ function renderGamePage(gameState) {
     return `
     <h3 class="game-name">${gameState.game.name}</h3>
     <div id='round-container'>
-    <p>Current Round: ${gameState.current_round.type}</p>
+      <p>Current Round: ${gameState.current_round.type}</p>
     </div>`;
   };
 
@@ -29,8 +32,28 @@ function renderGamePage(gameState) {
     var allPlayers = ''
 
     gameState.participants.forEach(function(participant){
-      allPlayers += `<li class='player-name'>${participant.display_name}</li>`
+      allPlayers += `<li class='player-name'>${participant[0].display_name}</li>`
     })
+
+    function cardsForm(){
+      if (!!thisPlayer[1].cards_count < 4) {
+        return `
+          <div id='create-card-form'>
+            <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
+              <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
+              <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
+              <div class="actions container">
+                <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
+          </div>
+        `;
+      } else {
+        return ''
+      }
+    }
 
     return `
       <div class='waiting-game'>
@@ -38,17 +61,7 @@ function renderGamePage(gameState) {
         <ul class='player-names-list'>
           ${allPlayers}
         </ul>
-        <div id='create-card-form'>
-          <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
-            <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
-            <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
-            <div class="actions container">
-              <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
-                <i class="material-icons right">send</i>
-              </button>
-            </div>
-          </form>
-        </div>
+          ${cardsForm()}
         ${startGameFormHTML()}
       </div>
     `;
@@ -100,14 +113,14 @@ function renderGamePage(gameState) {
     <div class="team-1">
     <h5 id="team-name">${team1.name}</h5>
     <ul>
-    <div class="team-players">${team1Players}</div>
+      <div class="team-players">${team1Players}</div>
     </ul>
     </div>
 
     <div class="team-2">
     <h5 id="team-name">${team2.name}</h5>
     <ul>
-    <div class="team-players">${team2Players}</div>
+      <div class="team-players">${team2Players}</div>
     </ul>
     </div>
     `;
@@ -119,7 +132,7 @@ function renderGamePage(gameState) {
     return `
 
       <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
-      <input class="btn btn-round waves-effect waves-light, z-depth-4, btn-large teal" type="submit" value="START ROUND">
+        <input class="btn btn-round waves-effect waves-light, z-depth-4, btn-large teal" type="submit" value="START ROUND">
       </form>
 
     `
@@ -143,27 +156,28 @@ function renderGamePage(gameState) {
 
     <div class="actions">
     <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
-    <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
+      <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
     </form>
 
     <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
-    <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
+      <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
     </form>
 
     <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
-    <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
+      <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
     </div>`;
   }
 
   function getPausedButton(){
     if(!gameState.game.is_paused){ return "" }
-    return `
+    return `<div class="actions">
     <form class="game-form" action="/games/${gameState.game.name}/unpause" method="post">
     <input class="waves-effect waves-light btn-large orange" type="submit" value="unpause">
     </form>
     </div>`;
   }
+
 
   // Observer View
 
@@ -173,6 +187,9 @@ function renderGamePage(gameState) {
     <div id="observer-container">
       <h1>${gameState.cluegiver.display_name}'s turn</h1>
     </div>
+    <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
+      <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
+    </form>
     `;
   }
 
@@ -201,7 +218,7 @@ function renderGamePage(gameState) {
     if(!isCreator || !gameState.round_started){ return "" }
     return `
     <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
-    <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
+      <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
     </form>
     `
   }
@@ -224,7 +241,4 @@ function renderGamePage(gameState) {
   }
 
   $('#live').html(gameHTML);
-  // if(gameState.round_started && !gameState.is_over){
-  //   createTimer(gameState.game.name);
-  // }
 }

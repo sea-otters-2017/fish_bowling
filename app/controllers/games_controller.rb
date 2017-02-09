@@ -29,7 +29,6 @@ class GamesController < ApplicationController
 
   def join
     return redirect_to root_path, notice: "'#{params[:name]}' does not exist" unless @game
-    return redirect_to game_path(@game) if @game.participants.include?(current_user)
     return redirect_to root_path, notice: "'#{params[:name]}' is in progress" unless @game.teams.empty?
     if !@game.participants.include?(current_user)
       @game.participants << current_user
@@ -77,6 +76,10 @@ class GamesController < ApplicationController
   def unpause
     @game.update_attribute(:is_paused, false)
     show
+  end
+
+  def buzz
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :buzz })
   end
 
   private

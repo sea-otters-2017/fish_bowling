@@ -82,7 +82,7 @@ class Game < ApplicationRecord
       card: (current_card.concept if last_turn.persisted?),
       ready: ready?,
       has_cards: cards_added?,
-      participants: self.participants,
+      participants: players,
       last_turn: last_turn
     }
   end
@@ -107,6 +107,12 @@ class Game < ApplicationRecord
       { name: team.name,
         players: team.players_list,
         score: team.score }
+    end
+  end
+
+  def players
+    self.participants.map do |player|
+      [player, {cards_count: player.cards_from(self).count}]
     end
   end
 

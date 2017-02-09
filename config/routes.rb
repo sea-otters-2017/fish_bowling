@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post 'pause'
       post 'unpause'
       post 'next_turn'
+      post 'buzz'
     end
   end
 
