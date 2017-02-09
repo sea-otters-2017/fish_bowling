@@ -41,3 +41,13 @@ a:hover {
   color: #C0C0C0;
   text-decoration: none;
 }
+
+#cluegiver-container {
+  width: 90%;
+  margin: auto;
+}
+
+#card-concept-heading {
+    color: white;
+    text-align: center;
+}

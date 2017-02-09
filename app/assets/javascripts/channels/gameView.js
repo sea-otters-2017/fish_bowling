@@ -140,7 +140,7 @@ function renderGamePage(gameState) {
   function getCluegiverHTML() {
     if(!gameState.round_started || !isCluegiver){ return "" }
     return `
-      <div id="cluegiver-container">
+      <div id="cluegiver-container" class="card blue-grey darken-1">
         ${getUnpausedButtons()}
         ${getPausedButton()}
       </div>
