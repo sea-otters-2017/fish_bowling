@@ -12,7 +12,7 @@ class CardsController < ApplicationController
       end
       redirect_to @game
     else
-      redirect_to @game, notice:"Card field cannot be blank."
+      redirect_to @game, notice:"Card cannot be blank."
     end
   end
 

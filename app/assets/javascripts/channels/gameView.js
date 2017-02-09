@@ -5,6 +5,9 @@ function renderGamePage(gameState) {
   var user_id = !!userdata ? userdata.userid : null;
   var isCluegiver = (user_id === gameState.cluegiver.id);
   var isCreator = (user_id === gameState.creator.id);
+  var thisPlayer = gameState.participants.find(function(player) {
+    return player[0].id === user_id
+  })
 
   // Universal View
 
@@ -29,8 +32,28 @@ function renderGamePage(gameState) {
     var allPlayers = ''
 
     gameState.participants.forEach(function(participant){
-      allPlayers += `<li class='player-name'>${participant.display_name}</li>`
+      allPlayers += `<li class='player-name'>${participant[0].display_name}</li>`
     })
+
+    function cardsForm(){
+      if (!!thisPlayer[1].cards_count < 4) {
+        return `
+          <div id='create-card-form'>
+            <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
+              <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
+              <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
+              <div class="actions container">
+                <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
+          </div>
+        `;
+      } else {
+        return ''
+      }
+    }
 
     return `
       <div class='waiting-game'>
@@ -38,17 +61,7 @@ function renderGamePage(gameState) {
         <ul class='player-names-list'>
           ${allPlayers}
         </ul>
-        <div id='create-card-form'>
-          <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
-            <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
-            <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
-            <div class="actions container">
-              <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
-                <i class="material-icons right">send</i>
-              </button>
-            </div>
-          </form>
-        </div>
+          ${cardsForm()}
         ${startGameFormHTML()}
       </div>
     `;
@@ -216,7 +229,6 @@ function renderGamePage(gameState) {
 
   $('#live').html(gameHTML);
   if(gameState.round_started && !gameState.is_over){
-     console.log('creating timer for: ' + gameState.game.name)
     createTimer(gameState.game.name);
   }
 }
