@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   include SessionsHelper
   before_action :authenticate_user!
   before_action :set_game
+  before_action :set_seconds_remaining, only: [:pass, :win_card, :pause, :next_turn]
 
   def create
     @game = Game.new(game_params)
@@ -75,6 +76,9 @@ class GamesController < ApplicationController
   def broadcast_game
     state = @game.full_state
     ActionCable.server.broadcast( "game_#{params['name']}", { action: :updateGame, gameState: state })
+    if !@game.turns.empty? && !@game.is_over?
+      ActionCable.server.broadcast( "game_#{params['name']}", { action: :setTimer, gameState: state })
+    end
     state
   end
 
@@ -84,6 +88,12 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find_by(name: params[:name])
+  end
+
+  def set_seconds_remaining
+    @seconds_remaining = params[:timeLeft]
+    @game.last_turn.update_attribute(:seconds_remaining, @seconds_remaining)
+    @game.save
   end
 
 end

@@ -10,10 +10,8 @@ function renderGamePage(gameState) {
   // Universal View
 
   function getTimerHTML(){
-    return `
-      <div id='timer' class="fbCountdown" data-start-time='TBD' data-run-time='60'>
-      <p>00:30</p>
-      </div>`;
+    if(!gameState.round_started){ return '' }
+    return `<div id='timer' class="fbCountdown"></div>`;
   };
 
   function getTitleHTML(){
@@ -139,15 +137,15 @@ function renderGamePage(gameState) {
 
   function getCluegiverButtonsHTML(){
     return `<div class="actions">
-    <form class="action-form" action="/games/${gameState.game.name}/pass" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
     <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
     </form>
 
-    <form class="action-form" action="/games/${gameState.game.name}/win_card" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
     <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
     </form>
 
-    <form class="action-form" action="/games/${gameState.game.name}/pause" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
     <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
     </div>`;
@@ -159,7 +157,7 @@ function renderGamePage(gameState) {
     if(!gameState.round_started || isCluegiver){ return "" }
     return `
     <div id="observer-container">
-      <h1>${gameState.cluegiver.display_name}s Turn</h1>
+      <h1>${gameState.cluegiver.display_name}'s turn</h1>
     </div>
     `;
   }
@@ -187,7 +185,7 @@ function renderGamePage(gameState) {
   function nextTurnButton() {
     if(!isCreator || !gameState.round_started){ return "" }
     return `
-    <form class="action-form" action="/games/${gameState.game.name}/next_turn" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
     <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
     </form>
     `
@@ -195,6 +193,7 @@ function renderGamePage(gameState) {
 
   var gameHTML;
   if(gameState.is_over){
+    window.gameTimer.isPaused = true;
     gameHTML = showResults()
   } else {
     gameHTML = `
@@ -208,5 +207,10 @@ function renderGamePage(gameState) {
       ${nextTurnButton()}
     `
   }
-  $('#live').html(gameHTML)
+
+  $('#live').html(gameHTML);
+  if(gameState.round_started && !gameState.is_over){
+     console.log('creating timer for: ' + gameState.game.name)
+    createTimer(gameState.game.name);
+  }
 }

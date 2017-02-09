@@ -29,13 +29,6 @@ pat = User.create!( display_name: 'pat',
     4.times do
       card = participant.cards.new(concept: Faker::Pokemon.name)
       game.cards << card
-      # card.save!
     end
   end
 end
-
-# Turn.create!(player: pat, round: game.rounds.first)
-# Turn.create!(player: kim, round: game.rounds.first)
-# Turn.create!(player: katherine, round: game.rounds.first)
-# Turn.create!(player: justin, round: game.rounds.first)
-

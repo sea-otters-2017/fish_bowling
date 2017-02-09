@@ -3,8 +3,9 @@ $(document).on('turbolinks:load', function() {
 });
 
 function addEventListeners(){
-  addActionListener();
-  addSubscriptionListener()
+  createActionListener();
+  gameActionListener();
+  addSubscriptionListener();
 }
 
 function addSubscriptionListener() {
@@ -25,7 +26,9 @@ function addSubscriptionListener() {
           case 'updateGame':
             renderGamePage(data.gameState);
             break;
-          case 'buzz':
+          case 'setTimer':
+            console.log('data inside setTimer', data)
+            createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
         }
       },
@@ -38,7 +41,7 @@ function addSubscriptionListener() {
   })
 }
 
-function addActionListener(){
+function createActionListener(){
   $('main').on('submit', '.action-form', function(event) {
     event.preventDefault();
     var $form = $(this);
@@ -50,3 +53,15 @@ function addActionListener(){
   })
 }
 
+function gameActionListener(){
+  $('main').on('submit', '.game-form', function(event) {
+    event.preventDefault();
+    var timeLeft = $('#timer')[0].innerText
+    var $form = $(this);
+    $.ajax( {
+      url : $form.attr('action'),
+      method : "POST",
+      data : {timeLeft: timeLeft}
+    });
+  })
+}
