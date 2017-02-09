@@ -167,7 +167,7 @@ function renderGamePage(gameState) {
   function getPausedButton(){
     if(!gameState.game.is_paused){ return "" }
     return `
-      <div class="actions">
+      <div class="actions center">
         <form class="game-form" action="/games/${gameState.game.name}/unpause" method="post">
         <input class="waves-effect waves-light btn-large orange" type="submit" value="unpause">
         </form>
@@ -181,11 +181,17 @@ function renderGamePage(gameState) {
   function getObserverHTML() {
     if(!gameState.round_started || isCluegiver){ return "" }
     return `
-      <div id="observer-container">
+      <div id="observer-container" class="card blue-grey darken-1">
         <h1>${gameState.cluegiver.display_name}'s turn</h1>
+<<<<<<< HEAD
           <form class="buzzer" action="/games/${gameState.game.name}/buzz" method="post">
             <a class="myButton" type="submit">BUZZ</a>
           </form>
+=======
+      <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
+        <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
+      </form>
+>>>>>>> add card styling around card concepts
       </div>
     `;
   }

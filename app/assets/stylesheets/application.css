@@ -42,12 +42,21 @@ a:hover {
   text-decoration: none;
 }
 
-#cluegiver-container {
+#cluegiver-container, #observer-container {
+  background-color: #5e93ab;
   width: 90%;
   margin: auto;
 }
 
-#card-concept {
+/*#card-concept {*/
+#cluegiver-container h1, #observer-container h1 {
     color: white;
     text-align: center;
+    font-size: 4em;
+    padding-top: 15px;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
 }
