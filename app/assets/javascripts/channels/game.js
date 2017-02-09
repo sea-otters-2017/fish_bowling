@@ -32,11 +32,9 @@ function addSubscriptionListener() {
             renderGamePage(data.gameState);
             break;
           case 'setTimer':
-            console.log('data inside setTimer', data)
             createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
           case 'buzz':
-            console.log('BUZZZZZZZ from subscriptions')
             $('main').append("<audio autoplay hidden='hidden' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>")
             break;
         }

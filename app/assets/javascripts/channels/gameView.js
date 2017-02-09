@@ -223,7 +223,6 @@ function renderGamePage(gameState) {
 
   $('#live').html(gameHTML);
   if(gameState.round_started && !gameState.is_over){
-     console.log('creating timer for: ' + gameState.game.name)
     createTimer(gameState.game.name);
   }
 }
