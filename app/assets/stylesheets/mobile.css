@@ -160,7 +160,7 @@ h5#team-name {
   font-size: 4vh;
 }
 
-.team-1, .team-2{
+.team-1, .team-2, #new_card{
   background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1));
   background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1));
   background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1));
@@ -180,6 +180,12 @@ h5#team-name {
 #display-name {
   float: right;
   margin-right: 10%;
+  text-align: right;
   font-weight: bold;
   font-size: 4vh;
+  padding: 5px 3px 5px 8px;
+}
+
+* {
+  outline: 1px solid black;
 }
