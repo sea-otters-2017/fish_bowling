@@ -17,14 +17,11 @@ class GamesController < ApplicationController
 
   def show
     @game_state = broadcast_game
-    respond_to do |format|
-      format.html {
-        render :live
-      }
-      format.json {
-        render json: @game_state
-      }
-     end
+    if request.xhr?
+      render json: @game_state and return
+    else
+      render :live and return
+    end
   end
 
   def join
