@@ -1,21 +1,23 @@
-<h2>Log in</h2>
+<h2 div class="card-panel cyan accent-1, z-depth-1, banner"><span class="white-text text-darken-2">Log In</span></h2>
 
 <div id='login-form-div'>
 
 <%= form_for(:session, url: login_path) do |f| %>
 
-    <div class="field">
+    <div class="field container">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
+      <%= f.email_field :email, autofocus: true, placeholder: 'Enter Email Address' %>
     </div>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
+    <div class="field container">
+      <%= f.label :password %><br/>
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Enter Password' %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Log in" %>
-    </div>
+    <div class="actions container">
+    <button class="btn waves-effect cyan darken-1, z-depth-4" type="submit" name="action">Log in
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
   <% end %>
 </div>

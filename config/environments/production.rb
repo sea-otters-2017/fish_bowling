@@ -19,7 +19,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -80,6 +80,10 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  # configure action cable production settings:
+  config.web_socket_server_url = "wss://fish-bowling.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://fish-bowling.herokuapp.com', 'http://fish-bowling.herokuapp.com'] 
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
