@@ -17,13 +17,18 @@ class GamesController < ApplicationController
 
   def show
     @game_state = broadcast_game
+    if request.xhr?
+      render json: @game_state and return
+    end
     respond_to do |format|
       format.html {
+        p 'something out! (this is html)'
         render :live
       }
-      format.json {
-        render json: @game_state
-      }
+      # format.json {
+      #   p 'another p statement (this is the JS)'
+      #   render json: @game_state
+      # }
      end
   end
 
