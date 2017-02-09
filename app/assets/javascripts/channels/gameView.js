@@ -38,7 +38,7 @@ function renderGamePage(gameState) {
             <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
               <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
               <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
-              <div class="actions container">
+              <div class="actions-container">
                 <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
                   <i class="material-icons right">send</i>
                 </button>
