@@ -25,16 +25,6 @@ class GamesController < ApplicationController
   end
 
   def join
-    puts
-    puts
-    puts
-    puts
-    puts
-    puts
-    puts
-    puts
-    p @game
-    p @game.full_state
     return redirect_to root_path, notice: "'#{params[:name]}' does not exist" unless @game
     if (!@game.teams.empty? && !@game.is_over?)
       return redirect_to root_path, notice: "'#{params[:name]}' is in progress"
