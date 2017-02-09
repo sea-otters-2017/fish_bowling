@@ -112,7 +112,9 @@ class Game < ApplicationRecord
 
   def players
     self.participants.map do |player|
-      [player, {cards_count: player.cards_from(self).count}]
+      {display_name: player.display_name,
+      id: player.id,
+      cards_count: player.cards_from(self).count}
     end
   end
 

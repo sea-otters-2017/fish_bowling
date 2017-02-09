@@ -6,8 +6,10 @@ function renderGamePage(gameState) {
   var isCluegiver = (user_id === gameState.cluegiver.id);
   var isCreator = (user_id === gameState.creator.id);
   var thisPlayer = gameState.participants.find(function(player) {
-    return player[0].id === user_id
+    return player.id === user_id
   })
+
+  console.log('thisPlayer in renderGamePage', thisPlayer)
 
   // Universal View
 
@@ -33,11 +35,12 @@ function renderGamePage(gameState) {
     var allPlayers = ''
 
     gameState.participants.forEach(function(participant){
-      allPlayers += `<li class='player-name'>${participant[0].display_name}</li>`
+      allPlayers += `<li class='player-name'>${participant.display_name}</li>`
     })
 
     function cardsForm(){
-      if (!!thisPlayer[1].cards_count < 4) {
+      console.log('thisPlayer in cardsForm function', thisPlayer)
+      if (!thisPlayer || thisPlayer.cards_count < 4) {
         return `
           <div id='create-card-form'>
             <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
