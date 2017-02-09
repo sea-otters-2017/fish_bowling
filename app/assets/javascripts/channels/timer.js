@@ -24,7 +24,6 @@ jsTimer.prototype.display = function(){
 
 jsTimer.prototype.updateTime = function() {
   $("#timer").text(this.seconds ? this.seconds : 'GO');
-  console.log('seconds', this.seconds)
 };
 
 jsTimer.prototype.startTimer = function(){
@@ -36,7 +35,6 @@ jsTimer.prototype.startTimer = function(){
 }
 
 function createTimer(gameData, seconds){
-  // console.log('gamestate in createtimer', gameState)
   this.gameTimer || (this.gameTimer = new jsTimer(60));
   this.gameTimer.seconds = seconds;
   this.gameTimer.isPaused = true;
