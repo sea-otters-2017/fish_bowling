@@ -186,9 +186,9 @@ h5#team-name {
   padding: 5px 3px 5px 8px;
 }
 
-/** {
+* {
   outline: 1px solid black;
-}*/
+}
 
 #brand {
   height: auto;
@@ -203,6 +203,30 @@ h5#team-name {
   text-align: center;
 }
 
-#observer-container {
+#observer-container, #card-concept {
   text-align: center;
+}
+
+.game-form {
+  float:left;
+  width:30%;
+}
+
+.actions {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display:flex;
+
+}
+
+.next-container {
+  padding-top: 20px;
+  text-align: center;
+  text-align: center;
+}
+
+.next-turn {
+  margin: 10px;
+  padding: 20px;
 }

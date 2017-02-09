@@ -150,17 +150,14 @@ function renderGamePage(gameState) {
   function getUnpausedButtons(){
     if(gameState.game.is_paused){ return "" }
     return `
-      <h1>${gameState.card}</h1>
-
+    <h1 id=card-concept>${gameState.card}</h1>
       <div class="actions">
         <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
           <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
         </form>
-
         <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
           <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
         </form>
-
         <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
           <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
         </form>
@@ -220,6 +217,11 @@ function renderGamePage(gameState) {
       <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
         <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
       </form>
+    <div class='next-container'>
+    <form action="/games/${gameState.game.name}/next_turn" method="post">
+      <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
+    </form>
+    </div>
     `
   }
 
