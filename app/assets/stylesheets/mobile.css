@@ -85,8 +85,9 @@ h2.banner {
 #round-container {
   text-align: center;
   font-family: Monaco;
+}
 
-.participants {
+h4.participants {
   text-align: center;
 }
 
