@@ -69,6 +69,13 @@ class GamesController < ApplicationController
   end
 
   def pause
+    broadcast_pause
+    show
+  end
+
+  def unpause
+    broadcast_unpause
+    show
   end
 
   private
@@ -80,6 +87,16 @@ class GamesController < ApplicationController
       ActionCable.server.broadcast( "game_#{params['name']}", { action: :setTimer, gameState: state })
     end
     state
+  end
+
+  def broadcast_pause
+    state = @game.full_state
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :pauseTimer, gameState: state })
+  end
+
+  def broadcast_unpause
+    state = @game.full_state
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :unpauseTimer, gameState: state })
   end
 
   def game_params
