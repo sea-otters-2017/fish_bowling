@@ -26,4 +26,12 @@ RSpec.describe "Routing to games", :type => :routing do
     expect(:post => "/games/name/next_turn").to route_to("games#next_turn", :name => "name")
   end
 
+  it "routes POST /games/name/pause to games#pause" do
+    expect(:post => "/games/name/pause").to route_to("games#pause", :name => "name")
+  end
+
+  it "routes POST /games/name/unpause to games#unpause" do
+    expect(:post => "/games/name/unpause").to route_to("games#unpause", :name => "name")
+  end
+
 end
