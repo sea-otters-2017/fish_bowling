@@ -29,7 +29,6 @@ pat = User.create!( display_name: 'pat',
     4.times do
       card = participant.cards.new(concept: Faker::Pokemon.name)
       game.cards << card
-      # card.save!
     end
   end
 end
