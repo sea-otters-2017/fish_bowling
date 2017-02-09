@@ -37,6 +37,9 @@ function addSubscriptionListener() {
           case 'buzz':
             $('#live').append("<audio id='toot' autoplay hidden='hidden' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>")
             break;
+          case 'unbuzz':
+            $('#toot').remove()
+            break;
         }
       },
 

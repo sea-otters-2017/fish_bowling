@@ -73,6 +73,8 @@ class GamesController < ApplicationController
 
   def buzz
     ActionCable.server.broadcast( "game_#{params['name']}", { action: :buzz })
+    sleep 0.5
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :unbuzz })
   end
 
   private

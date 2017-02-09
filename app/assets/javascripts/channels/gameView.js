@@ -5,7 +5,6 @@ function renderGamePage(gameState) {
   var user_id = !!userdata ? userdata.userid : null;
   var isCluegiver = (user_id === gameState.cluegiver.id);
   var isCreator = (user_id === gameState.creator.id);
-  $('#toot').remove()
 
   // Universal View
 
