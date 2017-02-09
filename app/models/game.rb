@@ -82,7 +82,8 @@ class Game < ApplicationRecord
       card: (current_card.concept if last_turn.persisted?),
       ready: ready?,
       has_cards: cards_added?,
-      participants: self.participants
+      participants: self.participants,
+      last_turn: last_turn
     }
   end
 

@@ -157,7 +157,7 @@ function renderGamePage(gameState) {
     if(!gameState.round_started || isCluegiver){ return "" }
     return `
     <div id="observer-container">
-      <h1>${gameState.cluegiver.display_name}s Turn</h1>
+      <h1>${gameState.cluegiver.display_name}'s turn</h1>
     </div>
     `;
   }

@@ -27,7 +27,8 @@ function addSubscriptionListener() {
             renderGamePage(data.gameState);
             break;
           case 'setTimer':
-            createTimer(data.gameState);
+            console.log('data inside setTimer', data)
+            createTimer(data.gameState, gameState.last_turn.seconds_remaining);
             break;
         }
       },

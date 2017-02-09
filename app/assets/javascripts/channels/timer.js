@@ -35,11 +35,12 @@ jsTimer.prototype.startTimer = function(){
   }
 }
 
-function createTimer(gameState){
+function createTimer(gameState, seconds){
+  // console.log('gamestate in createtimer', gameState)
   this.gameTimer || (this.gameTimer = new jsTimer(60));
-  this.gameTimer.seconds = 5;
+  this.gameTimer.seconds = seconds;
   this.gameTimer.isPaused = true;
-  this.gameTimer.gameName = gameState.game.name;// ? gameName : "";
+  this.gameTimer.gameState = gameState;// ? gameName : "";
   this.gameTimer.startTimer();
 };
 
