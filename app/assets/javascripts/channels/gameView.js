@@ -32,6 +32,10 @@ function renderGamePage(gameState) {
       allPlayers += `<li class='player-name'>${participant.display_name}</li>`
     })
 
+    function needCards(){
+      if (true) {}
+    }
+
     return `
       <div class='waiting-game'>
         <h4 class="participants">Participants</h4>
