@@ -34,6 +34,9 @@ function addSubscriptionListener() {
           case 'setTimer':
             createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
+          case 'buzz':
+            $('#toot').trigger('play')
+            break;
         }
       },
 

@@ -20,7 +20,7 @@ function renderGamePage(gameState) {
     return `
     <h3 class="game-name">${gameState.game.name}</h3>
     <div id='round-container'>
-    <p>Current Round: ${gameState.current_round.type}</p>
+      <p>Current Round: ${gameState.current_round.type}</p>
     </div>`;
   };
 
@@ -113,14 +113,14 @@ function renderGamePage(gameState) {
     <div class="team-1">
     <h5 id="team-name">${team1.name}</h5>
     <ul>
-    <div class="team-players">${team1Players}</div>
+      <div class="team-players">${team1Players}</div>
     </ul>
     </div>
 
     <div class="team-2">
     <h5 id="team-name">${team2.name}</h5>
     <ul>
-    <div class="team-players">${team2Players}</div>
+      <div class="team-players">${team2Players}</div>
     </ul>
     </div>
     `;
@@ -132,7 +132,7 @@ function renderGamePage(gameState) {
     return `
 
       <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
-      <input class="btn btn-round waves-effect waves-light, z-depth-4, btn-large teal" type="submit" value="START ROUND">
+        <input class="btn btn-round waves-effect waves-light, z-depth-4, btn-large teal" type="submit" value="START ROUND">
       </form>
 
     `
@@ -157,17 +157,19 @@ function renderGamePage(gameState) {
   function getCluegiverButtonsHTML(){
     return `<div class="actions">
     <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
-    <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
+      <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
     </form>
 
     <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
-    <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
+      <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
     </form>
 
     <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
-    <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
+      <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
-    </div>`;
+    </div>
+    `
+    ;
   };
 
   // Observer View
@@ -178,6 +180,9 @@ function renderGamePage(gameState) {
     <div id="observer-container">
       <h1>${gameState.cluegiver.display_name}'s turn</h1>
     </div>
+    <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
+      <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
+    </form>
     `;
   }
 
@@ -205,7 +210,7 @@ function renderGamePage(gameState) {
     if(!isCreator || !gameState.round_started){ return "" }
     return `
     <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
-    <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
+      <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
     </form>
     `
   }

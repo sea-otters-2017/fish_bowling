@@ -70,6 +70,10 @@ class GamesController < ApplicationController
   def pause
   end
 
+  def buzz
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :buzz })
+  end
+
   private
 
   def broadcast_game
