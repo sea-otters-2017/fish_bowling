@@ -2,6 +2,12 @@ $(document).on('turbolinks:load', function() {
   addEventListeners();
 });
 
+function preventDoubleClick(clickable) {
+  if ($(clickable).hasClass('clicked')) return
+  $(clickable).addClass('clicked')
+  setTimeout(function() { $(clickable).removeClass('clicked'); }, 1000)
+}
+
 function addEventListeners(){
   createActionListener();
   gameActionListener();
@@ -65,6 +71,7 @@ function gameActionListener(){
     event.preventDefault();
     var timeLeft = gameTimer.seconds;
     var $form = $(this);
+    preventDoubleClick(event.target)
     $.ajax( {
       url : $form.attr('action'),
       method : "POST",
