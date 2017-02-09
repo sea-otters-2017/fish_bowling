@@ -36,7 +36,7 @@ function addSubscriptionListener() {
             createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
           case 'buzz':
-            console.log('BUZZZZZZZ')
+            console.log('BUZZZZZZZ from subscriptions')
             renderGamePage(data.gameState)
             break;
         }

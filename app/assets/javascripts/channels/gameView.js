@@ -144,17 +144,24 @@ function renderGamePage(gameState) {
   function getCluegiverButtonsHTML(){
     return `<div class="actions">
     <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
-    <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
+      <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
     </form>
 
     <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
-    <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
+      <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
     </form>
 
     <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
-    <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
+      <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
-    </div>`;
+
+    <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
+      <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
+    </form>
+    </div>
+    `
+
+    ;
   };
 
   // Observer View
@@ -198,6 +205,7 @@ function renderGamePage(gameState) {
   }
 
   function buzzer() {
+    console.log('BZZZZZZZZZ FROM gameView')
     if(gameState.buzz){
       return `
         <audio autoplay hidden='hidden' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>
