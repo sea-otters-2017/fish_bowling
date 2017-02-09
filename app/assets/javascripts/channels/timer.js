@@ -34,8 +34,11 @@ jsTimer.prototype.startTimer = function(){
   }
 }
 
-function pauseTimer(gameState){
+function pauseTimer(gameData){
   this.gameTimer.isPaused = true;
+  console.log('gameData',gameData)
+  console.log('gameData.last_turn',gameData.last_turn)
+  $("#timer").text(gameData.last_turn.seconds_remaining)
 }
 
 

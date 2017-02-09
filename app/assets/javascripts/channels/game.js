@@ -33,12 +33,13 @@ function addSubscriptionListener() {
             break;
           case 'setTimer':
             if(data.gameState.game.is_paused){
-              pauseTimer();
+              pauseTimer(data.gameState);
             } else{
               createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             }
             break;
           case 'pauseTimer':
+            console.log('data.gameState',data.gameState)
             pauseTimer(data.gameState);
             break;
           case 'unpauseTimer':

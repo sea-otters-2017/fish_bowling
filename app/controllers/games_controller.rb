@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   include SessionsHelper
   before_action :authenticate_user!
   before_action :set_game
-  before_action :set_seconds_remaining, only: [:pass, :win_card, :pause, :next_turn]
+  before_action :set_seconds_remaining, only: [:pass, :win_card, :pause, :unpause, :next_turn]
 
   def create
     @game = Game.new(game_params)
@@ -71,6 +71,7 @@ class GamesController < ApplicationController
 
   def pause
     @game.update_attribute(:is_paused, true)
+    broadcast_pause
     show
   end
 
@@ -91,6 +92,16 @@ class GamesController < ApplicationController
   end
 
   def broadcast_pause
+    puts
+    puts
+    puts
+    puts 'GAME:'
+    p @game
+    puts
+    puts
+    puts
+    puts 'FULL STATE'
+    p @game.full_state
     state = @game.full_state
     ActionCable.server.broadcast( "game_#{params['name']}", { action: :pauseTimer, gameState: state })
   end
