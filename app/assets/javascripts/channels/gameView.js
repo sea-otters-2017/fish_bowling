@@ -38,7 +38,7 @@ function renderGamePage(gameState) {
             <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
               <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
               <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
-              <div class="actions container">
+              <div class="actions-container">
                 <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
                   <i class="material-icons right">send</i>
                 </button>
@@ -150,17 +150,14 @@ function renderGamePage(gameState) {
   function getUnpausedButtons(){
     if(gameState.game.is_paused){ return "" }
     return `
-      <h1>${gameState.card}</h1>
-
+    <h1 id="card-concept">${gameState.card}</h1>
       <div class="actions">
         <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
           <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
         </form>
-
         <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
           <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
         </form>
-
         <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
           <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
         </form>
@@ -186,10 +183,10 @@ function renderGamePage(gameState) {
     return `
       <div id="observer-container">
         <h1>${gameState.cluegiver.display_name}'s turn</h1>
+          <form class="buzzer" action="/games/${gameState.game.name}/buzz" method="post">
+            <a class="myButton" type="submit">BUZZ</a>
+          </form>
       </div>
-      <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
-        <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
-      </form>
     `;
   }
 
@@ -217,9 +214,11 @@ function renderGamePage(gameState) {
     if(gameState.game.is_paused){ return "" }
     if(!isCreator || !gameState.round_started){ return "" }
     return `
-      <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
-        <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
-      </form>
+    <div class='next-container'>
+    <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
+      <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
+    </form>
+    </div>
     `
   }
 

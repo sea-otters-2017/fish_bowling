@@ -13,12 +13,15 @@
   </head>
   <body>
     <header>
+    <div class="navbar-brand">
+      <a href="/" ><img id="brand" src="/assets/logo.png"></a>
+    </div>
       <nav class='nav-bar'>
         <ul>
           <li><a class='nav-link' href="/">home</a></li>
           <% if current_user %>
             <li><a class='nav-link' href="/logout">logout</a></li>
-            <li id='display-name'><%= current_user.display_name %></li>
+            <div id='display-name'><%= current_user.display_name %></div>
           <% else %>
             <li><a class='nav-link' href="/login">login</a></li>
             <li><a class='nav-link' href="/users/new">register</a></li>

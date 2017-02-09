@@ -23,8 +23,8 @@
 }
 
 .action-form, .game-form {
-  display: inline-block;
   margin: 10px;
+  text-align: center;
 }
 
 body, html {
