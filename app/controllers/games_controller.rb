@@ -72,7 +72,7 @@ class GamesController < ApplicationController
   end
 
   def buzz
-    full_state.buzz = true
+    @game.full_state.buzz = true
     show
   end
 
