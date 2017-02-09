@@ -1,15 +1,12 @@
-/*@media (min-width: 700px), handheld and (orientation: landscape) { ... }
-@media handheld and (grid) and (max-width: 15em) { ... }
-@media print and (min-resolution: 300dpi) { ... }*/
-/*
 @media screen and (max-width: 500px) and (min-width: 10px) {
-  h1 {
-    font-size: 35pt;
+  h3.game-name {
     margin: 3px;
-    font-size: 3vh;
+    font-size: 9vh;
+    text-align: center;
+    font-family: Monaco;
   }
 
-  headers {
+  header {
     font-size: 3vh;
   }
 
@@ -33,9 +30,9 @@
     font-size: 16pt;
     font-family: Monaco;
   }
+}
 
 @media screen and (max-width: 300px) and (min-width: 10px) {
-
   #login-form-div {
     border: none;
   }
@@ -55,45 +52,133 @@
     margin-right: 0;
     display: inline-grid;
     font-size: 10pt;
+    text-align: center;
   }
-
-}
-
-
-header, main, footer {
-  padding-left: 300px;
 }
 
 @media only screen and (max-width : 992px) {
   header, main, footer {
-    padding-left: 0;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 
 body, html {
   width: 100%;
   height: 100%;
-  margin: 0;
+  margin: 0px;
 }
 
 .nav-bar {
   font-family: Monaco;
 }
 
-a:hover {
-  color: #C0C0C0;
-  text-decoration: none;
-}
-
-h2 {
+h2.banner {
   text-align: center;
   font-family: Monaco;
-  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1)); 
-    background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1)); 
-    background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1)); 
-    background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5)); 
-    }
+  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1));
+    background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1));
+    background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1));
+    background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5));
 }
 
+#round-container {
+  text-align: center;
+  font-family: Monaco;
+}
 
-*/
+h4.participants {
+  text-align: center;
+}
+
+.player-name {
+  text-align: center;
+  font-family: Monaco;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 3vh;
+}
+
+#new_card {
+  text-align: center;
+  font-family: Monaco;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 3vh;
+}
+
+#card_concept {
+  text-align: center;
+}
+
+#create-card-form {
+  text-align: center;
+}
+
+.actions-container {
+  text-align: center;
+}
+
+.btn {
+  text-align: center;
+}
+
+.action-form {
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.game-ready-status {
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 20px;
+}
+
+h4.banner {
+  text-align: center;
+  font-family: Monaco;
+}
+
+.team-1 {
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.team-2 {
+  float: right;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+h5#team-name {
+  font-weight: bold;
+  text-align: center;
+  font-family: Monaco;
+  font-size: 4vh;
+}
+
+.team-1, .team-2{
+  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1));
+  background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1));
+  background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1));
+  background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5));
+}
+
+#start-game {
+  padding-top: 20px;
+}
+
+.btn-round {
+  padding-top: 20px;
+  margin-top:20px;
+  margin-bottom:10px;
+}
+
+#display-name {
+  padding-left: 160px;
+  font-weight: bold;
+  font-size: 4vh;
+}

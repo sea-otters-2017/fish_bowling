@@ -1,4 +1,3 @@
-
 function renderGamePage(gameState) {
   var team1 = gameState.teams[0];
   var team2 = gameState.teams[1];
@@ -16,7 +15,7 @@ function renderGamePage(gameState) {
 
   function getTitleHTML(){
     return `
-    <h3>${gameState.game.name}</h3>
+    <h3 class="game-name">${gameState.game.name}</h3>
     <div id='round-container'>
     <p>Current Round: ${gameState.current_round.type}</p>
     </div>`;
@@ -35,15 +34,19 @@ function renderGamePage(gameState) {
 
     return `
       <div class='waiting-game'>
-        <h4>Participants</h4>
+        <h4 class="participants">Participants</h4>
         <ul class='player-names-list'>
           ${allPlayers}
         </ul>
         <div id='create-card-form'>
           <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
-            <input type="text" name="card[concept]" id="card_concept" />
+            <input type="text" placeholder="Enter card" name="card[concept]" id="card_concept" />
             <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
-            <input type="submit" name="commit" value="Add Card" data-disable-with="Add Card" />
+            <div class="actions container">
+              <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
           </form>
         </div>
         ${startGameFormHTML()}
@@ -57,7 +60,7 @@ function renderGamePage(gameState) {
     if(isCreator && gameState.ready) {
       innerHTML = `
         <form id="start-game" class="action-form" action="/games/${gameState.game.name}/start" method="post">
-          <input class="waves-effect waves-light btn-large teal" type="submit" value="Start Game!">
+          <input button class="btn waves-effect waves-light btn-large teal z-depth-" type="submit" value="Start Game!">
         </form>
       `
     } else if (!isCreator && gameState.ready) {
@@ -93,17 +96,18 @@ function renderGamePage(gameState) {
       team2Players += ('<li>' + player.display_name + '</li>')
     })
 
-    return `<h4>Teams:</h4>
-    <div>
-    <h5>${team1.name}</h5>
-    <h5>${team1.score} points</h5>
+    return `<h4 class="banner">Teams:</h4>
+    <div class="team-1">
+    <h5 id="team-name">${team1.name}</h5>
     <ul>
-    ${team1Players}
+    <div class="team-players">${team1Players}</div>
     </ul>
-    <h5>${team2.name}</h5>
-    <h5>${team2.score} points</h5>
+    </div>
+
+    <div class="team-2">
+    <h5 id="team-name">${team2.name}</h5>
     <ul>
-    ${team2Players}
+    <div class="team-players">${team2Players}</div>
     </ul>
     </div>
     `;
@@ -113,9 +117,11 @@ function renderGamePage(gameState) {
     if(!isCreator){ return "" }
     if(!gameState.game_started || gameState.round_started){ return "" }
     return `
-    <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
-    <input class="waves-effect waves-light btn-large teal" type="submit" value="START ROUND">
-    </form>
+
+      <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
+      <input class="btn btn-round waves-effect waves-light, z-depth-4, btn-large teal" type="submit" value="START ROUND">
+      </form>
+
     `
   }
 
