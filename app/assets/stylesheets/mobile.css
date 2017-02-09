@@ -1,15 +1,12 @@
-/*@media (min-width: 700px), handheld and (orientation: landscape) { ... }
-@media handheld and (grid) and (max-width: 15em) { ... }
-@media print and (min-resolution: 300dpi) { ... }*/
-/*
 @media screen and (max-width: 500px) and (min-width: 10px) {
-  h1 {
-    font-size: 35pt;
+  h3.game-name {
     margin: 3px;
-    font-size: 3vh;
+    font-size: 9vh;
+    text-align: center;
+    font-family: Monaco;
   }
 
-  headers {
+  header {
     font-size: 3vh;
   }
 
@@ -33,9 +30,9 @@
     font-size: 16pt;
     font-family: Monaco;
   }
+}
 
 @media screen and (max-width: 300px) and (min-width: 10px) {
-
   #login-form-div {
     border: none;
   }
@@ -66,30 +63,27 @@
   }
 }
 
-body, html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
-.nav-bar {
-  font-family: Monaco;
-}
-
-a:hover {
-  color: #C0C0C0;
-  text-decoration: none;
-}
-
 h2.banner {
   text-align: center;
   font-family: Monaco;
-  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1)); 
-    background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1)); 
-    background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1)); 
-    background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5)); 
-    }
+  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1));
+    background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1));
+    background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1));
+    background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5));
 }
 
+#round-container {
+  text-align: center;
+  font-family: Monaco;
 
-*/
+.participants {
+  text-align: center;
+}
+
+.player-name {
+  text-align: center;
+  font-family: Monaco;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 3vh;
+}

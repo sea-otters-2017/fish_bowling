@@ -16,7 +16,7 @@ function renderGamePage(gameState) {
 
   function getTitleHTML(){
     return `
-    <h3>${gameState.game.name}</h3>
+    <h3 class="game-name">${gameState.game.name}</h3>
     <div id='round-container'>
     <p>Current Round: ${gameState.current_round.type}</p>
     </div>`;
@@ -35,7 +35,7 @@ function renderGamePage(gameState) {
 
     return `
       <div class='waiting-game'>
-        <h4>Participants</h4>
+        <h4 class="participants">Participants</h4>
         <ul class='player-names-list'>
           ${allPlayers}
         </ul>
