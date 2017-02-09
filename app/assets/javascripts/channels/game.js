@@ -18,9 +18,8 @@ function addSubscriptionListener() {
   $('main').on('submit', '.subscription-form', function(event) {
     event.preventDefault();
     var name = $(event.target).find('input[type=text]').val()
-
-    if (App.cable.subscriptions['subscriptions'].length > 1) {
-      App.cable.subscriptions.remove(App.cable.subscriptions['subscriptions'][1])
+    if (App.cable.subscriptions['subscriptions'].length > 0) {
+      App.cable.subscriptions.remove(App.cable.subscriptions['subscriptions'][0])
     }
 
     App['game_' + name] = App.cable.subscriptions.create({channel: 'GamesChannel', name: name}, {
@@ -58,6 +57,7 @@ function createActionListener(){
   $('main').on('submit', '.action-form', function(event) {
     event.preventDefault();
     var $form = $(this);
+
     $.ajax( {
       url : $form.attr('action'),
       method : "POST",
