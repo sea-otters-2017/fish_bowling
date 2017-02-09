@@ -26,11 +26,13 @@ class GamesController < ApplicationController
 
   def join
     return redirect_to root_path, notice: "'#{params[:name]}' does not exist" unless @game
-    return redirect_to root_path, notice: "'#{params[:name]}' is in progress" unless @game.teams.empty?
+    if (!@game.teams.empty? && !@game.is_over?)
+      return redirect_to root_path, notice: "'#{params[:name]}' is in progress"
+    end
     if !@game.participants.include?(current_user)
       @game.participants << current_user
     end
-    redirect_to game_path(@game)
+    redirect_to @game
   end
 
   def start

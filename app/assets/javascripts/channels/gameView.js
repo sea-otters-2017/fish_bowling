@@ -11,11 +11,6 @@ function renderGamePage(gameState) {
 
   // Universal View
 
-  function getTimerHTML(){
-    if(!gameState.round_started){ return '' }
-    return `<div id='timer' class="fbCountdown"></div>`;
-  };
-
   function getTitleHTML(){
     return `
       <h3 class="game-name">${gameState.game.name}</h3>
@@ -229,12 +224,12 @@ function renderGamePage(gameState) {
   }
 
   var gameHTML;
+
   if(gameState.is_over){
-    window.gameTimer.isPaused = true;
-    gameHTML = showResults()
+    gameHTML = showResults();
+    $('#timer').remove();
   } else {
     gameHTML = `
-      ${getTimerHTML()}
       ${getTitleHTML()}
       ${getWaitingHTML()}
       ${getTeamsHTML()}
