@@ -83,7 +83,7 @@ class Game < ApplicationRecord
       ready: ready?,
       has_cards: cards_added?,
       participants: self.participants,
-      last_turn: last_turn,
+      last_turn: last_turn
     }
   end
 
