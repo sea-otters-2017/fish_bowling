@@ -22,7 +22,7 @@
   font-size: 200%;
 }
 
-.action-form {
+.action-form, .game-form {
   display: inline-block;
   margin: 10px;
 }
