@@ -132,7 +132,8 @@ function renderGamePage(gameState) {
     return `
     <div id="cluegiver-container">
       ${getCardHTML()}
-      ${getCluegiverButtonsHTML()}
+      ${getUnpausedButtons()}
+      ${getPausedButton()}
     </div>
     `;
   }
@@ -141,7 +142,8 @@ function renderGamePage(gameState) {
     return `<h1>${gameState.card}</h1>`;
   }
 
-  function getCluegiverButtonsHTML(){
+  function getUnpausedButtons(){
+    if(gameState.game.is_paused){ return "" }
     return `<div class="actions">
     <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
     <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
@@ -155,7 +157,16 @@ function renderGamePage(gameState) {
     <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
     </form>
     </div>`;
-  };
+  }
+
+  function getPausedButton(){
+    if(!gameState.game.is_paused){ return "" }
+    return `
+    <form class="game-form" action="/games/${gameState.game.name}/unpause" method="post">
+    <input class="waves-effect waves-light btn-large orange" type="submit" value="unpause">
+    </form>
+    </div>`;
+  }
 
   // Observer View
 

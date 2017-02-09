@@ -71,7 +71,6 @@ class GamesController < ApplicationController
 
   def pause
     @game.update_attribute(:is_paused, true)
-    broadcast_pause
     show
   end
 
@@ -84,31 +83,11 @@ class GamesController < ApplicationController
 
   def broadcast_game
     state = @game.full_state
-    ActionCable.server.broadcast( "game_#{params['name']}", { action: :updateGame, gameState: state })
     if !@game.turns.empty? && !@game.is_over?
       ActionCable.server.broadcast( "game_#{params['name']}", { action: :setTimer, gameState: state })
     end
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :updateGame, gameState: state })
     state
-  end
-
-  def broadcast_pause
-    puts
-    puts
-    puts
-    puts 'GAME:'
-    p @game
-    puts
-    puts
-    puts
-    puts 'FULL STATE'
-    p @game.full_state
-    state = @game.full_state
-    ActionCable.server.broadcast( "game_#{params['name']}", { action: :pauseTimer, gameState: state })
-  end
-
-  def broadcast_unpause
-    state = @game.full_state
-    ActionCable.server.broadcast( "game_#{params['name']}", { action: :unpauseTimer, gameState: state })
   end
 
   def game_params

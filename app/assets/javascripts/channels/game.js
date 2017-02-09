@@ -32,18 +32,7 @@ function addSubscriptionListener() {
             renderGamePage(data.gameState);
             break;
           case 'setTimer':
-            if(data.gameState.game.is_paused){
-              pauseTimer(data.gameState);
-            } else{
-              createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
-            }
-            break;
-          case 'pauseTimer':
-            console.log('data.gameState',data.gameState)
-            pauseTimer(data.gameState);
-            break;
-          case 'unpauseTimer':
-            unpauseTimer(data.gameState);
+            createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
         }
       },
@@ -71,7 +60,9 @@ function createActionListener(){
 function gameActionListener(){
   $('main').on('submit', '.game-form', function(event) {
     event.preventDefault();
-    var timeLeft = $('#timer')[0].innerText
+    // var timeLeft = $('#timer')[0].innerText
+    console.log('gameTimer.seconds', gameTimer.seconds);
+    var timeLeft = gameTimer.seconds;
     var $form = $(this);
     $.ajax( {
       url : $form.attr('action'),
@@ -79,4 +70,16 @@ function gameActionListener(){
       data : {timeLeft: timeLeft}
     });
   })
+}
+
+function goToNextTurn(gameState) {
+  var userdata = $("#live[data-userid]").data()
+  var user_id = !!userdata ? userdata.userid : null;
+  var isCluegiver = (user_id === gameState.cluegiver.id);
+  if (isCluegiver) {
+    $.ajax({
+      url : "/games/" + gameState.game.name + "/next_turn",
+      method : "POST"
+    });
+  }
 }
