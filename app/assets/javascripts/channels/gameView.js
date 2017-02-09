@@ -215,7 +215,7 @@ function renderGamePage(gameState) {
     if(!isCreator || !gameState.round_started){ return "" }
     return `
     <div class='next-container'>
-    <form action="/games/${gameState.game.name}/next_turn" method="post">
+    <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
       <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
     </form>
     </div>
