@@ -9,8 +9,6 @@ function renderGamePage(gameState) {
     return player.id === user_id
   })
 
-  console.log('thisPlayer in renderGamePage', thisPlayer)
-
   // Universal View
 
   function getTimerHTML(){
@@ -39,7 +37,6 @@ function renderGamePage(gameState) {
     })
 
     function cardsForm(){
-      console.log('thisPlayer in cardsForm function', thisPlayer)
       if (!thisPlayer || thisPlayer.cards_count < 4) {
         return `
           <div id='create-card-form'>
