@@ -23,7 +23,7 @@ jsTimer.prototype.display = function(){
 };
 
 jsTimer.prototype.updateTime = function() {
-  $("#timer").text(this.seconds ? doubleDigitify(this.seconds) : 'GO');
+  $("#timer").text(this.seconds ? '00:'+doubleDigitify(this.seconds) : 'GO');
 };
 
 jsTimer.prototype.startTimer = function(){
@@ -36,7 +36,7 @@ jsTimer.prototype.startTimer = function(){
 
 function pauseTimer(gameData){
   this.gameTimer.isPaused = true;
-  $("#timer").text(doubleDigitify(gameData.last_turn.seconds_remaining))
+  $("#timer").text('00:'+doubleDigitify(gameData.last_turn.seconds_remaining))
 }
 
 

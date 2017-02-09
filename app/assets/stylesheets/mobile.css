@@ -178,7 +178,8 @@ h5#team-name {
 }
 
 #display-name {
-  padding-left: 160px;
+  float: right;
+  margin-right: 10%;
   font-weight: bold;
   font-size: 4vh;
 }
