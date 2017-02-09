@@ -60,8 +60,6 @@ function createActionListener(){
 function gameActionListener(){
   $('main').on('submit', '.game-form', function(event) {
     event.preventDefault();
-    // var timeLeft = $('#timer')[0].innerText
-    console.log('gameTimer.seconds', gameTimer.seconds);
     var timeLeft = gameTimer.seconds;
     var $form = $(this);
     $.ajax( {
