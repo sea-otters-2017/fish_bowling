@@ -1,9 +1,8 @@
 class PagesController < ApplicationController
   include SessionsHelper
-  before_action :authenticate_user!
 
   def index
-    # redirect_to new_user_session unless user_signed_in?
+    redirect_to login_path unless session_user
     @game = Game.new
   end
 

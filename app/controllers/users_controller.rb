@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.persisted?
       set_user(@user)
+      log_in(@user.id)
       redirect_to root_path
     else
       render 'new'
