@@ -229,8 +229,8 @@ function renderGamePage(gameState) {
   }
 
   var gameHTML;
+  
   if(gameState.is_over){
-    window.gameTimer.isPaused = true;
     gameHTML = showResults()
   } else {
     gameHTML = `
