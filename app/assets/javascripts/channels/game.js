@@ -70,7 +70,6 @@ function gameActionListener(){
   $('main').on('submit', '.game-form', function(event) {
     event.preventDefault();
     var timeLeft = gameTimer.seconds;
-    console.log('gameTimer.seconds',gameTimer.seconds)
     var $form = $(this);
     preventDoubleClick(event.target)
     $.ajax( {
