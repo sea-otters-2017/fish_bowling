@@ -197,6 +197,14 @@ function renderGamePage(gameState) {
     `
   }
 
+  function buzzer() {
+    if(gameState.buzz){
+      return `
+        <audio autoplay hidden='hidden' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>
+      `
+    }
+  }
+
   var gameHTML;
   if(gameState.is_over){
     window.gameTimer.isPaused = true;
@@ -211,6 +219,7 @@ function renderGamePage(gameState) {
       ${getCluegiverHTML()}
       ${getObserverHTML()}
       ${nextTurnButton()}
+      ${buzzer()}
     `
   }
 

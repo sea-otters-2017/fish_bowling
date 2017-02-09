@@ -71,6 +71,11 @@ class GamesController < ApplicationController
   def pause
   end
 
+  def buzz
+    full_state.buzz = true
+    show
+  end
+
   private
 
   def broadcast_game
