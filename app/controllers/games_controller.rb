@@ -72,8 +72,7 @@ class GamesController < ApplicationController
   end
 
   def buzz
-    @game.full_state.buzz = true
-    show
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :buzz })
   end
 
   private

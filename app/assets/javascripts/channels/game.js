@@ -37,7 +37,7 @@ function addSubscriptionListener() {
             break;
           case 'buzz':
             console.log('BUZZZZZZZ from subscriptions')
-            renderGamePage(data.gameState)
+            $('main').append("<audio autoplay hidden='hidden' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>")
             break;
         }
       },
