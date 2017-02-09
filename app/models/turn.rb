@@ -4,7 +4,7 @@ class Turn < ApplicationRecord
   has_and_belongs_to_many :cards, join_table: "cards_turns"
   has_many :cards_turns
 
-  validates_presence_of :round_id, :player_id
+  validates_presence_of :round_id, :player_id, :seconds_remaining
 
   def last_card
     last_add.card
