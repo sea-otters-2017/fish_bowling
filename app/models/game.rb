@@ -74,7 +74,8 @@ class Game < ApplicationRecord
       is_over: is_over?,
       game_started: (!teams.empty?),
       round_started: (!turns.empty?),
-      current_round: {type: (current_round.round_type.name if current_round)},
+      current_round: {type: (current_round.round_type.name if current_round),
+                      rules: (current_round.round_type.description)},
       creator: {id: creator.id, display_name: creator.display_name},
       teams: teams_list,
       cluegiver: {  id: (cluegiver.id if last_turn.persisted?),
@@ -112,7 +113,9 @@ class Game < ApplicationRecord
 
   def players
     self.participants.map do |player|
-      [player, {cards_count: player.cards_from(self).count}]
+      {display_name: player.display_name,
+      id: player.id,
+      cards_count: player.cards_from(self).count}
     end
   end
 

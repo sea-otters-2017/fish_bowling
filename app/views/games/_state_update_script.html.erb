@@ -1,4 +1,4 @@
 <script type="text/javascript">
-   var gameState = <%== @game_state.nil? ? @game.full_state.to_json : @game_state.to_json %>;
-   renderGamePage(gameState);
+  var gameState = <%== @game.full_state.to_json %>;
+  renderGamePage(gameState);
 </script>

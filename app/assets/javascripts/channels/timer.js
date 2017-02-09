@@ -41,7 +41,7 @@ function pauseTimer(gameData){
 
 
 function createTimer(gameData, seconds){
-  if(gameData.game.is_paused){ return this.gameTimer.isPaused = true; }
+  if(gameData.game.is_paused && this.gameTimer){ return this.gameTimer.isPaused = true; }
   this.gameTimer || (this.gameTimer = new jsTimer(60));
   this.gameTimer.seconds = seconds;
   this.gameTimer.isPaused = true;
