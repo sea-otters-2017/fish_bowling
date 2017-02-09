@@ -36,7 +36,7 @@ function renderGamePage(gameState) {
     })
 
     function cardsForm(){
-      if (thisPlayer[1].cards_count < 4) {
+      if (!!thisPlayer[1].cards_count < 4) {
         return `
           <div id='create-card-form'>
             <form id="new_card" class="action-form" action="/cards" accept-charset="UTF-8" method="post">
