@@ -93,6 +93,7 @@ class GamesController < ApplicationController
   def set_seconds_remaining
     @seconds_remaining = params[:timeLeft]
     @game.last_turn.update_attribute(:seconds_remaining, @seconds_remaining)
+    @game.save
   end
 
 end
