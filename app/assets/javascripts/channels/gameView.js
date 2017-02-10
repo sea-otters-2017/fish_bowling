@@ -244,11 +244,13 @@ function renderGamePage(gameState, count_down = false) {
     $('.navbar-brand').show();
   }
   else if (count_down === 'nextTurn') {
+    $('#timer').hide();
     gameHTML = `
       ${getTitleHTML()}
       ${startTurnFormHTML()}
     `
   } else if (count_down === 'nextRound') {
+    $('#timer').hide();
     gameHTML = `
       ${getTitleHTML()}
       <div class='results-container no-timer'><h4>Hey!</h4><h5>The next round starts in 10 seconds!</h5>
