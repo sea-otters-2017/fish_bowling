@@ -40,6 +40,9 @@ function addSubscriptionListener() {
           case 'setTimer':
             createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
+          case 'setCountDown':
+            renderGamePage(data.gameState, true);
+          break;
           case 'buzz':
             $('#toot').trigger('play')
             break;
