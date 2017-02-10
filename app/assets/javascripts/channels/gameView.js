@@ -181,7 +181,7 @@ function renderGamePage(gameState) {
       <div id="observer-container" class="card darken-1">
         <h1>${gameState.cluegiver.display_name}'s turn</h1>
           <form class="game-form buzzer" action="/games/${gameState.game.name}/buzz" method="post">
-            <a class="myButton" type="submit">BUZZ</a>
+            <input class="myButton" type="submit" value='BUZZ'>
           </form>
       </div>
     `;
