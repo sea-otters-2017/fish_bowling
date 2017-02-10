@@ -90,3 +90,7 @@ h3.game-name {
   font-family: monospace;
   margin: auto;
 }
+
+.results-container {
+  text-align: center;
+}
