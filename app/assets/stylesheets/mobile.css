@@ -119,8 +119,6 @@ h4.participants {
 
 .action-form {
   text-align: center;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 .game-ready-status {
@@ -198,13 +196,16 @@ h5#team-name {
 }
 
 .game-form {
-  float:left;
-  width:20%;
+  justify-content: space-between;
+  /*float:left;*/
+  width:25%;
 }
 
 .game-form input{
-  padding: 5px 15px;
+  width: 20vw;
+  padding: 5px 0;
   margin: auto 5px;
+  text-align: center;
 }
 
 .actions {
@@ -212,13 +213,15 @@ h5#team-name {
   margin: 0 auto;
   text-align: center;
   display:flex;
-
+  justify-content: space-around;
 }
 
 .next-container {
   padding-top: 20px;
-  text-align: center;
-  text-align: center;
+}
+
+.next-container form input {
+  width: 30vw;
 }
 
 .next-turn {

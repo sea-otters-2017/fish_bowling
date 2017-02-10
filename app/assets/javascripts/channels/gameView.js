@@ -40,7 +40,6 @@ function renderGamePage(gameState) {
               <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
               <div class="actions-container">
                 <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
-                  <i class="material-icons right">send</i>
                 </button>
               </div>
             </form>

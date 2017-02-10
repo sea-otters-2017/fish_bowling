@@ -78,3 +78,7 @@ h3.game-name {
   margin-left: 15px;
   font-size: 1.2em;
 }
+
+.next-container form {
+  margin: auto;
+}
