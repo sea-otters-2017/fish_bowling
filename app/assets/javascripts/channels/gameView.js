@@ -130,7 +130,6 @@ function renderGamePage(gameState, count_down = false) {
   }
 
   function startTurnFormHTML(){
-
     return `
       <div class="countdown-display">${gameState.cluegiver['display_name']} is up in 5 seconds</div>
 
