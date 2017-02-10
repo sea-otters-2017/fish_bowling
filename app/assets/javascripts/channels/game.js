@@ -45,6 +45,9 @@ function addSubscriptionListener() {
           case 'buzz':
             $('#toot').trigger('play')
             break;
+          case 'beforeRound':
+            renderGamePage(data.gameState, true)
+            break;
         }
       },
 

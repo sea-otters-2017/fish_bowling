@@ -257,5 +257,9 @@ function renderGamePage(gameState, count_down = false) {
     `
   }
 
+  if(gameState.between_round) {
+
+  }
+
   $('#live').html(gameHTML);
 }
