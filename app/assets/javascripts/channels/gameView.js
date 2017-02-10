@@ -125,8 +125,7 @@ function renderGamePage(gameState, count_down = false) {
 
   function startTurnFormHTML(){
     return `
-      <div class="countdown-display">${gameState.cluegiver['display_name']} is up in 5 seconds</div>
-
+      <div class="results-container"><h5>${gameState.cluegiver['display_name']} is up in 5 seconds!</h5></div>
     `
   }
 
@@ -217,11 +216,11 @@ function renderGamePage(gameState, count_down = false) {
     if(gameState.game.is_paused){ return "" }
     if(!isCreator || !gameState.round_started){ return "" }
     return `
-    <div class='next-container'>
-    <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
-      <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
-    </form>
-    </div>
+      <div class='next-container'>
+      <form class="game-form" action="/games/${gameState.game.name}/next_turn" method="post">
+        <input class="waves-effect waves-light btn-large green" type="submit" value="NEXT TURN">
+      </form>
+      </div>
     `
   }
 
@@ -239,13 +238,19 @@ function renderGamePage(gameState, count_down = false) {
     $('#timer').remove();
     $('.navbar-brand').show();
   }
-  else if (count_down) {
+  else if (count_down === 'nextTurn') {
     gameHTML = `
       ${getTitleHTML()}
       ${startTurnFormHTML()}
     `
-  }
-  else {
+  } else if (count_down === 'nextRound') {
+    gameHTML = `
+      ${getTitleHTML()}
+      <div class='results-container'><h4>Hey!</h4><h5>The next round starts in 10 seconds!</h5>
+      <p>${gameState.current_round.rules}</p>
+      </div>
+    `
+  } else {
     gameHTML = `
       ${getTitleHTML()}
       ${getWaitingHTML()}
@@ -255,10 +260,6 @@ function renderGamePage(gameState, count_down = false) {
       ${getObserverHTML()}
       ${nextTurnButton()}
     `
-  }
-
-  if(gameState.between_round) {
-
   }
 
   $('#live').html(gameHTML);
