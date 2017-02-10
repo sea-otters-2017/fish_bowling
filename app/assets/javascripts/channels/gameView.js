@@ -183,15 +183,10 @@ function renderGamePage(gameState) {
     return `
       <div id="observer-container" class="card blue-grey darken-1">
         <h1>${gameState.cluegiver.display_name}'s turn</h1>
-<<<<<<< HEAD
-          <form class="buzzer" action="/games/${gameState.game.name}/buzz" method="post">
-            <a class="myButton" type="submit">BUZZ</a>
-          </form>
-=======
+
       <form class="game-form" action="/games/${gameState.game.name}/buzz" method="post">
         <input class="waves-effect waves-light btn-large black" type="submit" value="WRONG">
       </form>
->>>>>>> add card styling around card concepts
       </div>
     `;
   }
@@ -229,6 +224,8 @@ function renderGamePage(gameState) {
   }
 
   var gameHTML;
+
+  if(!gameState.round_started){ $('#timer').remove(); }
 
   if(gameState.is_over){
     gameHTML = showResults();
