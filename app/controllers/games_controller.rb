@@ -40,7 +40,7 @@ class GamesController < ApplicationController
   end
 
   def start_round
-    unpause
+    @game.update_attribute(:is_paused, false)
     @game.reset_cards
     next_turn
    end
@@ -62,6 +62,9 @@ class GamesController < ApplicationController
 
   def next_turn
     StartNextTurn.new(@game).call
+    state = @game.full_state
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :setCountDown, gameState: state })
+    sleep 5
     show
   end
 
