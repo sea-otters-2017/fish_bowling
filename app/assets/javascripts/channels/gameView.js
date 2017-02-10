@@ -1,9 +1,10 @@
-function renderGamePage(gameState) {
+function renderGamePage(gameState, count_down = false) {
   var team1 = gameState.teams[0];
   var team2 = gameState.teams[1];
   var userdata = $("#live[data-userid]").data()
   var user_id = !!userdata ? userdata.userid : null;
   var isCluegiver = (user_id === gameState.cluegiver.id);
+  var cluegiver = gameState.cluegiver['display_name']
   var isCreator = (user_id === gameState.creator.id);
   var thisPlayer = gameState.participants.find(function(player) {
     return player.id === user_id
@@ -128,6 +129,14 @@ function renderGamePage(gameState) {
     `;
   }
 
+  function startTurnFormHTML(){
+
+    return `
+      <div class="countdown-display">${gameState.cluegiver['display_name']} is up in 5 seconds</div>
+
+    `
+  }
+
   function startRoundFormHTML(){
     if(!isCreator){ return "" }
     if(!gameState.game_started || gameState.round_started){ return "" }
@@ -232,7 +241,14 @@ function renderGamePage(gameState) {
   if(gameState.is_over){
     window.gameTimer.isPaused = true;
     gameHTML = showResults()
-  } else {
+  }
+  else if (count_down) {
+    gameHTML = `
+      ${getTitleHTML()}
+      ${startTurnFormHTML()}
+    `
+  }
+  else {
     gameHTML = `
       ${getTimerHTML()}
       ${getTitleHTML()}
