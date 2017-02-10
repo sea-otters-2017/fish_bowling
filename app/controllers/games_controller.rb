@@ -42,7 +42,7 @@ class GamesController < ApplicationController
   end
 
   def start_round
-    unpause
+    @game.update_attribute(:is_paused, false)
     @game.reset_cards
     next_turn
    end

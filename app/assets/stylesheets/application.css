@@ -14,7 +14,13 @@
  *= require_self
  */
 
-* { font-family: 'Cabin', sans-serif; }
+* {
+  font-family: 'Acme', sans-serif;
+}
+
+body {
+  background-color: rgba(177, 220, 251, 0.05);
+}
 
 #timer {
   height: 50px;
@@ -51,10 +57,7 @@ a:hover {
   padding: 2px;
 }
 
-/*#card-concept {*/
 #cluegiver-container h1, #observer-container h1 {
-    font-family: 'Cabin', sans-serif;
-    /*font-family: Monaco;*/
     color: white;
     text-align: center;
     font-size: 4em;
@@ -80,5 +83,10 @@ h3.game-name {
 }
 
 .next-container form {
+  margin: auto;
+}
+
+#timer {
+  font-family: monospace;
   margin: auto;
 }
