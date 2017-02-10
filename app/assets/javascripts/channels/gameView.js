@@ -196,11 +196,10 @@ function renderGamePage(gameState) {
       <div class='results-container'>
         <div class='winners'>
           <h4>${winningTeam.name} win!</h4>
-          <h5>${winningTeam.score}</h5>
+          <h5>${winningTeam.score} - ${losingTeam.score}</h5>
         </div>
         <div class='losers'>
-          <h5>${losingTeam.name}</h5>
-          <h5>${losingTeam.score}</h5>
+          <h5>Maybe next time, ${losingTeam.name}!</h5>
         </div>
       </div>
     `
