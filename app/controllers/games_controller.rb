@@ -64,6 +64,9 @@ class GamesController < ApplicationController
 
   def next_turn
     StartNextTurn.new(@game).call
+    state = @game.full_state
+    ActionCable.server.broadcast( "game_#{params['name']}", { action: :setCountDown, gameState: state })
+    sleep 5
     show
   end
 
