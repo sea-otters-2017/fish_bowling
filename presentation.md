@@ -27,35 +27,40 @@
 * Travis CI
 * SimpleCov
 * PostgreSQL
+
 ## Design Philosophies
 
 * Mobile-first design
 * Responsiveness
-* Single Responsibility
+
+## Features & Challenges [+code samples]
 * Less is more
-   * Service Objects
-
-
-## Features we're most proud of [+code samples]
-* 
-
-## Challenges [+code samples]
-
+   * Single Responsibility
+   * Service Objects [ex: Random Team]
 * ActionCable
-* JavaScript Timer
-* persisting time between Rounds
-* passing game state data around
-* Heroku deployment
-    * game freezes at "next round" page
-    * Ruby `sleep` method?
-* hiding the timer when we need to
+   * Multiple Subscriptions per game
+   * Challenge: Blocking re-entry during game session
+* Game Design Challenges
+   * Nonlinear nature of gameplay
+   * Asychronicity [AJAX -> Manipulate Game Data -> Broadcasting -> REPEAT cross fingers]
+* Maintaining gameState [Data shared between Front+Back]
+   * Rendering on Client Side
+   * Dependency on AJAX
+* Heroku deployment [TBD by Pat]
+   * Setup for Redis 
+   * game freezes at "next round" page
+   * Ruby `sleep` method?
+* JS-Timer: Tricksy Timerzes [+Gollum]
+   * hiding the timer when we need to 
+   * persisting time between Rounds
 * building the pause pages between rounds and turns
 * getting a buzzer to play on all devices
 
 ## Known Bugs
 
-* Ruby `sleep` method glitch on heroku
-* Scoring... meh
+* Ruby `sleep` method glitch on heroku [Pat??? Heroku problems]
+* Scoring... urgh! 
+   * Made progress on debuggin' 
 * Timer doesn't refresh immediately after wait-pages
 
 ## Live Demo [THE PAT SHOW]
@@ -66,7 +71,8 @@
 * Game Creator Options
    * Remove players
    * Update Scores
-* TESTS
+* Swag [Bowling Shirts]
+* Make millions [billions???]
 
 ## Questions & Answers
 * Team Photo!!!
