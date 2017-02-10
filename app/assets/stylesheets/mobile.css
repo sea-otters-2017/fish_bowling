@@ -10,7 +10,7 @@
     margin: 3px;
     font-size: 9vh;
     text-align: center;
-    font-family: Monaco;
+    /*font-family: Monaco;*/
   }
 
   header {
@@ -27,7 +27,7 @@
     margin-right: 0;
     display: inline-grid;
     font-size: 18pt;
-    font-family: Monaco;
+    /*font-family: Monaco;*/
   }
 
   .btn-2 {
@@ -35,7 +35,7 @@
     margin-right: 0;
     display: inline-grid;
     font-size: 16pt;
-    font-family: Monaco;
+    /*font-family: Monaco;*/
   }
 }
 
@@ -64,12 +64,12 @@
 }
 
 .nav-bar {
-  font-family: Monaco;
+  /*font-family: Monaco;*/
 }
 
 h2.banner {
   text-align: center;
-  font-family: Monaco;
+  /*font-family: Monaco;*/
   background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1));
     background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1));
     background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1));
@@ -78,7 +78,7 @@ h2.banner {
 
 #round-container {
   text-align: center;
-  font-family: Monaco;
+  /*font-family: Monaco;*/
 }
 
 h4.participants {
@@ -87,7 +87,7 @@ h4.participants {
 
 .player-name {
   text-align: center;
-  font-family: Monaco;
+  /*font-family: Monaco;*/
   padding-left: 5px;
   padding-right: 5px;
   font-size: 3vh;
@@ -95,7 +95,7 @@ h4.participants {
 
 #new_card {
   text-align: center;
-  font-family: Monaco;
+  /*font-family: Monaco;*/
   padding-left: 5px;
   padding-right: 5px;
   font-size: 3vh;
@@ -119,8 +119,6 @@ h4.participants {
 
 .action-form {
   text-align: center;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 .game-ready-status {
@@ -132,7 +130,7 @@ h4.participants {
 
 h4.banner {
   text-align: center;
-  font-family: Monaco;
+  /*font-family: Monaco;*/
 }
 
 .team-1 {
@@ -150,7 +148,7 @@ h4.banner {
 h5#team-name {
   font-weight: bold;
   text-align: center;
-  font-family: Monaco;
+  /*font-family: Monaco;*/
   font-size: 4vh;
 }
 
@@ -173,7 +171,7 @@ h5#team-name {
 
 #display-name {
   float: right;
-  margin-right: 10%;
+  margin-right: 2em;
   text-align: right;
   font-weight: bold;
   font-size: 4vh;
@@ -198,8 +196,16 @@ h5#team-name {
 }
 
 .game-form {
-  float:left;
-  width:30%;
+  justify-content: space-between;
+  /*float:left;*/
+  width:25%;
+}
+
+.game-form input{
+  width: 20vw;
+  padding: 5px 0;
+  margin: auto 5px;
+  text-align: center;
 }
 
 .actions {
@@ -207,13 +213,15 @@ h5#team-name {
   margin: 0 auto;
   text-align: center;
   display:flex;
-
+  justify-content: space-around;
 }
 
 .next-container {
   padding-top: 20px;
-  text-align: center;
-  text-align: center;
+}
+
+.next-container form input {
+  width: 30vw;
 }
 
 .next-turn {
@@ -265,6 +273,11 @@ h5#team-name {
   text-shadow:0px 1px 0px #82160e;
 }
 
+form.buzzer {
+  margin: auto auto;
+  margin-bottom: 2vh;
+}
+
 .myButton:hover {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24437), color-stop(1, #c62d1f));
   background:-moz-linear-gradient(top, #f24437 5%, #c62d1f 100%);
@@ -280,4 +293,3 @@ h5#team-name {
   position:relative;
   top:1px;
 }
-

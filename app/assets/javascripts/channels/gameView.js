@@ -40,7 +40,6 @@ function renderGamePage(gameState) {
               <input type="hidden" name="game_id" id="game_id" value="${gameState.game.id}" />
               <div class="actions-container">
                 <button class="btn waves-effect cyan accent-1, z-depth-4" type="submit" name="action">ADD CARD
-                  <i class="material-icons right">send</i>
                 </button>
               </div>
             </form>
@@ -127,11 +126,9 @@ function renderGamePage(gameState) {
     if(!isCreator){ return "" }
     if(!gameState.game_started || gameState.round_started){ return "" }
     return `
-
       <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
         <input class="btn btn-round waves-effect waves-light, z-depth-4, btn-large teal" type="submit" value="START ROUND">
       </form>
-
     `
   }
 
@@ -140,7 +137,7 @@ function renderGamePage(gameState) {
   function getCluegiverHTML() {
     if(!gameState.round_started || !isCluegiver){ return "" }
     return `
-      <div id="cluegiver-container">
+      <div id="cluegiver-container" class="card darken-1">
         ${getUnpausedButtons()}
         ${getPausedButton()}
       </div>
@@ -167,7 +164,7 @@ function renderGamePage(gameState) {
   function getPausedButton(){
     if(!gameState.game.is_paused){ return "" }
     return `
-      <div class="actions">
+      <div class="actions center">
         <form class="game-form" action="/games/${gameState.game.name}/unpause" method="post">
         <input class="waves-effect waves-light btn-large orange" type="submit" value="unpause">
         </form>
@@ -181,15 +178,14 @@ function renderGamePage(gameState) {
   function getObserverHTML() {
     if(!gameState.round_started || isCluegiver){ return "" }
     return `
-      <div id="observer-container">
+      <div id="observer-container" class="card darken-1">
         <h1>${gameState.cluegiver.display_name}'s turn</h1>
-          <form class="buzzer" action="/games/${gameState.game.name}/buzz" method="post">
+          <form class="game-form buzzer" action="/games/${gameState.game.name}/buzz" method="post">
             <a class="myButton" type="submit">BUZZ</a>
           </form>
       </div>
     `;
   }
-
   // Results View
 
   function showResults() {
@@ -224,9 +220,18 @@ function renderGamePage(gameState) {
 
   var gameHTML;
 
+  if(!gameState.round_started){
+    $('#timer').hide();
+  } else {
+    $('#timer').show();
+    $('.navbar-brand').hide();
+  }
+
   if(gameState.is_over){
     gameHTML = showResults();
     $('#timer').remove();
+    $('.navbar-brand').show();
+
   } else {
     gameHTML = `
       ${getTitleHTML()}
