@@ -48,6 +48,7 @@ a:hover {
   background-color: #5e93ab;
   width: 90%;
   margin: auto;
+  padding: 2px;
 }
 
 /*#card-concept {*/
@@ -57,7 +58,6 @@ a:hover {
     color: white;
     text-align: center;
     font-size: 4em;
-    padding-top: 15px;
 }
 
 .center {
