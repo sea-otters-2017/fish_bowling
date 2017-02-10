@@ -1,3 +1,5 @@
+[fish bowling logo](http://i.imgur.com/qg0K5Ip.png)
+
 # fish-bowling [![Build Status](https://travis-ci.org/sea-otters-2017/fish_bowling.svg?branch=master)](https://travis-ci.org/sea-otters-2017/fish_bowling)
 
 ## Dev Bootcamp Final Project
