@@ -24,7 +24,7 @@ Fish-bowling is a digital adaption of the fun and easy guessing game: Fish Bowl.
 ### Installation Instructions
 
 To install this code:
-* Visit the game page on [heroku](https://fish-bowling.herokuapp.com)!
+* Visit the game page on [heroku](https://fishbowling.herokuapp.com)!
 
 * Otherwise:
     * clone this repo
