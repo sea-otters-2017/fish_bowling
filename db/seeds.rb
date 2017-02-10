@@ -33,14 +33,31 @@ pat = User.create!( display_name: 'pat',
   end
 end
 
+DBC_CARDS = ['Stu',
+             'Jordan',
+             'Cyberspace',
+             'The Information Superhighway',
+             'Asynchronous',
+             'RSpec',
+             'TDD',
+             'Otters',
+             'Czar',
+             'Agile workflow',
+             'Commit messages',
+             'GitHub',
+             '500 Internal Server Error',
+             'Engineering Empathy',
+             'Star Wars',
+             'Kanto region'].shuffle
+
 
 game = Game.new(name: "Demo")
 game.creator = pat
 game.participants << [kim, katherine, justin, pat]
 game.save!
-game.participants.each do |participant|
-  4.times do
-    card = participant.cards.new(concept: Faker::Pokemon.name)
+game.participants.each_with_index do |participant, index|
+  4.times do |time|
+    card = participant.cards.new(concept: DBC_CARDS[time + index])
     game.cards << card
   end
 end
