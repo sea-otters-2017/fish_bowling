@@ -129,7 +129,8 @@ h3.game-name {
   clear: both;
   margin: auto;
 }
-/*
-#unpause-form {
-  margin: auto;
-}*/
+
+.notice, .alert {
+  text-align: center;
+  color: #ee6e73;
+}

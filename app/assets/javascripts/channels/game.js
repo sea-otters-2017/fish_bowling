@@ -87,6 +87,7 @@ function gameActionListener(){
 }
 
 function goToNextTurn(gameState) {
+  $('#timer').hide();
   var userdata = $("#live[data-userid]").data()
   var user_id = !!userdata ? userdata.userid : null;
   var isCreator = (user_id === gameState.creator.id);

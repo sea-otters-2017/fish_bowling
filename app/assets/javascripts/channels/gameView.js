@@ -127,7 +127,7 @@ function renderGamePage(gameState, count_down = false) {
 
   function startTurnFormHTML(){
     return `
-      <div class="results-container"><h5>${gameState.cluegiver['display_name']} is up in 5 seconds!</h5></div>
+      <div class="results-container no-timer"><h5>${gameState.cluegiver['display_name']} is up in 5 seconds!</h5></div>
     `
   }
 
@@ -251,7 +251,7 @@ function renderGamePage(gameState, count_down = false) {
   } else if (count_down === 'nextRound') {
     gameHTML = `
       ${getTitleHTML()}
-      <div class='results-container'><h4>Hey!</h4><h5>The next round starts in 10 seconds!</h5>
+      <div class='results-container no-timer'><h4>Hey!</h4><h5>The next round starts in 10 seconds!</h5>
       <p>${gameState.current_round.rules}</p>
       </div>
     `
