@@ -107,18 +107,20 @@ function renderGamePage(gameState, count_down = false) {
 
     return `
       <h4 class="banner">Teams:</h4>
-      <div class="team-1">
-        <h5 id="team-name">${team1.name}</h5>
-        <ul>
-          <div class="team-players">${team1Players}</div>
-        </ul>
-      </div>
+      <div class='teams-container'>
+        <div class="team-1">
+          <h5 id="team-name">${team1.name}</h5>
+          <ul>
+            <div class="team-players">${team1Players}</div>
+          </ul>
+        </div>
 
-      <div class="team-2">
-        <h5 id="team-name">${team2.name}</h5>
-        <ul>
-          <div class="team-players">${team2Players}</div>
-        </ul>
+        <div class="team-2">
+          <h5 id="team-name">${team2.name}</h5>
+          <ul>
+            <div class="team-players">${team2Players}</div>
+          </ul>
+        </div>
       </div>
     `;
   }
@@ -133,7 +135,7 @@ function renderGamePage(gameState, count_down = false) {
     if(!isCreator){ return "" }
     if(!gameState.game_started || gameState.round_started){ return "" }
     return `
-      <form class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
+      <form id='start-round-button' class="action-form" action="/games/${gameState.game.name}/start_round" method="post">
         <input class="btn btn-round waves-effect waves-light, z-depth-4, btn-large teal" type="submit" value="START ROUND">
       </form>
     `
@@ -144,37 +146,40 @@ function renderGamePage(gameState, count_down = false) {
   function getCluegiverHTML() {
     if(!gameState.round_started || !isCluegiver){ return "" }
     return `
-      <div id="cluegiver-container" class="card darken-1">
         ${getUnpausedButtons()}
         ${getPausedButton()}
-      </div>
     `;
   }
 
   function getUnpausedButtons(){
     if(gameState.game.is_paused){ return "" }
     return `
-    <h1 id="card-concept">${gameState.card}</h1>
-      <div class="actions">
-        <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
-          <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
-        </form>
-        <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
-          <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
-        </form>
-        <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
-          <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
-        </form>
-      </div>`;
+    <div id="cluegiver-container" class="card darken-1">
+      <h1 id="card-concept">${gameState.card}</h1>
+        <div class="actions">
+          <form class="game-form" action="/games/${gameState.game.name}/pass" method="post">
+            <input class="waves-effect waves-light btn-large red" type="submit" value="pass">
+          </form>
+          <form class="game-form" action="/games/${gameState.game.name}/win_card" method="post">
+            <input class="waves-effect waves-light btn-large teal" type="submit" value="got it!">
+          </form>
+          <form class="game-form" action="/games/${gameState.game.name}/pause" method="post">
+            <input class="waves-effect waves-light btn-large orange" type="submit" value="pause">
+          </form>
+        </div>
+      </div>
+    `;
   }
 
   function getPausedButton(){
     if(!gameState.game.is_paused){ return "" }
     return `
-      <div class="actions center">
-        <form class="game-form" action="/games/${gameState.game.name}/unpause" method="post">
-        <input class="waves-effect waves-light btn-large orange" type="submit" value="unpause">
-        </form>
+      <div id="unpause-container" class="card darken-1">
+        <div class="actions center" id="unpause-form">
+          <form class="game-form" action="/games/${gameState.game.name}/unpause" method="post">
+            <input class="waves-effect waves-light btn-large orange" type="submit" value="unpause">
+          </form>
+        </div>
       </div>
     `;
   }

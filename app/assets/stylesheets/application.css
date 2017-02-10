@@ -18,6 +18,11 @@
   font-family: 'Acme', sans-serif;
 }
 
+main {
+  max-width: 750px;
+  margin: auto;
+}
+
 body {
   background-color: rgba(177, 220, 251, 0.05);
 }
@@ -50,11 +55,20 @@ a:hover {
   text-decoration: none;
 }
 
-#cluegiver-container, #observer-container {
+#cluegiver-container, #observer-container, #unpause-container {
   background-color: #5e93ab;
   width: 90%;
+  max-width: 600px;
   margin: auto;
   padding: 2px;
+}
+
+#unpause-container {
+  width: 25vw;
+}
+
+#unpause-container form {
+  width: 20vw;
 }
 
 #cluegiver-container h1, #observer-container h1 {
@@ -94,3 +108,28 @@ h3.game-name {
 .results-container {
   text-align: center;
 }
+
+.field-container input {
+  max-width: 300px;
+}
+
+.subscription-form {
+  max-width: 500px;
+  margin: auto;
+}
+
+.teams-container {
+  max-width: 500px;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
+
+#start-round-button {
+  clear: both;
+  margin: auto;
+}
+/*
+#unpause-form {
+  margin: auto;
+}*/
