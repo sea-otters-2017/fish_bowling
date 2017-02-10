@@ -26,7 +26,7 @@
 * RSpec
 * Travis CI
 * SimpleCov
-
+* PostgreSQL
 ## Design Philosophies
 
 * Mobile-first design
