@@ -32,3 +32,15 @@ pat = User.create!( display_name: 'pat',
     end
   end
 end
+
+
+game = Game.new(name: "Demo")
+game.creator = pat
+game.participants << [kim, katherine, justin, pat]
+game.save!
+game.participants.each do |participant|
+  4.times do
+    card = participant.cards.new(concept: Faker::Pokemon.name)
+    game.cards << card
+  end
+end
