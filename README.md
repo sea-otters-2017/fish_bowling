@@ -6,29 +6,27 @@
 
 ## Dev Bootcamp Final Project
 
+This is a final project for the Dev Bootcamp Sea Otters 2017 Cohort (Seattle)
+
 ### Contributors
 
-* Kim T. Tran
-    * [@kimtran27](https://github.com/kimtran27)
-* Pat Holland
-    * [@pholls](https://github.com/pholls)
-* Justin Grassé
-    * [@justGrasse](https://github.com/justGrasse)
-* Katherine Guenther
-    * [@KatherineGuenther](https://github.com/KatherineGuenther)
+* [Kim T. Tran](https://github.com/kimtran27)
+* [Pat Holland](https://github.com/pholls)
+* [Justin Grassé](https://github.com/justGrasse)
+* [Katherine Guenther](https://github.com/KatherineGuenther)
 
 ### Description
 
-Fish-bowling is a digital adaption of the fun and easy guessing game: Fish Bowl.  Throughout the game there are 3 rounds with 4 or more players, each following with their mobile device or desktop.  This app will feature realtime updates to a constantly changing, time-crunchingly exciting thrill-game.  Enjoy!
+FishBowling is a digital adaption of the fun party game [Fish Bowl](http://www.wikihow.com/Play-Fish-Bowl). Throughout the game there are 3 rounds with 4 or more players, each following with their mobile device or desktop. This app features realtime updates to a constantly changing, time-crunchingly exciting thrill-game.  Enjoy!
 
-### Installation Instructions
+#### Play Online
 
-To install this code:
 * Visit the game page on [heroku](https://fishbowling.herokuapp.com)!
 
-* Otherwise:
-    * clone this repo
-    * enter `bundle install` into terminal
-    * enter `bin/rails server` into terminal
-    * in a web browser, open localhost:3000
-    * follow on-screen instructions
+#### Install Locally
+
+* clone this repo
+* enter `bundle install` into terminal
+* enter `bin/rails server` into terminal
+* in a web browser, open localhost:3000
+* follow on-screen instructions
