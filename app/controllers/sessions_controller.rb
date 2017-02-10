@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
       log_in(user.id)
       set_user(user)
       # cookies.signed[:user_id] = user.id
-      redirect_to root_path, :flash => { :notice => "Hello, #{user.display_name} You are now logged in." }
+      redirect_to root_path, :flash => { :notice => "Hello, #{user.display_name}! You are now logged in." }
     else
-      redirect_to root_path, :flash => { :notice => "You have NOT logged in! Invalid Email and/or Password Criteria." }
+      redirect_to root_path, :flash => { :notice => "You have NOT logged in! Invalid email or password." }
     end
   end
 
