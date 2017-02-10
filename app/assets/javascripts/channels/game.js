@@ -40,10 +40,13 @@ function addSubscriptionListener() {
             createTimer(data.gameState, data.gameState.last_turn.seconds_remaining || 60);
             break;
           case 'setCountDown':
-            renderGamePage(data.gameState, true);
-          break;
+            renderGamePage(data.gameState, 'nextTurn');
+            break;
           case 'buzz':
             $('#toot').trigger('play')
+            break;
+          case 'beforeRound':
+            renderGamePage(data.gameState, 'nextRound')
             break;
         }
       },

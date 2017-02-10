@@ -42,6 +42,9 @@ class GamesController < ApplicationController
   end
 
   def start_round
+    state = @game.full_state
+    ActionCable.server.broadcast("game_#{params['name']}", { action: :beforeRound, gameState: state })
+    sleep 10
     @game.update_attribute(:is_paused, false)
     @game.reset_cards
     next_turn
