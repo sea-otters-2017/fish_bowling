@@ -16,12 +16,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'redis'
+gem 'faker', '~> 1.7.2'
 
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
-  gem 'faker', '~> 1.7.2'
   gem 'capybara'
   gem 'factory_girl_rails'
 end
