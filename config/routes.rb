@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#delete'
+  get   '/logout', to: 'sessions#delete'
+
+  get    '/about', to: 'pages#about'
 
   resources :games, param: :name, only: [ :create, :show ] do
     resources :teams, only: [ :index ]
