@@ -4,9 +4,9 @@
 
 <h3>Check it out</h3>
 
-<p>To explore this app, join one of our demo games. <%= link_to 'Log in', login_path %> with the email address 'demo@email.com' and the password 'password', and join the existing game called '<%= Game.where("name like ?", "%Demo%").where(is_paused: true).first.name %>'. Feel free to click through, start the game, and explore as much as you'd like -- there's plenty more demos!</p>
+<p>To explore this app, join one of our demo games. <%= link_to 'Log in', login_path %> with the email address 'demo@email.com' and the password 'password', and join the existing game called '<%= Game.where("name like ?", "%Demo%").where(is_paused: true).first.name %>'. Feel free to click through, start the game, and explore as much as you'd like -- you won't break anything!</p>
 
-<p>When a player joins, all existing players see a live update on their screen indicating the display name of the newest player. All players need to add 4 cards (random concepts, phrases, celebrities, whatever!) before the game can begin.</p>
+<p>When a player joins, all existing players see a live update on their screen indicating the display names of all players. Each player needs to add 4 cards (random concepts, phrases, celebrities, whatever!) before the game can begin.</p>
 
 <p>The creator of an individual game (for this example, that's the 'demo' user!) is in charge of starting the game. They see when they are waiting for players to add cards, when they are waiting for at least 4 players to join, and when the game is ready to begin, a START button appears.</p>
 
