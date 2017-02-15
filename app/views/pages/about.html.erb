@@ -1,0 +1,12 @@
+<h1>About FishBowling</h1>
+<p>FishBowling is a multiplayer party game, played by 4 or more users who are in a room together. For a more in-depth look at the "classic", analog version of the game 'Fish Bowl', check out <%= link_to 'this', 'http://www.wikihow.com/Play-Fish-Bowl' %> WikiHow page.</p>
+<h3>Check it out</h3>
+<p>To explore this app, join one of our demo games. <%= link_to 'Log in', login_path %> with the email address 'demo@email.com' and the password 'password', and join the existing game called '<%= Game.where("name like ?", "%Demo%").select{|game| !game.is_over?}.first.name %>'.</p>
+<p>When a player joins, all existing players see a live update on their screen indicating the display name of the newest player. All players need to add 4 cards (random concepts, phrases, celebrities, whatever!) before the game can begin.</p>
+<p>The creator of an individual game (for this example, that's the 'demo' user!) is in charge of starting the game. They see when they are waiting for players to add cards, when they are waiting for at least 4 players to join, and when the game is ready to begin, a START button appears. Click through the game and explore!</p>
+<h4>About the Team</h4>
+<p>The main challenge in building this app was using ActionCable to maintain two-way connections via WebSockets. The code is available <%= link_to 'here', 'https://github.com/sea-otters-2017/fish_bowling'%> on GitHub. FishBowling was created by <%= link_to 'Justin Grassé', 'https://github.com/justGrasse' %>
+, <%= link_to 'Pat Holland', 'https://github.com/pholls' %>
+, <%= link_to 'Katherine Guenther', 'https://github.com/KatherineGuenther' %>, and <%= link_to 'Kim Tran', 'https://github.com/kimtran27' %>
+ in one week as our final project for Dev Bootcamp Seattle in February 2017.</p>
+<br><br>
