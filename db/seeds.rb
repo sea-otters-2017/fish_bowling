@@ -25,20 +25,6 @@ demo = User.create!(display_name: 'demo',
                     email: 'demo@email.com',
                     password: 'password' )
 
-
-50.times do |time|
-  game = Game.new(name: "Demo#{time + 1}")
-  game.creator = demo
-  game.participants << [kim, katherine, justin, pat, jordan, demo]
-  game.save!
-  game.participants.each do |participant|
-    4.times do
-      card = participant.cards.new(concept: Faker::Pokemon.name)
-      game.cards << card
-    end
-  end
-end
-
 DBC_CARDS = ['Stu',
              'Jordan',
              'Cyberspace',
@@ -54,16 +40,25 @@ DBC_CARDS = ['Stu',
              '500 Internal Server Error',
              'Engineering Empathy',
              'Star Wars',
-             'Kanto region'].shuffle
+             'Kanto region',
+             'Gong',
+             'Dogtags',
+             'Karaoke',
+             'The King of Kran',
+             'Lacey',
+             'Careers',
+             'Cold Outreach',
+             'Full-stack'].shuffle
 
-
-game = Game.new(name: "Demo")
-game.creator = pat
-game.participants << [kim, katherine, justin, pat]
-game.save!
-game.participants.each_with_index do |participant, index|
-  4.times do |time|
-    card = participant.cards.new(concept: DBC_CARDS[time + index])
-    game.cards << card
+50.times do |time|
+  game = Game.new(name: "Demo#{time + 1}")
+  game.creator = demo
+  game.participants << [kim, katherine, justin, pat, jordan, demo]
+  game.save!
+  game.participants.each do |participant|
+    4.times do |i|
+      card = participant.cards.new(concept: DBC_CARDS[i + index])
+      game.cards << card
+    end
   end
 end
