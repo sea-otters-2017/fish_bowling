@@ -55,7 +55,7 @@ DBC_CARDS = ['Stu',
   game.creator = demo
   game.participants << [kim, katherine, justin, pat, jordan, demo]
   game.save!
-  game.participants.each do |participant|
+  game.participants.each_with_index do |participant, index|
     4.times do |i|
       card = participant.cards.new(concept: DBC_CARDS[i + index])
       game.cards << card
