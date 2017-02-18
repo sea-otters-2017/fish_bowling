@@ -51,7 +51,7 @@ When it's another player's turn, everyone sees who is currently providing the cl
 
 It's your turn! You see the concept, as well as "Pass", "Got It", and "Pause" buttons. If you can't get the concept on the card, you can Pass it. The card goes back into the fish bowl and a new random one is provided. If you click Got It, the card is removed from the bowl, and a point is added to your team's score. If you click Pause, the timer stops and the concept is hidden.
 
-The admin is the only one who sees the "Next Turn" button -- at any time, they can skip the current turn.
+The creator is the only one who sees the "Next Turn" button -- at any time, they can skip the current turn.
 
 ![screenshot 8](./public/screenshots/Screenshot8.png "your turn")
 
