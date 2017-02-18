@@ -5,6 +5,10 @@ class GamesController < ApplicationController
   before_action :set_seconds_remaining, only: [:pass, :win_card, :pause, :unpause, :next_turn]
 
   def create
+    if game_params[:name].downcase == 'demo'
+      @game = CreateDemoGame.new(session_user).call
+      redirect_to @game and return
+    end
     @game = Game.new(game_params)
     @game.creator = session_user
     if @game.save

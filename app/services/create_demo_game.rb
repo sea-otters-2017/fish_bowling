@@ -26,12 +26,13 @@ class CreateDemoGame
     game.participants << [katherine, justin, pat, @creator]
     game.save!
     cards = DEMO_CARDS.shuffle
-    game.participants.each_with_index do |participant, index|
-      4.times do |i|
+    [katherine, justin, pat].each do |participant|
+      4.times do
         card = participant.cards.new(concept: cards.pop)
         game.cards << card
       end
     end
+    return game
   end
 
   private
