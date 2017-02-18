@@ -1,4 +1,5 @@
 <script type="text/javascript">
   var gameState = <%== @game.full_state.to_json %>;
   renderGamePage(gameState);
+  addSubscription('<%== @game.name %>');
 </script>
