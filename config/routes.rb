@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
+  get 'gameplay', to: 'gameplay#index'
   root to: "pages#index"
 
   resources :users, only: [ :new, :create ]
