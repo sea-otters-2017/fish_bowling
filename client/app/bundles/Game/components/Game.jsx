@@ -16,10 +16,6 @@ export default class Game extends React.Component {
   render() {
     return (
       <div>
-        <h3 className="game-name">{this.state.game.name}</h3>
-        <div id="round-container">
-          <p>Current Round: test</p>
-        </div>
         <Lobby gameState={this.state}/>
       </div>
     );

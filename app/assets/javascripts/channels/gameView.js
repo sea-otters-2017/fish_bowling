@@ -26,11 +26,11 @@ function renderGamePage(gameState, count_down = false) {
   function getWaitingHTML(){
     if(gameState.game_started){ return "" }
 
-    var allPlayers = ''
+    var allPlayers = '';
 
     gameState.participants.forEach(function(participant){
       allPlayers += `<li class='player-name'>${participant.display_name}</li>`
-    })
+    });
 
     function cardsForm(){
       if (!thisPlayer || thisPlayer.cards_count < 4) {
@@ -47,7 +47,7 @@ function renderGamePage(gameState, count_down = false) {
           </div>
         `;
       } else {
-        return ''
+        return '';
       }
     }
 
