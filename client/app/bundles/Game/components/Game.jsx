@@ -1,21 +1,29 @@
 import React, { PropTypes } from 'react';
+var Lobby = require('./Lobby');
+var GameTitle = require('./GameTitle');
 
 export default class Game extends React.Component {
+
   static propTypes = {
-    name: PropTypes.string.isRequired, // this is passed from the Rails view
+    action: PropTypes.string.isRequired,
   };
 
   constructor(props, _railsContext) {
     super(props);
-    console.log('props', props);
-    console.log('_railsContext', _railsContext);
-    // this.state = { name: this.props.name };
+    console.log('props.gameState', props.gameState);
+    this.action = props.action;
+    this.state = props.gameState;
   }
 
   render() {
     return (
       <div>
-        <p>nothing at the moment</p>
+        <h3 className="game-name">{this.state.game.name}</h3>
+        <div id="round-container">
+          <p>Current Round: test</p>
+        </div>
+        <GameTitle />
+        <Lobby />
       </div>
     );
   }
