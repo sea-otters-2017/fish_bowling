@@ -9,8 +9,8 @@ var Lobby = React.createClass({
     return (
       <div>
         <GameTitle gameState={gameState}/>
-        <CardForm gameState={gameState}/>
         <Participants gameState={gameState}/>
+        <CardForm gameState={gameState}/>
       </div>
     );
   }
