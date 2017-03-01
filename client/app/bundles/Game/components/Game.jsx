@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 var Lobby = require('./Lobby');
-var GameTitle = require('./GameTitle');
 
 export default class Game extends React.Component {
 
@@ -10,7 +9,6 @@ export default class Game extends React.Component {
 
   constructor(props, _railsContext) {
     super(props);
-    console.log('props.gameState', props.gameState);
     this.action = props.action;
     this.state = props.gameState;
   }
@@ -22,8 +20,7 @@ export default class Game extends React.Component {
         <div id="round-container">
           <p>Current Round: test</p>
         </div>
-        <GameTitle />
-        <Lobby />
+        <Lobby gameState={this.state}/>
       </div>
     );
   }

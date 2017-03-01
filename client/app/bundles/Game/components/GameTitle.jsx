@@ -2,12 +2,12 @@ var React = require('react');
 
 var GameTitle = React.createClass({
   render: function () {
-    var titleText = 'Favorite ' + "this.props.name";
+    var gameState = this.props.gameState;
     return (
       <div>
-        <h3 className="game-name">NAMEHERE</h3>
+        <h3 className="game-name">{gameState.game.name}</h3>
         <div id="round-container">
-          <p>Current Round: ROUNDHERE</p>
+          <p>Current Round: {gameState.current_round.type}</p>
         </div>
       </div>
     );
