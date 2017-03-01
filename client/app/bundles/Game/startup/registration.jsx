@@ -1,8 +1,8 @@
 import ReactOnRails from 'react-on-rails';
 
-import HelloWorld from '../components/HelloWorld';
+import Game from '../components/Game';
 
-// This is how react_on_rails can see the HelloWorld in the browser.
+// This is how react_on_rails can see the Game in the browser.
 ReactOnRails.register({
-  HelloWorld,
+  Game,
 });
