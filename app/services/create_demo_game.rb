@@ -1,6 +1,6 @@
 class CreateDemoGame
   DEMO_CARDS = [  'MLK',
-                  'French Toat',
+                  'French Toast',
                   'Ronald McDonald',
                   'Frozen',
                   'Overalls',
