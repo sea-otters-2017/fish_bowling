@@ -2,6 +2,7 @@ var React = require('react');
 var GameTitle = require('./GameTitle');
 var CardForm = require('./CardForm');
 var Participants = require('./Participants');
+var StartGameForm = require('./StartGameForm');
 
 var Lobby = React.createClass({
   render: function () {
@@ -11,6 +12,7 @@ var Lobby = React.createClass({
         <GameTitle gameState={gameState}/>
         <Participants gameState={gameState}/>
         <CardForm gameState={gameState}/>
+        <StartGameForm gameState={gameState}/>
       </div>
     );
   }

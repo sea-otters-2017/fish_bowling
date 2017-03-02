@@ -8,7 +8,7 @@ function renderGamePage(gameState, count_down = false) {
   var isCreator = (user_id === gameState.creator.id);
   var thisPlayer = gameState.participants.find(function(player) {
     return player.id === user_id
-  })
+  });
 
   // Universal View
 

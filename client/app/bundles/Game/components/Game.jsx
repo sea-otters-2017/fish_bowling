@@ -9,12 +9,12 @@ export default class Game extends React.Component {
 
   constructor(props, _railsContext) {
     super(props);
+
     this.action = props.action;
     this.state = props.gameState;
     var userdata = $("#live[data-userid]").data()
     var user_id = !!userdata ? userdata.userid : null;
     this.state.user_id = user_id;
-    console.log('this.state', this.state);
   }
 
   render() {
