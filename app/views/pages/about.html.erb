@@ -1,26 +1,26 @@
-<h1>About FishBowling</h1>
+<div>
+  <h1>About FishBowling</h1>
 
-<p>FishBowling is a multiplayer party game, played by 4 or more players who are in a room together. For a more in-depth look at the "classic", analog version of the game 'Fish Bowl', check out <%= link_to 'this WikiHow page', 'http://www.wikihow.com/Play-Fish-Bowl' %>.</p>
+  <p>FishBowling is a multiplayer party game, played by 4 or more players who are in a room together. For a more in-depth look at the "classic", analog version of the game 'Fish Bowl', check out <%= link_to 'this WikiHow page', 'http://www.wikihow.com/Play-Fish-Bowl' %>.</p>
 
-<h3>Check it out</h3>
+  <h3>Check it out</h3>
 
-<p>To explore this app, join one of our demo games. <%= link_to 'Log in', login_path %> with the email address 'demo@email.com' and the password 'password', and join the existing game called '<%= Game.where("name like ?", "%Demo%").where(is_paused: true).first.name %>'. Feel free to click through, start the game, and explore as much as you'd like -- you won't break anything!</p>
+  <p>To explore this app, join one of our demo games. <%= link_to 'Log in', login_path %> with the email address 'demo@email.com' and the password 'password', and join the existing game called '<%= Game.where("name like ?", "%Demo%").where(is_paused: true).first.name %>'. Feel free to click through, start the game, and explore as much as you'd like -- you won't break anything!</p>
 
-<p>When a player joins, all existing players see a live update on their screen indicating the display names of all players. Each player needs to add 4 cards (random concepts, phrases, celebrities, whatever!) before the game can begin.</p>
+  <p>When a player joins, all existing players see a live update on their screen indicating the display names of all players. Each player needs to add 4 cards (random concepts, phrases, celebrities, whatever!) before the game can begin.</p>
 
-<p>The creator of an individual game (for this example, the 'demo' user) is in charge of starting the game. They see if they are waiting for at least 4 players to join and if they are waiting for all players to add their 4 cards. When the game is ready to begin, a START button appears.</p>
+  <p>The creator of an individual game (for this example, the 'demo' user) is in charge of starting the game. They see if they are waiting for at least 4 players to join and if they are waiting for all players to add their 4 cards. When the game is ready to begin, a START button appears.</p>
 
-<p>The creator has the "Next Turn" button, which is able to skip or end a player's round early. We suggest making liberal use of this button while exploring the demo game -- otherwise, you'll end up waiting a full minute for each players' turn to end, and nobody has time for that.</p>
+  <p>The creator has the "Next Turn" button, which is able to skip or end a player's turn early. We suggest making liberal use of this button while exploring the demo game -- otherwise, you'll end up waiting a full minute for each players' turn to end, and nobody has time for that.</p>
 
-<p>Once a game has started, you can't come back to it if you leave. But that's okay -- we have a lot of demo games ready, so if you exit the game and need to view another one, just come back here and look at the new Demo game name.</p>
+  <p>Once a game has started, you can't come back to it if you leave. But that's okay -- we have a lot of demo games ready, so if you exit the game and need to view another one, just come back here and look at the new Demo game name.</p>
 
-<h4>About the Team</h4>
+  <h4>About the Team</h4>
 
-<p>The main challenge in building this app was using ActionCable to maintain two-way connections via WebSockets. It was designed using mobile-first and responsive design principles. The code is available on <%= link_to 'GitHub', 'https://github.com/sea-otters-2017/fish_bowling'%>.</p>
+  <p>The main challenge in building this app was using ActionCable to maintain two-way connections via WebSockets. It was designed using mobile-first and responsive design principles. The code is available on <%= link_to 'GitHub', 'https://github.com/sea-otters-2017/fish_bowling'%>.</p>
 
-<p>FishBowling was created by <%= link_to 'Justin Grassé', 'https://github.com/justGrasse' %>
-, <%= link_to 'Pat Holland', 'https://github.com/pholls' %>
-, <%= link_to 'Katherine Guenther', 'https://github.com/KatherineGuenther' %>, and <%= link_to 'Kim Tran', 'https://github.com/kimtran27' %>
- in the course of one week as a final project for Dev Bootcamp Seattle in February 2017.</p>
-
-<br><br>
+  <p>FishBowling was created by <%= link_to 'Justin Grassé', 'https://github.com/justGrasse' %>
+  , <%= link_to 'Pat Holland', 'https://github.com/pholls' %>
+  , <%= link_to 'Katherine Guenther', 'https://github.com/KatherineGuenther' %>, and <%= link_to 'Kim Tran', 'https://github.com/kimtran27' %>
+   in one week as our final project for Dev Bootcamp Seattle in February 2017.</p>
+</div>
