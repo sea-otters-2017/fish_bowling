@@ -25,7 +25,7 @@ export default class Game extends React.Component {
         { !this.game_started &&
           <Lobby gameState={this.state}/> }
         { this.game_started && !gameState.round_started &&
-          <TeamDisplay gameState={this.state}/> }
+          <TeamsDisplay gameState={this.state}/> }
       </div>
     );
   }

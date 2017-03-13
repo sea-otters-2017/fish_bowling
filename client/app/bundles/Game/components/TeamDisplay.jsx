@@ -6,7 +6,12 @@ var TeamDisplay = React.createClass({
     var gameState = this.props.gameState;
     return (
       <div>
-        <GameTitle gameState={gameState}/>
+        <div class="team-1">
+          <h5 id="team-name">${team1.name}</h5>
+          <ul>
+            <div class="team-players">${team1Players}</div>
+          </ul>
+        </div>
       </div>
     );
   }
