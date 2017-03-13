@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 var Lobby = require('./Lobby');
+var TeamDisplay = require('./TeamDisplay');
 
 export default class Game extends React.Component {
 

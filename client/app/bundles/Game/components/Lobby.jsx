@@ -7,18 +7,14 @@ var StartGameForm = require('./StartGameForm');
 var Lobby = React.createClass({
   render: function () {
     var gameState = this.props.gameState;
-    if () {
-      return (
-        <div>
-          <GameTitle gameState={gameState}/>
-          <Participants gameState={gameState}/>
-          <CardForm gameState={gameState}/>
-          <StartGameForm gameState={gameState}/>
-        </div>
-      );
-    } else {
-
-    }
+    return (
+      <div>
+        <GameTitle gameState={gameState}/>
+        <Participants gameState={gameState}/>
+        <CardForm gameState={gameState}/>
+        <StartGameForm gameState={gameState}/>
+      </div>
+    );
   }
 });
 
