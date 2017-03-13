@@ -9,7 +9,6 @@ export default class Game extends React.Component {
 
   constructor(props, _railsContext) {
     super(props);
-
     this.action = props.action;
     this.state = props.gameState;
     var userdata = $("#live[data-userid]").data()
@@ -18,10 +17,14 @@ export default class Game extends React.Component {
   }
 
   render() {
+    console.log('this.state', this.state);
+    console.log('this.state.game_started', this.state.game_started);
     return (
       <div>
-        {this.state.user_id}
-        <Lobby gameState={this.state}/>
+        { !this.game_started &&
+          <Lobby gameState={this.state}/> }
+        { this.game_started && !gameState.round_started &&
+          <TeamDisplay gameState={this.state}/> }
       </div>
     );
   }

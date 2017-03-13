@@ -137,13 +137,6 @@ h5#team-name {
   font-size: 4vh;
 }
 
-.team-1, .team-2, #new_card{
-  background: -webkit-linear-gradient(top, rgba(40,96,144,.2), rgba(255,0,0,1));
-  background: -o-linear-gradient(top, rgba(246, 248, 220,.2), rgba(255,0,0,1));
-  background: -moz-linear-gradient(bottom, rgba(246, 248, 220,.2), rgba(255,0,0,1));
-  background: linear-gradient(to bottom, rgba(246, 248, 220,0), rgba(246, 248, 220,.5));
-}
-
 #start-game {
   padding-top: 20px;
 }
