@@ -1,6 +1,7 @@
 var React = require('react');
 var GameTitle = require('./GameTitle');
 var TeamDisplay = require('./TeamDisplay');
+var StartGameForm = require('./StartGameForm');
 
 var TeamsDisplay = React.createClass({
   render: function () {
@@ -19,6 +20,7 @@ var TeamsDisplay = React.createClass({
             teamData={gameState.teams[1]}
             teamId={1} />
         </div>
+        <StartGameForm gameState={gameState}/>
       </div>
     );
   }
