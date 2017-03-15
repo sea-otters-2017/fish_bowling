@@ -1,15 +1,21 @@
 var React = require('react');
-var GameTitle = require('./GameTitle');
 
 var TeamDisplay = React.createClass({
   render: function () {
-    var gameState = this.props.gameState;
+    var teamData = this.props.teamData;
+
+    const players = teamData.players.map((player, index) =>
+      <li
+        className='player-name'
+        key={'player-' + index}>{player.display_name}</li>
+    );
+
     return (
       <div>
-        <div class="team-1">
-          <h5 id="team-name">${team1.name}</h5>
+        <div className="team-1">
+          <h5 id="team-name">{teamData.name}</h5>
           <ul>
-            <div class="team-players">${team1Players}</div>
+            <div className="team-players">{players}</div>
           </ul>
         </div>
       </div>

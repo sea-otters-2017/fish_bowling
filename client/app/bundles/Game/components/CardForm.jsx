@@ -6,8 +6,6 @@ var CardForm = React.createClass({
     var thisPlayer = gameState.participants.find(function(player) {
       return player.id === gameState.user_id
     });
-    console.log('gameState', gameState)
-    console.log('thisPlayer',thisPlayer)
     if (thisPlayer.cards_count >= 4) return null;
     return (
       <div id="create-card-form">

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 var Lobby = require('./Lobby');
-var TeamDisplay = require('./TeamDisplay');
+var TeamsDisplay = require('./TeamsDisplay');
 
 export default class Game extends React.Component {
 
@@ -18,14 +18,13 @@ export default class Game extends React.Component {
   }
 
   render() {
-    console.log('this.state', this.state);
-    console.log('this.state.game_started', this.state.game_started);
+    var gameState = this.state;
     return (
       <div>
-        { !this.game_started &&
-          <Lobby gameState={this.state}/> }
-        { this.game_started && !gameState.round_started &&
-          <TeamsDisplay gameState={this.state}/> }
+        { !gameState.game_started &&
+          <Lobby gameState={gameState}/> }
+        { gameState.game_started && !gameState.round_started &&
+          <TeamsDisplay gameState={gameState}/> }
       </div>
     );
   }

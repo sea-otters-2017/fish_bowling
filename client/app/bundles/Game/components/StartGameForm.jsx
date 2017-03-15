@@ -7,10 +7,7 @@ var StartGameForm = React.createClass({
 
     var user_id = gameState.user_id;
     var isCreator = (user_id === gameState.creator.id);
-
-    console.log('user_id', user_id);
-    console.log('isCreator', isCreator);
-
+    
     if(isCreator && gameState.ready) {
       gameStatusDisplay = (
         <form id="start-game" className="action-form" action={'/games/' + gameState.game.name + '/start'} method="post">
