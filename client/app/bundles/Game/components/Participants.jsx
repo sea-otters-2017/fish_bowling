@@ -6,7 +6,9 @@ var Participants = React.createClass({
     var allPlayers = '';
 
     const participants = gameState.participants.map((participant, index) =>
-      <li key={'participant-' + index}>{participant.display_name}</li>
+      <li
+        className='player-name' 
+        key={'participant-' + index}>{participant.display_name}</li>
     );
 
     return (
