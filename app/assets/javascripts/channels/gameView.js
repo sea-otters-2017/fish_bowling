@@ -32,6 +32,7 @@ function renderGamePage(gameState, count_down = false) {
       allPlayers += `<li class='player-name'>${participant.display_name}</li>`
     });
 
+
     function cardsForm(){
       if (!thisPlayer || thisPlayer.cards_count < 4) {
         return `

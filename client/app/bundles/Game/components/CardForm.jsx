@@ -3,7 +3,12 @@ var React = require('react');
 var CardForm = React.createClass({
   render: function () {
     var gameState = this.props.gameState;
+    var thisPlayer = gameState.participants.find(function(player) {
+      return player.id === gameState.user_id
+    });
     console.log('gameState', gameState)
+    console.log('thisPlayer',thisPlayer)
+    if (thisPlayer.cards_count >= 4) return null;
     return (
       <div id="create-card-form">
         <form id="new_card" className="action-form" action="/cards" acceptCharset="UTF-8" method="post">

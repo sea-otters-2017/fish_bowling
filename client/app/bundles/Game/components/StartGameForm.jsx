@@ -13,7 +13,7 @@ var StartGameForm = React.createClass({
 
     if(isCreator && gameState.ready) {
       gameStatusDisplay = (
-        <form id="start-game" className="action-form" action="/games/{gameState.game.name}/start" method="post">
+        <form id="start-game" className="action-form" action={'/games/' + gameState.game.name + '/start'} method="post">
           <input className="btn waves-effect waves-light btn-large teal z-depth-" type="submit" value="Start Game!" />
         </form>
       );
