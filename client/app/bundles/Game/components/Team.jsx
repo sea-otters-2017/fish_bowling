@@ -1,6 +1,6 @@
 var React = require('react');
 
-var TeamDisplay = React.createClass({
+var Team = React.createClass({
   render: function () {
     var teamData = this.props.teamData;
 
@@ -23,4 +23,4 @@ var TeamDisplay = React.createClass({
   }
 });
 
-module.exports = TeamDisplay;
+module.exports = Team;

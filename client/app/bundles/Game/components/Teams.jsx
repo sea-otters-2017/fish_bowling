@@ -1,9 +1,9 @@
 var React = require('react');
 var GameTitle = require('./GameTitle');
-var TeamDisplay = require('./TeamDisplay');
+var Team = require('./Team');
 var StartGameForm = require('./StartGameForm');
 
-var TeamsDisplay = React.createClass({
+var Teams = React.createClass({
   render: function () {
     var gameState = this.props.gameState;
     return (
@@ -11,11 +11,11 @@ var TeamsDisplay = React.createClass({
         <GameTitle gameState={gameState} />
         <h4 className="banner">Teams:</h4>
         <div className='teams-container'>
-          <TeamDisplay
+          <Team
             gameState={gameState}
             teamData={gameState.teams[0]}
             teamId={0} />
-          <TeamDisplay
+          <Team
             gameState={gameState}
             teamData={gameState.teams[1]}
             teamId={1} />
@@ -26,4 +26,4 @@ var TeamsDisplay = React.createClass({
   }
 });
 
-module.exports = TeamsDisplay;
+module.exports = Teams;
