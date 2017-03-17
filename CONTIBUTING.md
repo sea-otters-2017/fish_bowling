@@ -8,7 +8,7 @@ Feel like contributing to our project? We welcome any and all contributions that
 * Checkout and work on a feature branch
 * Rebase and merge before pushing to origin
 * Push to origin
-* Create a pull request to [this repo](https://github.com/sea-otters-2017/fluorine-psklrmrfi)
+* Create a pull request to [this repo](https://github.com/sea-otters-2017/fish_bowling)
 * A FishBowling team member will review your code and merge it
 * Keep your fork up to date!
 
