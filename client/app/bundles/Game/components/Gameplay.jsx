@@ -1,5 +1,7 @@
 var React = require('react');
 var GameTitle = require('./GameTitle');
+var Clue = require('./Clue');
+var NextTurn = require('./NextTurn');
 
 var Gameplay = React.createClass({
 
@@ -13,9 +15,9 @@ var Gameplay = React.createClass({
     return (
       <div>
         <GameTitle gameState={gameState}/>
-        {isCluegiver && <div>I AM THE CLUEGIVER!</div>}
-        {!isCluegiver && <div>I AIN'T THE CLUEGIVER!</div>}
-        {isCreator && <div>I AM THE CREATOR!</div>}
+        {isCluegiver && <Clue gameState={gameState} />}
+        {!isCluegiver && <Clue gameState={gameState} />}
+        {isCreator && <NextTurn gameName={gameState.game.name} />}
       </div>
     );
   }
