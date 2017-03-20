@@ -5,7 +5,7 @@ var Timer = React.createClass({
     var secondsRemaining = this.props.secondsRemaining;
     return (
       <div id="timer" style={{display: 'block'}}>
-        00:48
+        {secondsRemaining}
       </div>
     );
   }
