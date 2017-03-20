@@ -6,7 +6,7 @@ var Gameplay = require('./Gameplay');
 export default class Game extends React.Component {
 
   static propTypes = {
-    action: PropTypes.string.isRequired,
+    action: PropTypes.string.isRequired
   };
 
   constructor(props, _railsContext) {
