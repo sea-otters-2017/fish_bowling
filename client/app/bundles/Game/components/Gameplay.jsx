@@ -1,4 +1,5 @@
 var React = require('react');
+var Timer = require('./Timer');
 var GameTitle = require('./GameTitle');
 var Clue = require('./Clue');
 var Observer = require('./Observer');
@@ -15,6 +16,7 @@ var Gameplay = React.createClass({
 
     return (
       <div>
+        <Timer secondsRemaining={gameState.last_turn.seconds_remaining} />
         <GameTitle gameState={gameState}/>
         {isCluegiver && <Clue gameState={gameState} />}
         {!isCluegiver && <Observer gameState={gameState} />}
