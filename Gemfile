@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'redis'
 gem 'faker', '~> 1.7.2'
+gem "react_on_rails", "~> 6"
 
 
 group :development, :test do
@@ -39,3 +40,5 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby

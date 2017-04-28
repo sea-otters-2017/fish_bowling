@@ -8,7 +8,7 @@ function renderGamePage(gameState, count_down = false) {
   var isCreator = (user_id === gameState.creator.id);
   var thisPlayer = gameState.participants.find(function(player) {
     return player.id === user_id
-  })
+  });
 
   // Universal View
 
@@ -26,11 +26,12 @@ function renderGamePage(gameState, count_down = false) {
   function getWaitingHTML(){
     if(gameState.game_started){ return "" }
 
-    var allPlayers = ''
+    var allPlayers = '';
 
     gameState.participants.forEach(function(participant){
       allPlayers += `<li class='player-name'>${participant.display_name}</li>`
-    })
+    });
+
 
     function cardsForm(){
       if (!thisPlayer || thisPlayer.cards_count < 4) {
@@ -47,7 +48,7 @@ function renderGamePage(gameState, count_down = false) {
           </div>
         `;
       } else {
-        return ''
+        return '';
       }
     }
 

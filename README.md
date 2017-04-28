@@ -73,3 +73,9 @@ Better luck next time, Belugas!
 * in a web browser, open localhost:3000
 * follow on-screen instructions
 
+#### See Game on React
+
+* enter `bundle && yarn` into terminal
+* enter `foreman start -f Procfile.dev` into terminal
+* in a web browser, open localhost:5000
+* open localhost:5000/gameplay to see the LAST game in the database running on REACT

@@ -1,0 +1,4 @@
+<div id="live" data-userid="<%= current_user.id %>">
+  <%= react_component("Game", props: @game_props, prerender: false) %>
+</div>
+<audio id='toot' src='https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3'></audio>
