@@ -42,15 +42,15 @@ class CreateDemoGame
   end
 
   def katherine
-    User.find(2)
+    User.find_by(email: 'katherine@email.com')
   end
 
   def justin
-    User.find(3)
+    User.find_by(email: 'justin@email.com')
   end
 
   def pat
-    User.find(4)
+    User.find_by(email: 'pat@email.com')
   end
 
 end
